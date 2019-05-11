@@ -1,0 +1,27 @@
+import { NgModule } from '@angular/core';
+import { Routes, RouterModule } from '@angular/router';
+import { PacijenComponent } from './components/pacijent/pacijent.component';
+import { MaterijalComponent } from './components/materijal/materijal.component';
+import { DobavljacComponent } from './components/dobavljac/dobavljac.component';
+import { StrukaComponent } from './components/struka/struka.component';
+import { SlikaComponent } from './components/slika/slika.component';
+import { DijagnozaComponent } from './components/dijagnoza/dijagnoza.component';
+import { OrdinacijaComponent } from './components/ordinacija/ordinacija.component';
+import { ArtiklComponent } from './components/artikl/artikl.component';
+
+const routes: Routes = [
+  { path: 'pacijent', component: PacijenComponent},
+  { path: 'artikl', component: ArtiklComponent},
+  { path: 'struka', component: StrukaComponent},
+  { path: 'slika', component: SlikaComponent},
+  { path: 'ordinacija', component: OrdinacijaComponent},
+  { path: 'dobavljac', component: DobavljacComponent},
+  { path: 'dijagnoza', component: DijagnozaComponent},
+  { path: 'materijal', component: MaterijalComponent}
+];
+
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule { }
