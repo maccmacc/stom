@@ -1,7 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-width: 451px;
+  min-width: 450px;
 }
 
 .form {
