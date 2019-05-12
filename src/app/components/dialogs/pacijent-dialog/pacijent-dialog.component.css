@@ -15,3 +15,21 @@
   flex-grow: 1;
 }
 
+.column {
+  float: left;
+  width: 40%;
+}
+
+.column2 {
+  margin-left: 10%;
+  float: right;
+  align: right;
+  width: 40%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}

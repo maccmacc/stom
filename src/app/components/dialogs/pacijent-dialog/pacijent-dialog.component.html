@@ -9,14 +9,20 @@
       </mat-form-field>
     </div>
     <div class="form">
-      <mat-form-field>
-        <input matInput placeholder="Ime" [(ngModel)]="data.ime" name="ime" [disabled]="flag==3" required>
-      </mat-form-field>
+        <div class="row">
+            <div class="column">
+                <mat-form-field>
+                    <input matInput placeholder="Ime" [(ngModel)]="data.ime" name="ime" [disabled]="flag==3" required>
+                  </mat-form-field>
+            </div>
+            <div class="column2">
+                <mat-form-field>
+                    <input matInput placeholder="Prezime" [(ngModel)]="data.prezime" name="prezime" [disabled]="flag==3" required>
+                  </mat-form-field>
+            </div>
+          </div>
     </div>
     <div class="form">
-      <mat-form-field>
-        <input matInput placeholder="Prezime" [(ngModel)]="data.prezime" name="prezime" [disabled]="flag==3" required>
-      </mat-form-field>
     </div>
     <div class="form">
       <mat-form-field>
@@ -31,14 +37,18 @@
       </mat-form-field>
     </div>
     <div class="form">
-      <mat-form-field>
-        <input matInput placeholder="Email" [(ngModel)]="data.email" name="email" [disabled]="flag==3" required>
-      </mat-form-field>
-    </div>
-    <div class="form">
-      <mat-form-field>
-        <input matInput placeholder="Kontakt" [(ngModel)]="data.kontakt" name="kontakt" [disabled]="flag==3" required>
-      </mat-form-field>
+        <div class="row">
+            <div class="column">
+                <mat-form-field>
+                    <input matInput placeholder="E mail" [(ngModel)]="data.email" name="email" [disabled]="flag==3" required>
+                  </mat-form-field>
+            </div>
+            <div class="column2">
+                <mat-form-field>
+                    <input matInput placeholder="Kontakt" [(ngModel)]="data.kontakt" name="kontakt" [disabled]="flag==3" required>
+                  </mat-form-field>
+            </div>
+          </div>
     </div>
     <div class="form">
       <mat-form-field>
