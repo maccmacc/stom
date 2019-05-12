@@ -1,8 +1,7 @@
 .container {
   display: flex;
   flex-direction: column;
-  min-width: 450px;
-
+  min-width: 451px;
 }
 
 .form {
@@ -11,7 +10,7 @@
 }
 
 .mat-form-field {
-  font-size: 14px;
+  font-size: 13px;
   flex-grow: 1;
 }
 
