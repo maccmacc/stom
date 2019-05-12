@@ -8,6 +8,8 @@ import { SlikaComponent } from './components/slika/slika.component';
 import { DijagnozaComponent } from './components/dijagnoza/dijagnoza.component';
 import { OrdinacijaComponent } from './components/ordinacija/ordinacija.component';
 import { ArtiklComponent } from './components/artikl/artikl.component';
+import { ZaposleniComponent } from './components/zaposleni/zaposleni.component';
+import { IsplataComponent } from './components/isplata/isplata.component';
 
 const routes: Routes = [
   { path: 'pacijent', component: PacijenComponent},
@@ -17,7 +19,9 @@ const routes: Routes = [
   { path: 'ordinacija', component: OrdinacijaComponent},
   { path: 'dobavljac', component: DobavljacComponent},
   { path: 'dijagnoza', component: DijagnozaComponent},
-  { path: 'materijal', component: MaterijalComponent}
+  { path: 'materijal', component: MaterijalComponent},
+  { path: 'zaposleni', component: ZaposleniComponent},
+  { path: 'isplata', component: IsplataComponent}
 ];
 
 @NgModule({

@@ -1,5 +1,4 @@
 import { Component, OnInit, Inject } from '@angular/core';
-
 import { MatSnackBar, MatSnackBarModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Pacijent } from '../../../models/pacijent';
 import { PacijentService } from '../../../services/pacijent.service';

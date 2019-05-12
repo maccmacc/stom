@@ -21,7 +21,8 @@ import {
   MatSnackBar,
   MatSnackBarModule,
   MatDatepickerModule,
-  MatNativeDateModule
+  MatNativeDateModule,
+  MatSelectModule
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
 import { PacijenComponent } from './components/pacijent/pacijent.component';
@@ -49,6 +50,12 @@ import { SlikaDialogComponent } from './components/dialogs/slika-dialog/slika-di
 import { StrukaDialogComponent } from './components/dialogs/struka-dialog/struka-dialog.component';
 import { ArtiklDialogComponent } from './components/dialogs/artikl-dialog/artikl-dialog.component';
 import { FormsModule } from '@angular/forms';
+import { IsplataComponent } from './components/isplata/isplata.component';
+import { IsplataDialogComponent } from './components/dialogs/isplata-dialog/isplata-dialog.component';
+import { ZaposleniDialogComponent } from './components/dialogs/zaposleni-dialog/zaposleni-dialog.component';
+import { ZaposleniComponent } from './components/zaposleni/zaposleni.component';
+import { IsplataService } from './services/isplata.service';
+import { ZaposleniService } from './services/zaposleni.service';
 
 
 @NgModule({
@@ -71,11 +78,15 @@ import { FormsModule } from '@angular/forms';
     OrdinacijaDialogComponent,
     SlikaDialogComponent,
     StrukaDialogComponent,
-    ArtiklDialogComponent
+    ArtiklDialogComponent,
+    IsplataComponent,
+    IsplataDialogComponent,
+    ZaposleniDialogComponent,
+    ZaposleniComponent
   ],
   entryComponents: [PacijentDialogComponent, MaterijalDialogComponent,
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
-    OrdinacijaDialogComponent, StrukaDialogComponent, ArtiklDialogComponent],
+    OrdinacijaDialogComponent, StrukaDialogComponent, ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -96,9 +107,11 @@ import { FormsModule } from '@angular/forms';
     MatDialogModule,
     MatSnackBarModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSelectModule
   ],
-  providers: [PacijentService, ArtiklService, DobavljacService, DijagnozaService, OrdinacijaService, StrukaService, MaterijalService],
+  providers: [PacijentService, ArtiklService, DobavljacService, DijagnozaService, OrdinacijaService, StrukaService, MaterijalService,
+    ZaposleniService, IsplataService],
   bootstrap: [AppComponent]
 
 })
