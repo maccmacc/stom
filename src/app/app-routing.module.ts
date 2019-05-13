@@ -10,6 +10,7 @@ import { OrdinacijaComponent } from './components/ordinacija/ordinacija.componen
 import { ArtiklComponent } from './components/artikl/artikl.component';
 import { ZaposleniComponent } from './components/zaposleni/zaposleni.component';
 import { IsplataComponent } from './components/isplata/isplata.component';
+import { PorudzbinaComponent } from './components/porudzbina/porudzbina.component';
 
 const routes: Routes = [
   { path: 'pacijent', component: PacijenComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path: 'dijagnoza', component: DijagnozaComponent},
   { path: 'materijal', component: MaterijalComponent},
   { path: 'zaposleni', component: ZaposleniComponent},
-  { path: 'isplata', component: IsplataComponent}
+  { path: 'isplata', component: IsplataComponent},
+  { path: 'porudzbina', component: PorudzbinaComponent}
 ];
 
 @NgModule({

@@ -56,6 +56,9 @@ import { ZaposleniDialogComponent } from './components/dialogs/zaposleni-dialog/
 import { ZaposleniComponent } from './components/zaposleni/zaposleni.component';
 import { IsplataService } from './services/isplata.service';
 import { ZaposleniService } from './services/zaposleni.service';
+import { PorudzbinaDialogComponent } from './components/dialogs/porudzbina-dialog/porudzbina-dialog.component';
+import { PorudzbinaComponent } from './components/porudzbina/porudzbina.component';
+import { PorudzbinaService } from './services/porudzbina.service';
 
 
 @NgModule({
@@ -82,11 +85,14 @@ import { ZaposleniService } from './services/zaposleni.service';
     IsplataComponent,
     IsplataDialogComponent,
     ZaposleniDialogComponent,
-    ZaposleniComponent
+    ZaposleniComponent,
+    PorudzbinaDialogComponent,
+    PorudzbinaComponent
   ],
   entryComponents: [PacijentDialogComponent, MaterijalDialogComponent,
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
-    OrdinacijaDialogComponent, StrukaDialogComponent, ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent],
+    OrdinacijaDialogComponent, PorudzbinaDialogComponent, StrukaDialogComponent,
+    ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -110,7 +116,8 @@ import { ZaposleniService } from './services/zaposleni.service';
     MatNativeDateModule,
     MatSelectModule
   ],
-  providers: [PacijentService, ArtiklService, DobavljacService, DijagnozaService, OrdinacijaService, StrukaService, MaterijalService,
+  providers: [PacijentService, ArtiklService, PorudzbinaService, DobavljacService,
+    DijagnozaService, OrdinacijaService, StrukaService, MaterijalService,
     ZaposleniService, IsplataService],
   bootstrap: [AppComponent]
 

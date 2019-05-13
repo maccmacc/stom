@@ -1,0 +1,74 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje porudžbine</h3>
+  <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija porudžbine</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Brisanje porudžbine</h3>
+
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker1" placeholder="Datum porudžbine" [(ngModel)]="data.datum" name="datum" [disabled]="flag===3" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.dobavljac" placeholder="Dobavljač" name="dobavljac" [compareWith]="compareTo" [disabled]="flag == 3" required>
+          <mat-option *ngFor="let dobavljac of sviDobavljaci" [value]="dobavljac">
+            {{ dobavljac.naziv }}
+          </mat-option>
+        </mat-select>      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput [matDatepicker]="picker" placeholder="Datum isporuke" [(ngModel)]="data.isporuceno" name="isporuceno" [disabled]="flag===3" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+       <input matInput placeholder="Iznos" [(ngModel)]="data.iznos" name="iznos" [disabled]="flag==3" required>
+     </mat-form-field>
+</div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Lookup" [(ngModel)]="data.lookup" name="lookup" [disabled]="flag==3" required>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+          <mat-select  [(ngModel)]="data.placeno" placeholder="Plaćeno" name="placeno" [compareWith]="compareTo" [disabled]="flag == 3" required>
+            <mat-option value="true">Da</mat-option>
+            <mat-option value="false">Ne</mat-option>
+          </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input matInput placeholder="Ukupno" [(ngModel)]="data.iznos" name="ukupno" [disabled]="flag==3" required>
+      </mat-form-field>
+    </div>
+
+
+
+    <div mat-dialog-actions>
+      <button mat-button *ngIf="flag==1" [type]="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">
+        Sačuvaj
+      </button>
+      <button mat-button *ngIf="flag==2" [type]="submit" [mat-dialog-close]="1" (click)="update()" [disabled]="!formControl.valid">
+        Sačuvaj
+      </button>
+      <button mat-button *ngIf="flag==3" [type]="submit" [mat-dialog-close]="1" (click)="delete()">
+        Obriši
+      </button>
+      <button mat-button (click)="cancel()">Poništi</button>
+    </div>
+  </form>
+</div>
