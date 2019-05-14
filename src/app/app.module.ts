@@ -59,6 +59,12 @@ import { ZaposleniService } from './services/zaposleni.service';
 import { PorudzbinaDialogComponent } from './components/dialogs/porudzbina-dialog/porudzbina-dialog.component';
 import { PorudzbinaComponent } from './components/porudzbina/porudzbina.component';
 import { PorudzbinaService } from './services/porudzbina.service';
+import { RadnoMestoDialogComponent } from './components/dialogs/radno-mesto-dialog/radno-mesto-dialog.component';
+import { RadnoMestoComponent } from './components/radno-mesto/radno-mesto.component';
+import { RadnoMestoService } from './services/radno-mesto.service';
+import { StatusDialogComponent } from './components/dialogs/status-dialog/status-dialog.component';
+import { StatusComponent } from './components/status/status.component';
+import { StatusService } from './services/status.service';
 
 
 @NgModule({
@@ -87,12 +93,16 @@ import { PorudzbinaService } from './services/porudzbina.service';
     ZaposleniDialogComponent,
     ZaposleniComponent,
     PorudzbinaDialogComponent,
-    PorudzbinaComponent
+    PorudzbinaComponent,
+    RadnoMestoDialogComponent,
+    RadnoMestoComponent,
+    StatusDialogComponent,
+    StatusComponent
   ],
   entryComponents: [PacijentDialogComponent, MaterijalDialogComponent,
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
     OrdinacijaDialogComponent, PorudzbinaDialogComponent, StrukaDialogComponent,
-    ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent],
+    ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent, RadnoMestoDialogComponent, StatusDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -118,7 +128,7 @@ import { PorudzbinaService } from './services/porudzbina.service';
   ],
   providers: [PacijentService, ArtiklService, PorudzbinaService, DobavljacService,
     DijagnozaService, OrdinacijaService, StrukaService, MaterijalService,
-    ZaposleniService, IsplataService],
+    ZaposleniService, IsplataService, PorudzbinaService, RadnoMestoService, StatusService],
   bootstrap: [AppComponent]
 
 })
