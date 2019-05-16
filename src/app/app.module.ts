@@ -65,6 +65,8 @@ import { RadnoMestoService } from './services/radno-mesto.service';
 import { StatusDialogComponent } from './components/dialogs/status-dialog/status-dialog.component';
 import { StatusComponent } from './components/status/status.component';
 import { StatusService } from './services/status.service';
+import { StavkaPorudzbineComponent } from './components/stavka-porudzbine/stavka-porudzbine.component';
+import { StavkaPorudzbineDialogComponent } from './components/dialogs/stavka-porudzbine-dialog/stavka-porudzbine-dialog.component';
 
 
 @NgModule({
@@ -97,7 +99,9 @@ import { StatusService } from './services/status.service';
     RadnoMestoDialogComponent,
     RadnoMestoComponent,
     StatusDialogComponent,
-    StatusComponent
+    StatusComponent,
+    StavkaPorudzbineComponent,
+    StavkaPorudzbineDialogComponent
   ],
   entryComponents: [PacijentDialogComponent, MaterijalDialogComponent,
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
