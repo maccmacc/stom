@@ -70,6 +70,7 @@ import { VrstaIntervencijeDialogComponent } from './components/dialogs/vrsta-int
 import { VrstaIntervencijeService } from './services/vrsta-intervencije.service';
 import { StavkaPorudzbineComponent } from './components/stavka-porudzbine/stavka-porudzbine.component';
 import { StavkaPorudzbineDialogComponent } from './components/dialogs/stavka-porudzbine-dialog/stavka-porudzbine-dialog.component';
+import { StavkaPorudzbineService } from './services/stavka-porudzbine.service';
 
 
 @NgModule({
@@ -112,7 +113,7 @@ import { StavkaPorudzbineDialogComponent } from './components/dialogs/stavka-por
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
     OrdinacijaDialogComponent, PorudzbinaDialogComponent, StrukaDialogComponent,
     ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent, RadnoMestoDialogComponent, StatusDialogComponent,
-    VrstaIntervencijeDialogComponent],
+    VrstaIntervencijeDialogComponent, StavkaPorudzbineDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -138,7 +139,8 @@ import { StavkaPorudzbineDialogComponent } from './components/dialogs/stavka-por
   ],
   providers: [PacijentService, ArtiklService, PorudzbinaService, DobavljacService,
     DijagnozaService, OrdinacijaService, StrukaService, MaterijalService,
-    ZaposleniService, IsplataService, PorudzbinaService, RadnoMestoService, StatusService, VrstaIntervencijeService],
+    ZaposleniService, IsplataService, PorudzbinaService, RadnoMestoService, StatusService, VrstaIntervencijeService,
+     StavkaPorudzbineService],
   bootstrap: [AppComponent]
 
 })

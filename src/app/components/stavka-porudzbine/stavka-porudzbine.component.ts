@@ -13,7 +13,7 @@ import { Porudzbina } from '../../models/porudzbina';
   styleUrls: ['./stavka-porudzbine.component.css']
 })
 export class StavkaPorudzbineComponent implements OnInit {
-  displayedColumns = ['artikl', 'cena' , 'id' , 'jedinicaMere' , 'kolicina', 'porudzbina', 'redni broj', 'ukupno', 'add', 'edit', 'delete'];
+  displayedColumns = ['artikl', 'cena' , 'id' , 'jedinicaMere' , 'kolicina', 'porudzbina', 'redniBroj', 'ukupno', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<StavkaPorudzbine>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

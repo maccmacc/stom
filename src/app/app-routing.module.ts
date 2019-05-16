@@ -14,6 +14,7 @@ import { PorudzbinaComponent } from './components/porudzbina/porudzbina.componen
 import { RadnoMestoComponent } from './components/radno-mesto/radno-mesto.component';
 import { StatusComponent } from './components/status/status.component';
 import { VrstaIntervencijeComponent } from './components/vrsta-intervencije/vrsta-intervencije.component';
+import { StavkaPorudzbineComponent } from './components/stavka-porudzbine/stavka-porudzbine.component';
 
 const routes: Routes = [
   { path: 'pacijent', component: PacijenComponent},
@@ -29,7 +30,8 @@ const routes: Routes = [
   { path: 'porudzbina', component: PorudzbinaComponent},
   { path: 'radno-mesto', component: RadnoMestoComponent},
   { path: 'status', component: StatusComponent},
-  { path: 'vrstaIntervencije', component: VrstaIntervencijeComponent}
+  { path: 'vrstaIntervencije', component: VrstaIntervencijeComponent},
+  { path: 'stavkaPorudzbine', component: StavkaPorudzbineComponent}
 ];
 
 @NgModule({
