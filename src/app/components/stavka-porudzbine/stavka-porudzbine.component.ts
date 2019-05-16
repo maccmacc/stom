@@ -8,9 +8,9 @@ import { Artikl } from '../../models/artikl';
 import { Porudzbina } from '../../models/porudzbina';
 
 @Component({
-  selector: 'app-stavkaPorudzbine',
-  templateUrl: './stavkaPorudzbine.component.html',
-  styleUrls: ['./stavkaPorudzbine.component.css']
+  selector: 'app-stavka-porudzbine',
+  templateUrl: './stavka-porudzbine.component.html',
+  styleUrls: ['./stavka-porudzbine.component.css']
 })
 export class StavkaPorudzbineComponent implements OnInit {
   displayedColumns = ['artikl', 'cena' , 'id' , 'jedinicaMere' , 'kolicina', 'porudzbina', 'redni broj', 'ukupno', 'add', 'edit', 'delete'];
@@ -40,7 +40,7 @@ export class StavkaPorudzbineComponent implements OnInit {
       }
     );
   }
-  public openDialog(artikl: Artikl, cena: number, id: number, jedinicaMere: string,
+  public openDialog(flag: number, artikl: Artikl, cena: number, id: number, jedinicaMere: string,
                     kolicina: number, porudzbina: Porudzbina, redniBroj: number, ukupno: number) {
 
 
