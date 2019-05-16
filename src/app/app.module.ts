@@ -65,6 +65,9 @@ import { RadnoMestoService } from './services/radno-mesto.service';
 import { StatusDialogComponent } from './components/dialogs/status-dialog/status-dialog.component';
 import { StatusComponent } from './components/status/status.component';
 import { StatusService } from './services/status.service';
+import { VrstaIntervencijeComponent } from './components/vrsta-intervencije/vrsta-intervencije.component';
+import { VrstaIntervencijeDialogComponent } from './components/dialogs/vrsta-intervencije-dialog/vrsta-intervencije-dialog.component';
+import { VrstaIntervencijeService } from './services/vrsta-intervencije.service';
 
 
 @NgModule({
@@ -97,12 +100,15 @@ import { StatusService } from './services/status.service';
     RadnoMestoDialogComponent,
     RadnoMestoComponent,
     StatusDialogComponent,
-    StatusComponent
+    StatusComponent,
+    VrstaIntervencijeComponent,
+    VrstaIntervencijeDialogComponent
   ],
   entryComponents: [PacijentDialogComponent, MaterijalDialogComponent,
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
     OrdinacijaDialogComponent, PorudzbinaDialogComponent, StrukaDialogComponent,
-    ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent, RadnoMestoDialogComponent, StatusDialogComponent],
+    ArtiklDialogComponent, IsplataDialogComponent, ZaposleniDialogComponent, RadnoMestoDialogComponent, StatusDialogComponent,
+    VrstaIntervencijeDialogComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -128,7 +134,7 @@ import { StatusService } from './services/status.service';
   ],
   providers: [PacijentService, ArtiklService, PorudzbinaService, DobavljacService,
     DijagnozaService, OrdinacijaService, StrukaService, MaterijalService,
-    ZaposleniService, IsplataService, PorudzbinaService, RadnoMestoService, StatusService],
+    ZaposleniService, IsplataService, PorudzbinaService, RadnoMestoService, StatusService, VrstaIntervencijeService],
   bootstrap: [AppComponent]
 
 })

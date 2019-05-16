@@ -13,6 +13,7 @@ import { IsplataComponent } from './components/isplata/isplata.component';
 import { PorudzbinaComponent } from './components/porudzbina/porudzbina.component';
 import { RadnoMestoComponent } from './components/radno-mesto/radno-mesto.component';
 import { StatusComponent } from './components/status/status.component';
+import { VrstaIntervencijeComponent } from './components/vrsta-intervencije/vrsta-intervencije.component';
 
 const routes: Routes = [
   { path: 'pacijent', component: PacijenComponent},
@@ -27,7 +28,8 @@ const routes: Routes = [
   { path: 'isplata', component: IsplataComponent},
   { path: 'porudzbina', component: PorudzbinaComponent},
   { path: 'radno-mesto', component: RadnoMestoComponent},
-  { path: 'status', component: StatusComponent}
+  { path: 'status', component: StatusComponent},
+  { path: 'vrstaIntervencije', component: VrstaIntervencijeComponent}
 ];
 
 @NgModule({
