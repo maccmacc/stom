@@ -68,6 +68,8 @@ import { StatusService } from './services/status.service';
 import { VrstaIntervencijeComponent } from './components/vrsta-intervencije/vrsta-intervencije.component';
 import { VrstaIntervencijeDialogComponent } from './components/dialogs/vrsta-intervencije-dialog/vrsta-intervencije-dialog.component';
 import { VrstaIntervencijeService } from './services/vrsta-intervencije.service';
+import { StavkaPorudzbineComponent } from './components/stavka-porudzbine/stavka-porudzbine.component';
+import { StavkaPorudzbineDialogComponent } from './components/dialogs/stavka-porudzbine-dialog/stavka-porudzbine-dialog.component';
 
 
 @NgModule({
@@ -102,7 +104,9 @@ import { VrstaIntervencijeService } from './services/vrsta-intervencije.service'
     StatusDialogComponent,
     StatusComponent,
     VrstaIntervencijeComponent,
-    VrstaIntervencijeDialogComponent
+    VrstaIntervencijeDialogComponent,
+    StavkaPorudzbineComponent,
+    StavkaPorudzbineDialogComponent
   ],
   entryComponents: [PacijentDialogComponent, MaterijalDialogComponent,
     DobavljacDialogComponent, DijagnozaDialogComponent, SlikaDialogComponent,
