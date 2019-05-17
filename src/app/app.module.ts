@@ -72,6 +72,35 @@ import { StavkaPorudzbineComponent } from "./components/stavka-porudzbine/stavka
 import { StavkaPorudzbineDialogComponent } from "./components/dialogs/stavka-porudzbine-dialog/stavka-porudzbine-dialog.component";
 import { StavkaPorudzbineService } from "./services/stavka-porudzbine.service";
 import { KalendarComponent } from "./components/kalendar/kalendar.component";
+import { KalendarDialogComponent } from "./components/dialogs/kalendar-dialog/kalendar-dialog.component";
+import { TerminService } from "./services/termin.service";
+
+//kalendar
+
+import { ScheduleModule } from "@syncfusion/ej2-angular-schedule";
+import { TimePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { DatePickerModule } from "@syncfusion/ej2-angular-calendars";
+import { DropDownListComponent } from "@syncfusion/ej2-angular-dropdowns";
+import { MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { ReactiveFormsModule } from "@angular/forms";
+import { ButtonModule } from "@syncfusion/ej2-angular-buttons";
+
+import {
+  DayService,
+  WeekService,
+  WorkWeekService,
+  MonthService,
+  AgendaService,
+  MonthAgendaService
+} from "@syncfusion/ej2-angular-schedule";
+
+import { MatRippleModule, MatAutocompleteModule } from "@angular/material";
+import { MAT_DATE_LOCALE } from "@angular/material";
+import {
+  DragAndDropService,
+  ResizeService,
+  ScheduleAllModule
+} from "@syncfusion/ej2-angular-schedule";
 
 @NgModule({
   declarations: [
@@ -108,7 +137,9 @@ import { KalendarComponent } from "./components/kalendar/kalendar.component";
     VrstaIntervencijeDialogComponent,
     StavkaPorudzbineComponent,
     StavkaPorudzbineDialogComponent,
-    KalendarComponent
+    KalendarComponent,
+    KalendarDialogComponent,
+    DropDownListComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -125,7 +156,8 @@ import { KalendarComponent } from "./components/kalendar/kalendar.component";
     RadnoMestoDialogComponent,
     StatusDialogComponent,
     VrstaIntervencijeDialogComponent,
-    StavkaPorudzbineDialogComponent
+    StavkaPorudzbineDialogComponent,
+    KalendarDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -148,7 +180,17 @@ import { KalendarComponent } from "./components/kalendar/kalendar.component";
     MatSnackBarModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatSelectModule
+    MatSelectModule,
+    ScheduleModule,
+    TimePickerModule,
+    DatePickerModule,
+    MatDialogModule,
+    MatRippleModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatAutocompleteModule,
+    ScheduleAllModule,
+    ButtonModule
   ],
   providers: [
     PacijentService,
@@ -165,7 +207,17 @@ import { KalendarComponent } from "./components/kalendar/kalendar.component";
     RadnoMestoService,
     StatusService,
     VrstaIntervencijeService,
-    StavkaPorudzbineService
+    StavkaPorudzbineService,
+    TerminService,
+    DayService,
+    WeekService,
+    WorkWeekService,
+    MonthService,
+    AgendaService,
+    MonthAgendaService,
+    { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MAT_DATE_LOCALE, useValue: "sr-Latn" },
+    ScheduleAllModule
   ],
   bootstrap: [AppComponent]
 })

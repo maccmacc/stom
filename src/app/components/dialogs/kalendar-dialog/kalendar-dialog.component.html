@@ -1,0 +1,144 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="data.flag == 1">
+    Dodavanje termina
+  </h3>
+  <h3 mat-dialog-title *ngIf="data.flag == 2">
+    Modifikacija termina
+  </h3>
+  <form class="mat-dialog-content" #formControl="ngForm" id="form-element">
+    <div class="form">
+      <mat-form-field class="example-full-width">
+        <input
+          type="text"
+          placeholder="Pacijent"
+          aria-label="Pacijent"
+          matInput
+          [formControl]="myControlPacijent"
+          [matAutocomplete]="autoPacijent"
+          name="pacijent"
+          [(ngModel)]="data.pacijent"
+          (ngModelChange)="doFilterPacijent()"
+          required
+        />
+
+        <mat-autocomplete
+          #autoPacijent="matAutocomplete"
+          [displayWith]="displayFnPacijent"
+        >
+          <mat-option
+            *ngFor="let pacijent of filteredPacijenti | async"
+            [value]="pacijent"
+          >
+            {{ pacijent.ime }} {{ pacijent.prezime }} | {{ pacijent.kontakt }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+      <mat-form-field style="margin-left: 10px" class="example-full-width">
+        <input
+          type="text"
+          placeholder="Radno mesto"
+          aria-label="Radno mesto"
+          name="radnoMesto"
+          matInput
+          [formControl]="myControlRadnoMesto"
+          [matAutocomplete]="autoRadnoMesto"
+          name="radnoMesto"
+          [(ngModel)]="data.radnoMesto"
+          (ngModelChange)="doFilterRadnoMesto()"
+          required
+        />
+        <mat-autocomplete
+          #autoRadnoMesto="matAutocomplete"
+          [displayWith]="displayFnRadnoMesto"
+        >
+          <mat-option
+            *ngFor="let radnoMesto of filteredRadnaMesta | async"
+            [value]="radnoMesto"
+          >
+            {{ radnoMesto.naziv }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <mat-form-field>
+        <input
+          matInput
+          name="picker"
+          [matDatepicker]="picker"
+          [(ngModel)]="data.clickedDate"
+          placeholder="Izaberi datum"
+          required
+          disabled
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker disabled="false"></mat-datepicker>
+      </mat-form-field>
+    </div>
+
+    <div class="form">
+      <ejs-timepicker
+        width="260px"
+        [(ngModel)]="data.startTime"
+        style="margin-right:10px;"
+        #pocetak
+        id="pocetak"
+        name="pocetak"
+        placeholder="Vreme početka"
+      ></ejs-timepicker>
+
+      <ejs-timepicker
+        width="260px"
+        #zavrsetak
+        [(ngModel)]="data.endTime"
+        id="zavrsetak"
+        name="zavrsetak"
+        placeholder="Vreme završetka"
+      ></ejs-timepicker>
+    </div>
+
+    <div class="form">
+      <mat-form-field class="example-full-width">
+        <textarea
+          [(ngModel)]="data.napomena"
+          #napomena
+          matInput
+          placeholder="Napomena"
+          name="napomena"
+        ></textarea>
+      </mat-form-field>
+    </div>
+  </form>
+
+  <div mat-dialog-actions>
+    <button
+      style="margin-left: 350px"
+      class="e-control e-btn e-lib e-quick-alertok e-flat e-primary"
+      mat-button
+      *ngIf="data.flag == 1"
+      (click)="validate()"
+    >
+      Sačuvaj
+    </button>
+
+    <button
+      style="margin-left: 350px"
+      class="e-control e-btn e-lib e-quick-alertok e-flat e-primary"
+      mat-button
+      *ngIf="data.flag == 2"
+      (click)="validate()"
+    >
+      Sačuvaj
+    </button>
+
+    <button
+      class="e-control e-btn e-lib e-quick-alertcancel e-flat"
+      mat-button
+      (click)="cancel()"
+    >
+      Poništi
+    </button>
+  </div>
+</div>

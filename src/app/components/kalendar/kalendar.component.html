@@ -1,3 +1,16 @@
-<p>
-  kalendar works!
-</p>
+<ejs-schedule
+  #scheduleObj
+  width="800px"
+  height="600px"
+  [selectedDate]="selectedDate"
+  [currentView]="currentView"
+  [allowDragAndDrop]="false"
+  [allowResizing]="false"
+  [views]="views"
+  timezone="UTC"
+  [eventSettings]="eventSettings"
+  [dateFormat]="dateFormat"
+  (popupOpen)="onPopupOpen($event)"
+  (actionBegin)="onActionBegin($event)"
+>
+</ejs-schedule>
