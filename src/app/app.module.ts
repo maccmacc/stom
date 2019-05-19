@@ -101,6 +101,9 @@ import {
   ResizeService,
   ScheduleAllModule
 } from "@syncfusion/ej2-angular-schedule";
+import { RacunComponent } from './components/racun/racun.component';
+import { RacunDialogComponent } from './components/dialogs/racun-dialog/racun-dialog.component';
+import { RacunService } from './services/racun.service';
 
 @NgModule({
   declarations: [
@@ -139,7 +142,9 @@ import {
     StavkaPorudzbineDialogComponent,
     KalendarComponent,
     KalendarDialogComponent,
-    DropDownListComponent
+    DropDownListComponent,
+    RacunComponent,
+    RacunDialogComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -157,7 +162,8 @@ import {
     StatusDialogComponent,
     VrstaIntervencijeDialogComponent,
     StavkaPorudzbineDialogComponent,
-    KalendarDialogComponent
+    KalendarDialogComponent,
+    RacunDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -217,7 +223,8 @@ import {
     MonthAgendaService,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MAT_DATE_LOCALE, useValue: "sr-Latn" },
-    ScheduleAllModule
+    ScheduleAllModule,
+    RacunService
   ],
   bootstrap: [AppComponent]
 })

@@ -16,6 +16,7 @@ import { StatusComponent } from "./components/status/status.component";
 import { VrstaIntervencijeComponent } from "./components/vrsta-intervencije/vrsta-intervencije.component";
 import { StavkaPorudzbineComponent } from "./components/stavka-porudzbine/stavka-porudzbine.component";
 import { KalendarComponent } from "./components/kalendar/kalendar.component";
+import { RacunComponent } from './components/racun/racun.component';
 
 const routes: Routes = [
   { path: "pacijent", component: PacijenComponent },
@@ -33,7 +34,8 @@ const routes: Routes = [
   { path: "status", component: StatusComponent },
   { path: "vrstaIntervencije", component: VrstaIntervencijeComponent },
   { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
-  { path: "kalendar", component: KalendarComponent }
+  { path: "kalendar", component: KalendarComponent },
+  { path: "racun", component: RacunComponent }
 ];
 
 @NgModule({
