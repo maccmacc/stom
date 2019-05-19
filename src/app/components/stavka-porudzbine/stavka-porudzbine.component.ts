@@ -13,7 +13,7 @@ import { Porudzbina } from '../../models/porudzbina';
   styleUrls: ['./stavka-porudzbine.component.css']
 })
 export class StavkaPorudzbineComponent implements OnInit {
-  displayedColumns = ['artikl', 'cena' , 'id' , 'jedinicaMere' , 'kolicina', 'porudzbina', 'redniBroj', 'ukupno', 'add', 'edit', 'delete'];
+  displayedColumns = [ 'id' , 'artikl', 'cena' , 'jedinicaMere' , 'kolicina', 'porudzbina', 'redniBroj', 'ukupno', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<StavkaPorudzbine>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -40,13 +40,13 @@ export class StavkaPorudzbineComponent implements OnInit {
       }
     );
   }
-  public openDialog(flag: number, artikl: Artikl, cena: number, id: number, jedinicaMere: string,
-                    kolicina: number, porudzbina: Porudzbina, redniBroj: number, ukupno: number) {
+  public openDialog(flag: number, id: number, artikl: Artikl, cena: number, jedinicaMere: string,
+                    kolicina: number, porudzbina: Porudzbina, redniBroj: number) {
 
 
 const dialogRef = this.dialog.open(StavkaPorudzbineDialogComponent, {
-data: { artikl: artikl, cena: cena, id: id, jedinicaMere: jedinicaMere,
-        kolicina: kolicina, porudzbina: porudzbina, redniBroj: redniBroj, ukupno: ukupno }
+data: { id: id, artikl: artikl, cena: cena, jedinicaMere: jedinicaMere,
+        kolicina: kolicina, porudzbina: porudzbina, redniBroj: redniBroj }
 });
 dialogRef.componentInstance.flag = flag;
 dialogRef.afterClosed().subscribe(result => {
