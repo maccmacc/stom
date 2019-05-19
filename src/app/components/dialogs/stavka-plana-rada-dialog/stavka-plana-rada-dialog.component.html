@@ -1,0 +1,68 @@
+<div class="container">
+  <h3 mat-dialog-title *ngIf="flag == 1">Dodavanje stavke plana rada</h3>
+  <h3 mat-dialog-title *ngIf="flag == 2">Modifikacija stavke plana rada</h3>
+  <h3 mat-dialog-title *ngIf="flag == 3">Brisanje stavke plana rada</h3>
+  <form class="mat-dialog-content" #formControl="ngForm">
+    <div class="form">
+           <mat-form-field>
+            <input matInput placeholder="Cena" [(ngModel)]="data.cena" name="cena" [disabled]="flag==3" required>
+          </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.dijagnoza" placeholder="Dijagnoza" name="dijagnoza" [compareWith]="compareTo" [disabled]="flag == 3" required>
+          <mat-option *ngFor="let dijagnoza of sveDijagnoze" [value]="dijagnoza">
+            {{ dijagnoza.opis }}
+          </mat-option>
+        </mat-select>      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+       <input matInput placeholder="Iznos" [(ngModel)]="data.iznos" name="iznos" [disabled]="flag==3" required>
+     </mat-form-field>
+</div>
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.planRada" placeholder="Plan rada" name="planRada" [compareWith]="compareTo" [disabled]="flag == 3" required>
+          <mat-option *ngFor="let planRada of sviPlanoviRada" [value]="planRada">
+            {{ planRada.id }}
+          </mat-option>
+        </mat-select>      </mat-form-field>
+    </div>
+    <div class="form">
+      <mat-form-field>
+       <input matInput placeholder="Popust" [(ngModel)]="data.popust" name="popust" [disabled]="flag==3" required>
+     </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+   <input matInput placeholder="Redni broj" [(ngModel)]="data.redniBroj" name="redniBroj" [disabled]="flag==3" required>
+ </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+    <mat-select [(ngModel)]="data.vrstaIntervencije" placeholder="Vrsta intervencije" name="vrstaIntervencije" [compareWith]="compareTo" [disabled]="flag == 3" required>
+      <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="vrstaIntervencije">
+        {{ vrstaIntervencije.opis }}
+      </mat-option>
+    </mat-select>      </mat-form-field>
+</div>
+<div class="form">
+  <mat-form-field>
+   <input matInput placeholder="Zub" [(ngModel)]="data.zub" name="zub" [disabled]="flag==3" required>
+ </mat-form-field>
+</div>
+    <div mat-dialog-actions>
+      <button mat-button *ngIf="flag==1" [type]="submit" [mat-dialog-close]="1" (click)="add()" [disabled]="!formControl.valid">
+        Sačuvaj
+      </button>
+      <button mat-button *ngIf="flag==2" [type]="submit" [mat-dialog-close]="1" (click)="update()" [disabled]="!formControl.valid">
+        Sačuvaj
+      </button>
+      <button mat-button *ngIf="flag==3" [type]="submit" [mat-dialog-close]="1" (click)="delete()">
+        Obriši
+      </button>
+      <button mat-button (click)="cancel()">Poništi</button>
+    </div>
+  </form>
+</div>

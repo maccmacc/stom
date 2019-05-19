@@ -39,12 +39,6 @@ public deleteIsplata(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
-public getNextIsplataID(): number {
-  this._http.get('http://147.91.175.211:8080/stom/isplataNextId').subscribe(x => {
-    return x;
-  });
-  return 0;
-}
 public getNextID(addIsplata, isplata: Isplata) {
   this._http.get('http://147.91.175.211:8080/stom/isplataNextId').subscribe(
     data => {
