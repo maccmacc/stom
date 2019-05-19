@@ -4,15 +4,15 @@
   <h3 mat-dialog-title *ngIf="flag == 3">Brisanje stavke porudžbine</h3>
   <form class="mat-dialog-content" #formControl="ngForm">
 
-  <div class="form">
-    <mat-form-field>
-      <mat-select [(ngModel)]="data.artikl" placeholder="Artikl" name="artikl" [compareWith]="compareTo" [disabled]="flag == 3" required>
-        <mat-option *ngFor="let artikl of sviArtikli" [value]="Artikl">
-          {{ artikl.naziv }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
+    <div class="form">
+      <mat-form-field>
+        <mat-select [(ngModel)]="data.artikl" placeholder="Artikl" name="artikl" [compareWith]="compareTo" [disabled]="flag == 3" required>
+          <mat-option *ngFor="let artikl of sviArtikli" [value]="artikl">
+            {{ artikl.naziv }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
 
   <div class="form">
     <mat-form-field>
@@ -36,7 +36,7 @@
   <mat-form-field>
     <mat-select [(ngModel)]="data.porudzbina" placeholder="Porudžbina" name="porudzbina" [compareWith]="compareTo" [disabled]="flag == 3" required>
       <mat-option *ngFor="let porudzbina of svePorudzbine" [value]="porudzbina">
-        {{ artikl.naziv }}
+        {{ porudzbina.id }}
       </mat-option>
     </mat-select>
   </mat-form-field>
@@ -45,12 +45,6 @@
 <div class="form">
   <mat-form-field>
    <input matInput placeholder="Redni broj" [(ngModel)]="data.redniBroj" name="redniBroj" [disabled]="flag==3" required>
- </mat-form-field>
-</div>
-
-<div class="form">
-  <mat-form-field>
-   <input matInput placeholder="Ukupno" [(ngModel)]="data.ukupno" name="ukupno" [disabled]="flag==3" required>
  </mat-form-field>
 </div>
 
