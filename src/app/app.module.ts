@@ -104,6 +104,9 @@ import {
 import { RacunComponent } from './components/racun/racun.component';
 import { RacunDialogComponent } from './components/dialogs/racun-dialog/racun-dialog.component';
 import { RacunService } from './services/racun.service';
+import { SnimakComponent } from './components/snimak/snimak.component';
+import { SnimakDialogComponent } from './components/dialogs/snimak-dialog/snimak-dialog.component';
+import { SnimakService } from './services/snimak.service';
 
 @NgModule({
   declarations: [
@@ -144,7 +147,9 @@ import { RacunService } from './services/racun.service';
     KalendarDialogComponent,
     DropDownListComponent,
     RacunComponent,
-    RacunDialogComponent
+    RacunDialogComponent,
+    SnimakComponent,
+    SnimakDialogComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -163,7 +168,8 @@ import { RacunService } from './services/racun.service';
     VrstaIntervencijeDialogComponent,
     StavkaPorudzbineDialogComponent,
     KalendarDialogComponent,
-    RacunDialogComponent
+    RacunDialogComponent,
+    SnimakDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -192,7 +198,7 @@ import { RacunService } from './services/racun.service';
     DatePickerModule,
     MatDialogModule,
     MatRippleModule,
-    FormsModule,
+
     ReactiveFormsModule,
     MatAutocompleteModule,
     ScheduleAllModule,
@@ -224,7 +230,8 @@ import { RacunService } from './services/racun.service';
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MAT_DATE_LOCALE, useValue: "sr-Latn" },
     ScheduleAllModule,
-    RacunService
+    RacunService,
+    SnimakService
   ],
   bootstrap: [AppComponent]
 })

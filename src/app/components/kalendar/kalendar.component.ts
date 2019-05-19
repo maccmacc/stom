@@ -161,6 +161,17 @@ export class KalendarComponent {
         }
       }
     });
+
+    this.loadData();
+  }
+
+  public loadData() {
+    this.terminService.getAllTermin().subscribe((data: Termin[]) => {
+      this.data.length = 0;
+      for (var i = 0; i < data.length; i++) {
+        this.data.push(this.modifyDataForDisplay(data[i]));
+      }
+    });
   }
 
   openDialog(
@@ -209,13 +220,9 @@ export class KalendarComponent {
     });
   }
 
-  ngAfterViewInit() {
-    this.terminService.getAllTermin().subscribe((data: Termin[]) => {
-      for (var i = 0; i < data.length; i++) {
-        this.data.push(this.modifyDataForDisplay(data[i]));
-      }
-    });
-  }
+  ngAfterViewInit() {}
+
+  ngOnDestroy() {}
 
   onActionBegin(args: any): void {
     if (args.requestType == "eventRemove") {
