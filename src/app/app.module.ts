@@ -101,6 +101,9 @@ import {
   ResizeService,
   ScheduleAllModule
 } from "@syncfusion/ej2-angular-schedule";
+import { SnimakComponent } from './components/snimak/snimak.component';
+import { SnimakDialogComponent } from './components/dialogs/snimak-dialog/snimak-dialog.component';
+import { SnimakService } from './services/snimak.service';
 
 @NgModule({
   declarations: [
@@ -139,7 +142,9 @@ import {
     StavkaPorudzbineDialogComponent,
     KalendarComponent,
     KalendarDialogComponent,
-    DropDownListComponent
+    DropDownListComponent,
+    SnimakComponent,
+    SnimakDialogComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -157,7 +162,8 @@ import {
     StatusDialogComponent,
     VrstaIntervencijeDialogComponent,
     StavkaPorudzbineDialogComponent,
-    KalendarDialogComponent
+    KalendarDialogComponent,
+    SnimakDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -217,7 +223,8 @@ import {
     MonthAgendaService,
     { provide: MAT_DIALOG_DATA, useValue: {} },
     { provide: MAT_DATE_LOCALE, useValue: "sr-Latn" },
-    ScheduleAllModule
+    ScheduleAllModule,
+    SnimakService
   ],
   bootstrap: [AppComponent]
 })

@@ -17,6 +17,7 @@ import { VrstaIntervencijeComponent } from "./components/vrsta-intervencije/vrst
 import { StavkaPorudzbineComponent } from "./components/stavka-porudzbine/stavka-porudzbine.component";
 import { KalendarComponent } from "./components/kalendar/kalendar.component";
 import { AppComponent } from "./app.component";
+import { SnimakComponent } from './components/snimak/snimak.component';
 
 const routes: Routes = [
   { path: "pacijent", component: PacijenComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
   { path: "kalendar", component: KalendarComponent },
   { path: "", component: AppComponent }
+  { path: "snimak", component: SnimakComponent }
 ];
 
 @NgModule({

@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Porudzbina } from '../models/porudzbina';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { StavkaPorudzbine } from '../models/stavka-porudzbine';
 
 @Injectable({
   providedIn: 'root'
