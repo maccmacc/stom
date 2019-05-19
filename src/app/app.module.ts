@@ -107,6 +107,14 @@ import { RacunService } from './services/racun.service';
 import { SnimakComponent } from './components/snimak/snimak.component';
 import { SnimakDialogComponent } from './components/dialogs/snimak-dialog/snimak-dialog.component';
 import { SnimakService } from './services/snimak.service';
+import { StavkaPlanaRadaComponent } from './components/stavka-plana-rada/stavka-plana-rada.component';
+import { PlanRadaComponent } from './components/plan-rada/plan-rada.component';
+import { PlanRadaDialogComponent } from './components/dialogs/plan-rada-dialog/plan-rada-dialog.component';
+import { StavkaPlanaRadaDialogComponent } from './components/dialogs/stavka-plana-rada-dialog/stavka-plana-rada-dialog.component';
+import { PlanRadaService } from './services/plan-rada.service';
+import { StavkaPlanaRadaService } from './services/stavka-plana-rada.service';
+import { ZubComponent } from './components/zub/zub.component';
+import { ZubDialogComponent } from './components/dialogs/zub-dialog/zub-dialog.component';
 
 @NgModule({
   declarations: [
@@ -149,7 +157,13 @@ import { SnimakService } from './services/snimak.service';
     RacunComponent,
     RacunDialogComponent,
     SnimakComponent,
-    SnimakDialogComponent
+    SnimakDialogComponent,
+    StavkaPlanaRadaComponent,
+    PlanRadaComponent,
+    PlanRadaDialogComponent,
+    StavkaPlanaRadaDialogComponent,
+    ZubComponent,
+    ZubDialogComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -169,7 +183,9 @@ import { SnimakService } from './services/snimak.service';
     StavkaPorudzbineDialogComponent,
     KalendarDialogComponent,
     RacunDialogComponent,
-    SnimakDialogComponent
+    SnimakDialogComponent,
+    StavkaPlanaRadaDialogComponent,
+    PlanRadaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -231,7 +247,9 @@ import { SnimakService } from './services/snimak.service';
     { provide: MAT_DATE_LOCALE, useValue: "sr-Latn" },
     ScheduleAllModule,
     RacunService,
-    SnimakService
+    SnimakService,
+    PlanRadaService,
+    StavkaPlanaRadaService
   ],
   bootstrap: [AppComponent]
 })

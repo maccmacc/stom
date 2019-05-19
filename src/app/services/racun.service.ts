@@ -39,6 +39,12 @@ public deleteRacun(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
+public getNextRacunID(): number {
+  this._http.get('http://147.91.175.211:8080/stom/racunNextId').subscribe(x => {
+    return x;
+  });
+  return 0;
+}
 public getNextID(addRacun, racun: Racun) {
   this._http.get('http://147.91.175.211:8080/stom/racunNextId').subscribe(
     data => {
