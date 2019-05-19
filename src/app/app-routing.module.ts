@@ -36,7 +36,7 @@ const routes: Routes = [
   { path: "vrstaIntervencije", component: VrstaIntervencijeComponent },
   { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
   { path: "kalendar", component: KalendarComponent },
-  { path: "", component: AppComponent }
+  { path: "", component: AppComponent },
   { path: "snimak", component: SnimakComponent }
 ];
 
