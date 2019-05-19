@@ -186,7 +186,7 @@ import {
     DatePickerModule,
     MatDialogModule,
     MatRippleModule,
-    FormsModule,
+
     ReactiveFormsModule,
     MatAutocompleteModule,
     ScheduleAllModule,
