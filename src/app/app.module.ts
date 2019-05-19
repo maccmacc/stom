@@ -113,6 +113,8 @@ import { PlanRadaDialogComponent } from './components/dialogs/plan-rada-dialog/p
 import { StavkaPlanaRadaDialogComponent } from './components/dialogs/stavka-plana-rada-dialog/stavka-plana-rada-dialog.component';
 import { PlanRadaService } from './services/plan-rada.service';
 import { StavkaPlanaRadaService } from './services/stavka-plana-rada.service';
+import { ZubComponent } from './components/zub/zub.component';
+import { ZubDialogComponent } from './components/dialogs/zub-dialog/zub-dialog.component';
 
 @NgModule({
   declarations: [
@@ -159,7 +161,9 @@ import { StavkaPlanaRadaService } from './services/stavka-plana-rada.service';
     StavkaPlanaRadaComponent,
     PlanRadaComponent,
     PlanRadaDialogComponent,
-    StavkaPlanaRadaDialogComponent
+    StavkaPlanaRadaDialogComponent,
+    ZubComponent,
+    ZubDialogComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
