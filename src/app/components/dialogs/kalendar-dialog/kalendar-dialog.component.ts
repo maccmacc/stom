@@ -1,4 +1,10 @@
-import { Component, OnInit, Inject } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Inject,
+  ViewChild,
+  ElementRef
+} from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material";
 import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
@@ -24,6 +30,8 @@ export class KalendarDialogComponent implements OnInit {
   termin = new Termin();
   filteredPacijenti: Observable<Pacijent[]>;
   filteredRadnaMesta: Observable<RadnoMesto[]>;
+  inputPacijent: string;
+  inputRadnoMesto: string;
 
   constructor(
     private pacijentService: PacijentService,
@@ -34,25 +42,52 @@ export class KalendarDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    //detect user input! then filtert
+    if (
+      this.data.pacijent !== undefined &&
+      this.data.radnoMesto !== undefined
+    ) {
+      this.inputPacijent =
+        this.data.pacijent.lookup + " | " + this.data.pacijent.kontakt;
+      this.inputRadnoMesto = this.data.radnoMesto.naziv;
+    }
+
     //preuzimanje pacijenata
     this.pacijentService.getAllPacijent().subscribe(pacijenti => {
       this.pacijenti = pacijenti;
       this.filteredPacijenti = this.myControlPacijent.valueChanges.pipe(
-        startWith<string | Pacijent>(""),
-        map(value => (typeof value === "string" ? value : value.lookup)),
-        map(value => this.pacijenti.slice())
+        startWith(""),
+        map(pacijent =>
+          pacijent ? this._filterPacijenti(pacijent) : this.pacijenti.slice()
+        )
       );
     });
 
-    //preuzimanje radnih mesta
     this.radnoMestoService.getAllRadnoMesto().subscribe(radnaMesta => {
       this.radnaMesta = radnaMesta;
       this.filteredRadnaMesta = this.myControlRadnoMesto.valueChanges.pipe(
-        startWith<string | RadnoMesto>(""),
-        map(value => (typeof value === "string" ? value : value.naziv)),
-        map(value => this.radnaMesta.slice())
+        startWith(""),
+        map(radnoMesto =>
+          radnoMesto
+            ? this._filteredRadnoMesto(radnoMesto)
+            : this.radnaMesta.slice()
+        )
       );
     });
+  }
+
+  private _filterPacijenti(value: string): Pacijent[] {
+    const filterValue = value.toLowerCase();
+    return this.pacijenti.filter(
+      pacijent => pacijent.lookup.toLowerCase().indexOf(filterValue) === 0
+    );
+  }
+
+  private _filteredRadnoMesto(value: string): RadnoMesto[] {
+    const filterValue = value.toLowerCase();
+    return this.radnaMesta.filter(
+      radnoMesto => radnoMesto.naziv.toLowerCase().indexOf(filterValue) === 0
+    );
   }
 
   //dodavanje novog termina
@@ -64,6 +99,7 @@ export class KalendarDialogComponent implements OnInit {
     );
   }
 
+  //editovanje postojećeg termina
   edit() {
     this.terminService.updateTermin(this.termin);
     this.dialogRef.close();
@@ -72,6 +108,14 @@ export class KalendarDialogComponent implements OnInit {
   //poništavanje dodavanja termina
   public cancel(): void {
     this.dialogRef.close();
+  }
+
+  onEnterPacijent(pacijent: Pacijent) {
+    this.data.pacijent = pacijent;
+  }
+
+  onEnterRadnoMesto(radnoMesto: RadnoMesto) {
+    this.data.radnoMesto = radnoMesto;
   }
 
   //validacija unetih podataka za kreiranje termina
@@ -95,6 +139,15 @@ export class KalendarDialogComponent implements OnInit {
       return;
     } else if (this.data.radnoMesto === undefined) {
       alert("Niste uneli radno mesto!"); //snackbar
+      return;
+    } else if (
+      this.inputPacijent !=
+      this.data.pacijent.lookup + " | " + this.data.pacijent.kontakt
+    ) {
+      alert("Ne postojeći pacijent!");
+      return;
+    } else if (this.inputRadnoMesto != this.data.radnoMesto.naziv) {
+      alert("Ne postojeće radno mesto!");
       return;
     }
 
@@ -209,30 +262,7 @@ export class KalendarDialogComponent implements OnInit {
       return;
     }
   }
-
-  doFilterPacijent() {
-    this.filteredPacijenti = this.myControlPacijent.valueChanges.pipe(
-      startWith<string | Pacijent>(""),
-      map(value => (typeof value === "string" ? value : value.lookup)),
-      map(value => this.pacijenti.slice())
-    );
-  }
-
-  //podesavanje liste pacijenata za autocomplete
-  displayFnPacijent(pacijent?: Pacijent): string | undefined {
-    return pacijent ? pacijent.lookup + " | " + pacijent.kontakt : undefined;
-  }
-
-  //podesavanje liste radnih mesta za autocomplete
-  displayFnRadnoMesto(radnoMesto?: RadnoMesto): string | undefined {
-    return radnoMesto ? radnoMesto.naziv : undefined;
-  }
-
-  doFilterRadnoMesto() {
-    this.filteredRadnaMesta = this.myControlRadnoMesto.valueChanges.pipe(
-      startWith<string | RadnoMesto>(""),
-      map(value => (typeof value === "string" ? value : value.naziv)),
-      map(value => this.radnaMesta.slice())
-    );
+  setPacijent(pacijent: Pacijent): string {
+    return pacijent.lookup + " | " + pacijent.kontakt;
   }
 }

@@ -38,6 +38,12 @@ export class KalendarComponent {
   public eventSettings: EventSettingsModel = {
     dataSource: this.data
   };
+
+ 
+
+      
+  
+
   constructor(private terminService: TerminService, public dialog: MatDialog) {
     loadCldr(
       require("../../../../node_modules/cldr-data/main/sr-Latn/ca-gregorian.json"),
@@ -48,6 +54,11 @@ export class KalendarComponent {
     var s = new Date();
     this.currentDate = new Date(s.getFullYear(), s.getMonth(), s.getDate());
   }
+
+
+
+
+
 
   ngOnInit() {
     L10n.load({

@@ -7,6 +7,8 @@
   </h3>
   <form class="mat-dialog-content" #formControl="ngForm" id="form-element">
     <div class="form">
+    
+
       <mat-form-field class="example-full-width">
         <input
           type="text"
@@ -16,21 +18,23 @@
           [formControl]="myControlPacijent"
           [matAutocomplete]="autoPacijent"
           name="pacijent"
-          [(ngModel)]="data.pacijent"
-          (ngModelChange)="doFilterPacijent()"
           required
+          [(ngModel)]="inputPacijent"
+         
+          
         />
-
+    
         <mat-autocomplete
           #autoPacijent="matAutocomplete"
-          [displayWith]="displayFnPacijent"
+        
         >
-          <mat-option
-            *ngFor="let pacijent of filteredPacijenti | async"
-            [value]="pacijent"
-          >
-            {{ pacijent.ime }} {{ pacijent.prezime }} | {{ pacijent.kontakt }}
-          </mat-option>
+      
+        <mat-option *ngFor="let pacijent of filteredPacijenti | async" [value]="setPacijent(pacijent)" (onSelectionChange)="onEnterPacijent(pacijent)">
+             
+          <span>{{pacijent.lookup}}</span> |
+          <small>Kontakt: {{pacijent.kontakt}}</small>
+        </mat-option>
+ 
         </mat-autocomplete>
       </mat-form-field>
 
@@ -44,17 +48,18 @@
           [formControl]="myControlRadnoMesto"
           [matAutocomplete]="autoRadnoMesto"
           name="radnoMesto"
-          [(ngModel)]="data.radnoMesto"
-          (ngModelChange)="doFilterRadnoMesto()"
+          [(ngModel)]="inputRadnoMesto"
+   
+        
           required
         />
         <mat-autocomplete
           #autoRadnoMesto="matAutocomplete"
-          [displayWith]="displayFnRadnoMesto"
+        
         >
           <mat-option
             *ngFor="let radnoMesto of filteredRadnaMesta | async"
-            [value]="radnoMesto"
+            [value]="radnoMesto.naziv" (onSelectionChange)="onEnterRadnoMesto(radnoMesto)"
           >
             {{ radnoMesto.naziv }}
           </mat-option>
@@ -110,6 +115,12 @@
         ></textarea>
       </mat-form-field>
     </div>
+
+
+
+
+
+
   </form>
 
   <div mat-dialog-actions>
@@ -119,6 +130,7 @@
       mat-button
       *ngIf="data.flag == 1"
       (click)="validate()"
+     
     >
       Sačuvaj
     </button>
