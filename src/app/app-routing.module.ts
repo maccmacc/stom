@@ -40,7 +40,6 @@ const routes: Routes = [
   { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
   { path: "kalendar", component: KalendarComponent },
   { path: "racun", component: RacunComponent },
-  { path: "", component: AppComponent },
   { path: "snimak", component: SnimakComponent },
   { path: "stavkaPlanaRada", component: StavkaPlanaRadaComponent },
   { path: "planRada", component: PlanRadaComponent }
