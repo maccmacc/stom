@@ -1,9 +1,6 @@
-@import "../../../../styles/material-light-theme/material.css";
+@import "../../../../styles/material-light-theme-calendar-dialog/material.css";
 
-@import "../../../../../node_modules/@angular/material/prebuilt-themes/indigo-pink.css";
-
-.form {
-}
+/*@import "../../../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";*/
 
 .mat-dialog-content {
   display: block;
@@ -16,6 +13,7 @@
 
 .example-full-width {
   width: 100%;
+
 }
 
 .container {
@@ -24,6 +22,7 @@
   min-width: 450px;
   height: "400px";
   width: "600px";
+  
 }
 
 .form {
@@ -33,4 +32,5 @@
 .mat-form-field {
   font-size: 16px;
   flex-grow: 1;
+
 }

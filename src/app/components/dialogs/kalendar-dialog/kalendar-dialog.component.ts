@@ -20,7 +20,7 @@ import { FormValidatorModel, FormValidator } from "@syncfusion/ej2-inputs";
 @Component({
   selector: "app-kalendar-dialog",
   templateUrl: "./kalendar-dialog.component.html",
-  styleUrls: ["./kalendar-dialog.component.css"]
+  styleUrls: ["./kalendar-dialog.component.css","kalendar-dialog.component.sass","kalendar-dialog.component2.sass"]
 })
 export class KalendarDialogComponent implements OnInit {
   myControlPacijent = new FormControl();
