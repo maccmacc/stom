@@ -115,6 +115,7 @@ import { PlanRadaService } from './services/plan-rada.service';
 import { StavkaPlanaRadaService } from './services/stavka-plana-rada.service';
 import { ZubComponent } from './components/zub/zub.component';
 import { ZubDialogComponent } from './components/dialogs/zub-dialog/zub-dialog.component';
+import { ZubService } from './services/zub.service';
 
 @NgModule({
   declarations: [
@@ -185,7 +186,8 @@ import { ZubDialogComponent } from './components/dialogs/zub-dialog/zub-dialog.c
     RacunDialogComponent,
     SnimakDialogComponent,
     StavkaPlanaRadaDialogComponent,
-    PlanRadaDialogComponent
+    PlanRadaDialogComponent,
+    ZubDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -249,7 +251,8 @@ import { ZubDialogComponent } from './components/dialogs/zub-dialog/zub-dialog.c
     RacunService,
     SnimakService,
     PlanRadaService,
-    StavkaPlanaRadaService
+    StavkaPlanaRadaService,
+    ZubService
   ],
   bootstrap: [AppComponent]
 })

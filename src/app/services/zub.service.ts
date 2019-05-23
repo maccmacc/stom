@@ -24,12 +24,34 @@ export class ZubService {
     return this.dataChange.asObservable();
 }
 public addZub(zub: Zub): void {
+  zub.statusPovDesnoAkt = 0;
+  zub.statusPovDesnoIni = 0;
+  zub.statusPovDoleAkt = 0;
+  zub.statusPovDoleIni = 0;
+  zub.statusPovGoreAkt = 0;
+  zub.statusPovGoreIni = 0;
+  zub.statusPovLijevoAkt = 0;
+  zub.statusPovLijevoIni = 0;
+  zub.statusPovSredinaAkt = 0;
+  zub.statusPovSredinaIni = 0;
+  zub.zub = 0;
   this._http.post(this.API_URL, zub).subscribe(data => {
       this.dialogData = zub;
   });
 }
 
 public updateZub(zub: Zub): void {
+  zub.statusPovDesnoAkt = 0;
+  zub.statusPovDesnoIni = 0;
+  zub.statusPovDoleAkt = 0;
+  zub.statusPovDoleIni = 0;
+  zub.statusPovGoreAkt = 0;
+  zub.statusPovGoreIni = 0;
+  zub.statusPovLijevoAkt = 0;
+  zub.statusPovLijevoIni = 0;
+  zub.statusPovSredinaAkt = 0;
+  zub.statusPovSredinaIni = 0;
+  zub.zub = 0;
   this._http.put(this.API_URL + '/' + zub.id, zub).subscribe(data => {
       this.dialogData = zub;
   });

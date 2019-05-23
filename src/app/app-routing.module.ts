@@ -21,6 +21,7 @@ import { AppComponent } from "./app.component";
 import { SnimakComponent } from './components/snimak/snimak.component';
 import { StavkaPlanaRadaComponent } from './components/stavka-plana-rada/stavka-plana-rada.component';
 import { PlanRadaComponent } from './components/plan-rada/plan-rada.component';
+import { ZubComponent } from './components/zub/zub.component';
 
 const routes: Routes = [
   { path: "pacijent", component: PacijenComponent },
@@ -42,7 +43,8 @@ const routes: Routes = [
   { path: "racun", component: RacunComponent },
   { path: "snimak", component: SnimakComponent },
   { path: "stavkaPlanaRada", component: StavkaPlanaRadaComponent },
-  { path: "planRada", component: PlanRadaComponent }
+  { path: "planRada", component: PlanRadaComponent },
+  { path: "zub", component: ZubComponent }
 ];
 
 @NgModule({
