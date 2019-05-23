@@ -25,11 +25,9 @@ export class PacijenComponent implements OnInit {
     this.loadData();
   }
   public loadData() {
-    this._pacijent.getAllPacijent().subscribe(
+    this._pacijent.getPacijentPage(1, 2).subscribe(
       data => {
         this.dataSource = new MatTableDataSource<Pacijent>(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       error => {
         console.log(error);

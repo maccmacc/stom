@@ -11,11 +11,6 @@
       </mat-form-field>
     </div>
     <div class="form">
-           <mat-form-field>
-            <input matInput placeholder="Lookup" [(ngModel)]="data.lookup" name="lookup" [disabled]="flag==3" required>
-          </mat-form-field>
-    </div>
-    <div class="form">
       <mat-form-field>
         <mat-select [(ngModel)]="data.pacijent" placeholder="Pacijent" name="pacijent" [compareWith]="compareTo" [disabled]="flag == 3" required>
           <mat-option *ngFor="let pacijent of sviPacijenti" [value]="pacijent">

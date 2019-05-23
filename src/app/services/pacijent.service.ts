@@ -3,6 +3,7 @@ import { HttpClient } from "@angular/common/http";
 import { Pacijent } from '../models/pacijent';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -24,6 +25,19 @@ export class PacijentService {
         });
     return this.dataChange.asObservable();
 }
+public getPacijentPage(size: number, page: number): Observable<Pacijent[]> {
+  this._http.get<Pacijent[]>(this.API_URL + 'Page', {
+    params: new HttpParams().set('size', size.toString()).set('page', page.toString())
+  }).subscribe(data => {
+      this.dataChange.next(data);
+  },
+
+      (error: HttpErrorResponse) => {
+          console.log(error.name + ' ' + error.message);
+      });
+  return this.dataChange.asObservable();
+}
+
 public addPacijent(pacijent: Pacijent): void {
   this._http.post(this.API_URL, pacijent).subscribe(data => {
       this.dialogData = pacijent;
@@ -56,5 +70,7 @@ public getNextID(addPacijent, pacijent: Pacijent) {
   }
   );
 }
+
+
 
 }
