@@ -25,8 +25,9 @@ export class PacijenComponent implements OnInit {
     this.loadData();
   }
   public loadData() {
-    this._pacijent.getPacijentPage(1, 2).subscribe(
+    this._pacijent.getPacijentPage(1, 1).subscribe(
       data => {
+        console.log(data);
         this.dataSource = new MatTableDataSource<Pacijent>(data);
       },
       error => {

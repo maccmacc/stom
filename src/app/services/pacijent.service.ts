@@ -30,6 +30,7 @@ public getPacijentPage(size: number, page: number): Observable<Pacijent[]> {
     params: new HttpParams().set('size', size.toString()).set('page', page.toString())
   }).subscribe(data => {
       this.dataChange.next(data);
+      JSON.stringify(data);
   },
 
       (error: HttpErrorResponse) => {
