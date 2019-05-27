@@ -22,7 +22,8 @@ import {
   MatSnackBarModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatSelectModule
+  MatSelectModule,
+  MatMenuModule
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
 import { PacijenComponent } from "./components/pacijent/pacijent.component";
@@ -84,6 +85,8 @@ import { DropDownListComponent } from "@syncfusion/ej2-angular-dropdowns";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "@syncfusion/ej2-angular-buttons";
+import { NgMaterialMultilevelMenuModule } from 'ng-material-multilevel-menu';
+
 
 import {
   DayService,
@@ -216,11 +219,12 @@ import { ZubService } from './services/zub.service';
     DatePickerModule,
     MatDialogModule,
     MatRippleModule,
-
+    NgMaterialMultilevelMenuModule,
     ReactiveFormsModule,
     MatAutocompleteModule,
     ScheduleAllModule,
-    ButtonModule
+    ButtonModule,
+    MatMenuModule
   ],
   providers: [
     PacijentService,

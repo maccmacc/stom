@@ -29,6 +29,7 @@
     "cldr-data": "^35.1.0",
     "core-js": "^2.5.4",
     "hammerjs": "^2.0.8",
+    "ng-material-multilevel-menu": "^4.9.6",
     "rxjs": "~6.3.3",
     "schematic": "^0.2.8",
     "tslib": "^1.9.0",

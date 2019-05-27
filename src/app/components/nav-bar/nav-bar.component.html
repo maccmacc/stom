@@ -8,29 +8,11 @@
     [opened]="!(isHandset$ | async)"
   >
     <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list>
-      <a mat-list-item routerLink="/pacijent">Pacijent</a>
-      <a mat-list-item routerLink="/materijal">Materijal</a>
-      <a mat-list-item routerLink="/ordinacija">Ordinacija</a>
-      <a mat-list-item routerLink="/dobavljac">Dobavljac</a>
-      <a mat-list-item routerLink="/dijagnoza">Dijagnoza</a>
-      <a mat-list-item routerLink="/artikl">Artikl</a>
-      <a mat-list-item routerLink="/slika">Slika</a>
-      <a mat-list-item routerLink="/struka">Struka</a>
-      <a mat-list-item routerLink="/zaposleni">Zaposleni</a>
-      <a mat-list-item routerLink="/isplata">Isplata</a>
-      <a mat-list-item routerLink="/porudzbina">Porudžbina</a>
-      <a mat-list-item routerLink="/radno-mesto">Radno mesto</a>
-      <a mat-list-item routerLink="/status">Status</a>
-      <a mat-list-item routerLink="/vrstaIntervencije">Vrsta intervencije</a>
-      <a mat-list-item routerLink="/stavkaPorudzbine">Stavka porudžbine</a>
-      <a mat-list-item routerLink="/kalendar">Kalendar</a>
-      <a mat-list-item routerLink="/racun">Račun</a>
-      <a mat-list-item routerLink="/snimak">Snimak</a>
-      <a mat-list-item routerLink="/planRada">Plan rada</a>
-      <a mat-list-item routerLink="/stavkaPlanaRada">Stavka plana rada</a>
-      <a mat-list-item routerLink="/zub">Zub</a>
-    </mat-nav-list>
+    <ng-material-multilevel-menu
+    [configuration]='config'
+    [items]='appitems'
+    (selectedLabel)="selectedLabel($event)">
+  </ng-material-multilevel-menu>
   </mat-sidenav>
   <mat-sidenav-content>
     <mat-toolbar color="primary">
