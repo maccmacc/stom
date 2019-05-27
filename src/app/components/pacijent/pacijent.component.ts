@@ -14,6 +14,8 @@ export class PacijenComponent implements OnInit {
   displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'napomena',
    'datumRodjenja', 'lookup', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
   dataSource: MatTableDataSource<Pacijent>;
+  size: number;
+  page: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -24,8 +26,18 @@ export class PacijenComponent implements OnInit {
   ngOnInit() {
     this.loadData();
   }
+  public pageChange(event) {
+    this.loadData();
+  }
   public loadData() {
-    this._pacijent.getPacijentPage(1, 1).subscribe(
+    if (this.paginator.pageSize == null || this.paginator.pageIndex == null) {
+      this.page = 1;
+      this.size = 1;
+  } else {
+      this.page = this.paginator.pageIndex;
+      this.size = this.paginator.pageSize;
+  }
+    this._pacijent.getPacijentPage(this.size, this.page).subscribe(
       data => {
         console.log(data);
         this.dataSource = new MatTableDataSource<Pacijent>(data);

@@ -30,10 +30,10 @@ export class PacijentService {
   }
   public getPacijentPage(size: number, page: number): Observable<Pacijent[]> {
     this._http
-      .get<Pacijent[]>(this.API_URL + "Page", {
+      .get<Pacijent[]>(this.API_URL + 'Page', {
         params: new HttpParams()
-          .set("size", size.toString())
-          .set("page", page.toString())
+          .set('' + 'size', size.toString())
+          .set('' + 'page', page.toString())
       })
       .subscribe(
         data => {

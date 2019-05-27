@@ -24,7 +24,8 @@ import {
   MatNativeDateModule,
   MatSelectModule,
   MatMenuModule,
-  MatCheckboxModule
+  MatCheckboxModule,
+  MatPaginatorIntl
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
 import { PacijenComponent } from "./components/pacijent/pacijent.component";
