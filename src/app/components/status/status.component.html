@@ -17,7 +17,8 @@
 
     <ng-container matColumnDef="zaPovrsine">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Za površine</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.zaPovrsine? 'Da':'Ne'}}</mat-cell>
+      <mat-cell *matCellDef="let row">  <mat-checkbox checked=row.zaPovrsine [ngModel]="row.zaPovrsine" disabled>
+      </mat-checkbox></mat-cell>
     </ng-container>
     <ng-container matColumnDef="slika">
       <mat-header-cell *matHeaderCellDef >slika</mat-header-cell>

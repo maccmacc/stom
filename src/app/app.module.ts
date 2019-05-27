@@ -23,7 +23,8 @@ import {
   MatDatepickerModule,
   MatNativeDateModule,
   MatSelectModule,
-  MatMenuModule
+  MatMenuModule,
+  MatCheckboxModule
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
 import { PacijenComponent } from "./components/pacijent/pacijent.component";
@@ -224,7 +225,8 @@ import { ZubService } from './services/zub.service';
     MatAutocompleteModule,
     ScheduleAllModule,
     ButtonModule,
-    MatMenuModule
+    MatMenuModule,
+    MatCheckboxModule
   ],
   providers: [
     PacijentService,

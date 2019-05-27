@@ -10,12 +10,8 @@
     </div>
 
     <div class="form">
-      <mat-form-field>
-          <mat-select  [(ngModel)]="data.zaPovrsine" placeholder="Za površine" name="zaPovrsine" [compareWith]="compareTo" [disabled]="flag == 3" required>
-              <mat-option value="true">Da</mat-option>
-              <mat-option value="false">Ne</mat-option>
-            </mat-select>      </mat-form-field>
-    </div>
+        <mat-checkbox checked=data.zaPovrsine [(ngModel)]="data.zaPovrsine" name=zaPovrsine [disabled]="flag == 3" ><span>Za površine</span></mat-checkbox>
+  </div>
     <div class="form">
       <mat-form-field>
         <mat-select [(ngModel)]="data.slika" placeholder="Slika" name="slika" [compareWith]="compareTo" [disabled]="flag == 3" required>

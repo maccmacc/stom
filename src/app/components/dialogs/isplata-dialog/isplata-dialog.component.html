@@ -25,7 +25,7 @@
       <mat-form-field>
         <mat-select [(ngModel)]="data.zaposleni" placeholder="Zaposleni" name="zaposleni" [compareWith]="compareTo" [disabled]="flag == 3" required>
           <mat-option *ngFor="let zaposleni of sviZaposleni" [value]="zaposleni">
-            {{ zaposleni.ime }}
+            {{ zaposleni.ime + " " + zaposleni.prezime}}
           </mat-option>
         </mat-select>      </mat-form-field>
     </div>

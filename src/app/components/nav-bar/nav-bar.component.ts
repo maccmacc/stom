@@ -41,7 +41,7 @@ export class NavBarComponent {
         },
         {
           label: "Vrsta intervencije",
-          link: "/vrsta-intervencije"
+          link: "/vrstaIntervencije"
         }
       ]
     },
@@ -51,7 +51,7 @@ export class NavBarComponent {
       items: [
         {
           label: "Izvršena intervencija",
-          link: "/izvrsena-intervencija"
+          link: "/izvrsenaIntervencija"
         },
         {
           label: "Dijagnoza",
@@ -77,7 +77,7 @@ export class NavBarComponent {
       items: [
         {
           label: "Plan rada",
-          link: "/plan-rada"
+          link: "/planRada"
         },
         {
           label: "Zaposleni",
@@ -93,11 +93,11 @@ export class NavBarComponent {
         },
         {
           label: "Stavka plana rada",
-          link: "/stavka-plana-rada"
+          link: "/stavkaPlanaRada"
         },
         {
           label: "Radno mesto",
-          link: "/radno-mesto"
+          link: "/radnoMesto"
         }
       ]
     },
@@ -127,7 +127,7 @@ export class NavBarComponent {
         },
         {
           label: "Stavka porudžbine",
-          link: "/stavka-porudzbine"
+          link: "/stavkaPorudzbine"
         }
       ],
       icon: "work"

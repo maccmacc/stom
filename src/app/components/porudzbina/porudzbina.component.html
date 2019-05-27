@@ -33,7 +33,8 @@
     </ng-container>
     <ng-container matColumnDef="placeno">
       <mat-header-cell *matHeaderCellDef >Plaćeno</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.placeno}}</mat-cell>
+      <mat-cell *matCellDef="let row"> <mat-checkbox checked=row.placeno [ngModel]="row.placeno" disabled>
+      </mat-checkbox></mat-cell>
     </ng-container>
     <ng-container matColumnDef="ukupno">
       <mat-header-cell *matHeaderCellDef >Ukupno</mat-header-cell>

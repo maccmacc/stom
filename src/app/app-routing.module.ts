@@ -35,7 +35,7 @@ const routes: Routes = [
   { path: "zaposleni", component: ZaposleniComponent },
   { path: "isplata", component: IsplataComponent },
   { path: "porudzbina", component: PorudzbinaComponent },
-  { path: "radno-mesto", component: RadnoMestoComponent },
+  { path: "radnoMesto", component: RadnoMestoComponent },
   { path: "status", component: StatusComponent },
   { path: "vrstaIntervencije", component: VrstaIntervencijeComponent },
   { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
@@ -44,7 +44,8 @@ const routes: Routes = [
   { path: "snimak", component: SnimakComponent },
   { path: "stavkaPlanaRada", component: StavkaPlanaRadaComponent },
   { path: "planRada", component: PlanRadaComponent },
-  { path: "zub", component: ZubComponent }
+  { path: "zub", component: ZubComponent },
+  { path: "", component: KalendarComponent }
 ];
 
 @NgModule({
