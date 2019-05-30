@@ -29,18 +29,18 @@ export class PacijentService {
     );
     return this.dataChange.asObservable();
   }
-  public getPacijentPage(pacijentId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3): Observable<Pacijent[]> {
-   return this._http
-      .get<Pacijent[]>(this.API_URL + 'Page', {
-        params: new HttpParams()
-          .set('pacijentId', pacijentId.toString())
-          .set('filter', filter)
-          .set('sortOrder', sortOrder)
-          .set('pageNumber', pageNumber.toString())
-          .set('pageSize', pageSize.toString())
-      })
-      // tslint:disable-next-line:no-string-literal
-      .pipe(map(res => res['payload']));
+  public getPacijentPage(pacijentId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3) {
+   this._http
+      .get<Pacijent[]>(this.API_URL + 'Page').subscribe(
+        data => {
+          console.log(data);
+          this.dataChange.next(data);
+        },
+        (error: HttpErrorResponse) => {
+          console.log(error.name + " " + error.message);
+        }
+      );
+   return this.dataChange.asObservable();
   }
 
   public addPacijent(pacijent: Pacijent): void {
