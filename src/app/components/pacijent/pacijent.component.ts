@@ -1,9 +1,14 @@
-import { OnInit, Component } from "@angular/core";
+import { OnInit, Component, ElementRef } from "@angular/core";
 import { PacijentService } from "../../services/pacijent.service";
 import { Pacijent } from '../../models/pacijent';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { ViewChild } from '@angular/core';
 import { PacijentDialogComponent } from '../dialogs/pacijent-dialog/pacijent-dialog.component';
+import { PacijentDataSource } from './pacijent.datasource';
+import { fromEvent, merge } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
+import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
+import { tap } from 'rxjs/internal/operators/tap';
 
 @Component({
   selector: 'app-pacijent',
@@ -11,22 +16,56 @@ import { PacijentDialogComponent } from '../dialogs/pacijent-dialog/pacijent-dia
   styleUrls: ['./pacijent.component.css']
 })
 export class PacijenComponent implements OnInit {
+  pacijent: Pacijent;
   displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'napomena',
    'datumRodjenja', 'lookup', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
-  dataSource: MatTableDataSource<Pacijent>;
+  dataSource: PacijentDataSource;
   size: number;
   page: number;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('input') input: ElementRef;
 
 
-  constructor(private _pacijent: PacijentService, public dialog: MatDialog) {}
+  constructor(private pacijentService: PacijentService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.loadData();
+    this.dataSource = new PacijentDataSource(this.pacijentService);
+    this.dataSource.loadPacijent(1, '', 'asc', 0, 3);
   }
-  public pageChange(event) {
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngAfterViewInit() {
+    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+
+    fromEvent(this.input.nativeElement, 'keyup')
+            .pipe(
+                debounceTime(150),
+                distinctUntilChanged(),
+                tap(() => {
+                    this.paginator.pageIndex = 0;
+
+                    this.loadPacijentPage();
+                })
+            )
+            .subscribe();
+
+    merge(this.sort.sortChange, this.paginator.page)
+        .pipe(
+            tap(() => this.loadPacijentPage())
+        )
+        .subscribe();
+  }
+  loadPacijentPage() {
+    this.dataSource.loadPacijent(
+      this.pacijent.id,
+      this.input.nativeElement.filterValue,
+      this.sort.direction,
+      this.paginator.pageIndex,
+      this.paginator.pageSize);
+
+  }
+ /* public pageChange(event) {
     this.loadData();
   }
   public loadData() {
@@ -37,10 +76,10 @@ export class PacijenComponent implements OnInit {
       this.page = this.paginator.pageIndex;
       this.size = this.paginator.pageSize;
   }
-    this._pacijent.getPacijentPage(this.size, this.page).subscribe(
+    this.pacijentService.getPacijentPage(this.size, this.page).subscribe(
       data => {
         console.log(data);
-        this.dataSource = new MatTableDataSource<Pacijent>(data);
+      //  this.dataSource = new MatTableDataSource<Pacijent>(data);
       },
       error => {
         console.log(error);
@@ -49,7 +88,7 @@ export class PacijenComponent implements OnInit {
         console.log('finish');
       }
     );
-  }
+  }*/
   public openDialog(flag: number, id: number, adresa: string, ime: string, prezime: string,
                     datumRodjenja: string, lookup: string, email: string, kontakt: string, napomena: string,
                     datumUpisa: string, ukupno: number) {
@@ -62,12 +101,12 @@ export class PacijenComponent implements OnInit {
     });
     dialogRef.componentInstance.flag = flag;
     dialogRef.afterClosed().subscribe(result => {
-        this.loadData();
+       // this.loadData();
     });
   }
-  applyFilter(filterValue: string) {
+ /* applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
     this.dataSource.filter = filterValue;
-  }
+  }*/
 }

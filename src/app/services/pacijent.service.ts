@@ -5,6 +5,7 @@ import { Observable, BehaviorSubject } from "rxjs";
 import { HttpErrorResponse } from "@angular/common/http";
 import { HttpParams } from "@angular/common/http";
 import { jsonpCallbackContext } from "@angular/common/http/src/module";
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: "root"
@@ -28,25 +29,18 @@ export class PacijentService {
     );
     return this.dataChange.asObservable();
   }
-  public getPacijentPage(size: number, page: number): Observable<Pacijent[]> {
-    this._http
+  public getPacijentPage(pacijentId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3): Observable<Pacijent[]> {
+   return this._http
       .get<Pacijent[]>(this.API_URL + 'Page', {
         params: new HttpParams()
-          .set('' + 'size', size.toString())
-          .set('' + 'page', page.toString())
+          .set('pacijentId', pacijentId.toString())
+          .set('filter', filter)
+          .set('sortOrder', sortOrder)
+          .set('pageNumber', pageNumber.toString())
+          .set('pageSize', pageSize.toString())
       })
-      .subscribe(
-        data => {
-          console.log(data);
-          this.dataChange.next(data);
-          JSON.stringify(data);
-        },
-
-        (error: HttpErrorResponse) => {
-          console.log(error.name + " " + error.message);
-        }
-      );
-    return this.dataChange.asObservable();
+      // tslint:disable-next-line:no-string-literal
+      .pipe(map(res => res['payload']));
   }
 
   public addPacijent(pacijent: Pacijent): void {

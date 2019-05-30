@@ -25,7 +25,8 @@ import {
   MatSelectModule,
   MatMenuModule,
   MatCheckboxModule,
-  MatPaginatorIntl
+  MatPaginatorIntl,
+  MatProgressSpinnerModule
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
 import { PacijenComponent } from "./components/pacijent/pacijent.component";
@@ -227,7 +228,8 @@ import { ZubService } from './services/zub.service';
     ScheduleAllModule,
     ButtonModule,
     MatMenuModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     PacijentService,
