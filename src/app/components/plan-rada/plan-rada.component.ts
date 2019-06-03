@@ -13,7 +13,7 @@ import { Pacijent } from '../../models/pacijent';
   styleUrls: ['./plan-rada.component.css']
 })
 export class PlanRadaComponent implements OnInit {
-  displayedColumns = ['id', 'datum', 'lookup', 'pacijent', 'zaposleni', 'add', 'edit', 'delete'];
+  displayedColumns = ['id', 'datum', 'pacijent', 'zaposleni', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<PlanRada>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

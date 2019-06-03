@@ -18,7 +18,7 @@ import { tap } from 'rxjs/internal/operators/tap';
 export class PacijenComponent implements OnInit {
   pacijent: Pacijent;
   displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'napomena',
-   'datumRodjenja', 'lookup', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
+   'datumRodjenja', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
   dataSource: PacijentDataSource;
   size: number;
   page: number;

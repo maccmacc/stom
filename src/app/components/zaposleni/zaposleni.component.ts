@@ -12,7 +12,7 @@ import { Struka } from '../../models/struka';
   styleUrls: ['./zaposleni.component.css']
 })
 export class ZaposleniComponent implements OnInit {
-  displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'username', 'struka', 'lookup', 'add', 'edit', 'delete'];
+  displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'username', 'struka', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<Zaposleni>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

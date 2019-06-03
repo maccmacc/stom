@@ -12,7 +12,7 @@ import { Dobavljac } from '../../models/dobavljac';
   styleUrls: ['./porudzbina.component.css']
 })
 export class PorudzbinaComponent implements OnInit {
-  displayedColumns = ['id', 'datum' , 'dobavljac' , 'isporuceno' , 'iznos', 'lookup', 'placeno', 'ukupno', 'add', 'edit', 'delete'];
+  displayedColumns = ['id', 'datum' , 'dobavljac' , 'isporuceno' , 'iznos', 'placeno', 'ukupno', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<Porudzbina>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

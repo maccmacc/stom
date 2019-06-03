@@ -24,3 +24,9 @@ table {
   font-size: 14px;
   width: 100%;
 }
+.mat-cell {
+  text-align: center;
+}
+.mat-checkbox {
+  align-items: center;
+}

@@ -12,7 +12,7 @@ import { Pacijent } from '../../models/pacijent';
   styleUrls: ['./racun.component.css']
 })
 export class RacunComponent implements OnInit {
-  displayedColumns = ['id', 'datum', 'lookup', 'pacijent', 'ukupno', 'add', 'edit', 'delete'];
+  displayedColumns = ['id', 'datum', 'pacijent', 'ukupno', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<Racun>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
