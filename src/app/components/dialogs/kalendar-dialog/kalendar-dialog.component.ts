@@ -42,7 +42,7 @@ export class KalendarDialogComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //detect user input! then filtert
+    
     if (
       this.data.pacijent !== undefined &&
       this.data.radnoMesto !== undefined

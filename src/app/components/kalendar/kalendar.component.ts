@@ -29,7 +29,7 @@ export class KalendarComponent {
   public currentView: View = "Month";
   dateFormat: string = "dd/MM/yyyy";
   currentDate: Date = new Date(2018, 10, 30);
-  public views: Array<string> = ["Day", "Week", "WorkWeek", "Month", "Agenda"];
+  public views: Array<string> = ["Day", "Week", "WorkWeek", "Month"];
   private selectionTarget: Element;
   load: boolean = false;
 
@@ -53,14 +53,14 @@ export class KalendarComponent {
 
     var s = new Date();
     this.currentDate = new Date(s.getFullYear(), s.getMonth(), s.getDate());
+
+   
   }
 
 
-
-
-
-
   ngOnInit() {
+
+    
     L10n.load({
       "sr-Latn": {
         schedule: {
@@ -248,6 +248,7 @@ export class KalendarComponent {
     if (!args.data.hasOwnProperty("Id") && args.type === "QuickInfo") {
       args.cancel = true;
     }
+
 
     this.selectionTarget = null;
     this.selectionTarget = args.target;
