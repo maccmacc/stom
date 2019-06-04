@@ -122,6 +122,9 @@ import { StavkaPlanaRadaService } from './services/stavka-plana-rada.service';
 import { ZubComponent } from './components/zub/zub.component';
 import { ZubDialogComponent } from './components/dialogs/zub-dialog/zub-dialog.component';
 import { ZubService } from './services/zub.service';
+import { IzvrsenaIntervencijaComponent } from './components/izvrsena-intervencija/izvrsena-intervencija.component';
+import { IzvrsenaIntervencijaDialogComponent } from './components/dialogs/izvrsena-intervencija-dialog/izvrsena-intervencija-dialog.component';
+import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.service';
 
 @NgModule({
   declarations: [
@@ -170,7 +173,9 @@ import { ZubService } from './services/zub.service';
     PlanRadaDialogComponent,
     StavkaPlanaRadaDialogComponent,
     ZubComponent,
-    ZubDialogComponent
+    ZubDialogComponent,
+    IzvrsenaIntervencijaComponent,
+    IzvrsenaIntervencijaDialogComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -193,7 +198,8 @@ import { ZubService } from './services/zub.service';
     SnimakDialogComponent,
     StavkaPlanaRadaDialogComponent,
     PlanRadaDialogComponent,
-    ZubDialogComponent
+    ZubDialogComponent,
+    IzvrsenaIntervencijaDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -261,7 +267,8 @@ import { ZubService } from './services/zub.service';
     SnimakService,
     PlanRadaService,
     StavkaPlanaRadaService,
-    ZubService
+    ZubService,
+    IzvrsenaIntervencijaService
   ],
   bootstrap: [AppComponent]
 })
