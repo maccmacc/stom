@@ -54,9 +54,13 @@
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-row style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" [ngClass]="{'selectRow': selektovanPlan != null && selektovanPlan.id == row.id}"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</div>
+
+<div class="container mat-elevation-z8">
+  <app-stavka-plana-rada *ngIf="selektovanPlan" [selektovanPlan]=selektovanPlan></app-stavka-plana-rada>
 </div>
 
 

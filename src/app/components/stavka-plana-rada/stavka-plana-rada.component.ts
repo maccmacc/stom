@@ -7,6 +7,7 @@ import { StavkaPlanaRadaDialogComponent } from '../dialogs/stavka-plana-rada-dia
 import { Dijagnoza } from '../../models/dijagnoza';
 import { PlanRada } from '../../models/plan-rada';
 import { VrstaIntervencije } from '../../models/vrsta-intervencije';
+import { Input } from '@angular/core';
 
 
 @Component({
@@ -21,27 +22,29 @@ export class StavkaPlanaRadaComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+  @Input() selektovanPlan: PlanRada;
 
 
   constructor(private _stavkaPlanaRada: StavkaPlanaRadaService, public dialog: MatDialog) {}
 
   ngOnInit() {
+    if (this.selektovanPlan.id) {
     this.loadData();
+    }
   }
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnChanges() {
+    if (this.selektovanPlan.id) {
+      this.loadData();
+    }
+  }
+
   public loadData() {
-    this._stavkaPlanaRada.getAllStavkaPlanaRada().subscribe(
-      data => {
-        this.dataSource = new MatTableDataSource<StavkaPlanaRada>(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
-      },
-      error => {
-        console.log(error);
-      },
-      () => {
-        console.log('finish');
-      }
-    );
+    this._stavkaPlanaRada.getStavkaByPlanRada(this.selektovanPlan.id).subscribe(data => {
+      this.dataSource = new MatTableDataSource<StavkaPlanaRada>(data);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
   public openDialog(flag: number, id: number, cena: number,
                     dijagnoza: Dijagnoza, iznos: number, planRada: PlanRada, popust: number, redniBroj: number,
@@ -53,6 +56,9 @@ data: { id: id, cena: cena, dijagnoza: dijagnoza, iznos: iznos, planRada: planRa
       redniBroj: redniBroj, vrstaIntervencije: vrstaIntervencije, zub: zub}
 });
 dialogRef.componentInstance.flag = flag;
+if (flag === 1) {
+  dialogRef.componentInstance.data.planRada = this.selektovanPlan;
+  }
 dialogRef.afterClosed().subscribe(result => {
 this.loadData();
 });

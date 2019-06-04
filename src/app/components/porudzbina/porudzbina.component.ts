@@ -14,6 +14,7 @@ import { Dobavljac } from '../../models/dobavljac';
 export class PorudzbinaComponent implements OnInit {
   displayedColumns = ['id', 'datum' , 'dobavljac' , 'isporuceno' , 'iznos', 'placeno', 'ukupno', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<Porudzbina>;
+  selektovanaPorudzbina: Porudzbina;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,5 +57,8 @@ applyFilter(filterValue: string) {
   filterValue = filterValue.trim();
   filterValue = filterValue.toLowerCase();
   this.dataSource.filter = filterValue;
+}
+public selectRow(row) {
+  this.selektovanaPorudzbina = row;
 }
 }

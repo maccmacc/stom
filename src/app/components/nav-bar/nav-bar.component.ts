@@ -93,10 +93,6 @@ export class NavBarComponent {
           link: "/struka"
         },
         {
-          label: "Stavka plana rada",
-          link: "/stavkaPlanaRada"
-        },
-        {
           label: "Radno mesto",
           link: "/radnoMesto"
         }
@@ -125,10 +121,6 @@ export class NavBarComponent {
         {
           label: "Porudžbina",
           link: "/porudzbina"
-        },
-        {
-          label: "Stavka porudžbine",
-          link: "/stavkaPorudzbine"
         }
       ],
       icon: "work"

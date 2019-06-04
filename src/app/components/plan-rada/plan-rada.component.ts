@@ -15,6 +15,7 @@ import { Pacijent } from '../../models/pacijent';
 export class PlanRadaComponent implements OnInit {
   displayedColumns = ['id', 'datum', 'pacijent', 'zaposleni', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<PlanRada>;
+  selektovanPlan: PlanRada;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -56,5 +57,8 @@ applyFilter(filterValue: string) {
   filterValue = filterValue.trim();
   filterValue = filterValue.toLowerCase();
   this.dataSource.filter = filterValue;
+}
+public selectRow(row) {
+  this.selektovanPlan = row;
 }
 }

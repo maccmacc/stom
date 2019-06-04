@@ -23,6 +23,17 @@ export class StavkaPlanaRadaService {
         });
     return this.dataChange.asObservable();
 }
+public getStavkaByPlanRada(idPlana): Observable<StavkaPlanaRada[]> {
+  this._http.get<StavkaPlanaRada[]>('http://147.91.175.211:8080/stom/stavkeZaPlanRadaId/' + idPlana).subscribe(data => {
+    this.dataChange.next(data);
+  },
+    (error: HttpErrorResponse) => {
+      console.log(error.name + ' ' + error.message);
+    });
+  return this.dataChange.asObservable();
+}
+
+
 public addStavkaPlanaRada(stavkaPlanaRada: StavkaPlanaRada): void {
   this._http.post(this.API_URL, stavkaPlanaRada).subscribe(data => {
       this.dialogData = stavkaPlanaRada;
