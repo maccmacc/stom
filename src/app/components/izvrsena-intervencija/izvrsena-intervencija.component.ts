@@ -19,7 +19,7 @@ import { Dijagnoza } from '../../models/dijagnoza';
 })
 export class IzvrsenaIntervencijaComponent implements OnInit {
   displayedColumns = ['id', 'datum', 'dijagnoza', 'iznos', 'materijal', 'napomena', 'pacijent'
-  , 'placeno', 'popust', 'povrsine', 'racun', 'radnoMesto', 'vrstaIntervencije', 'zaposleni', 'zub', 'add', 'edit', 'delete'];
+  , 'placeno', 'popust', 'povrsine', 'racun', 'radnoMjesto', 'vrstaIntervencije', 'zaposleni', 'zub', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<IzvrsenaIntervencija>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -35,6 +35,7 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
     this._izvrsenaIntervencija.getAllIzvrsenaIntervencija().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<IzvrsenaIntervencija>(data);
+
       },
       error => {
         console.log(error);
@@ -46,12 +47,12 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
   }
   public openDialog(flag: number, id: number, datum: Date, dijagnoza: Dijagnoza, iznos: number, materijal: Materijal,
                     napomena: string, pacijent: Pacijent, placeno: number, popust: number, povrsine: string, racun: Racun,
-                    radnoMesto: RadnoMesto, vrstaIntervencije: VrstaIntervencije, zaposleni: Zaposleni, zub: number) {
+                    radnoMjesto: RadnoMesto, vrstaIntervencije: VrstaIntervencije, zaposleni: Zaposleni, zub: number) {
 
 
 const dialogRef = this.dialog.open(IzvrsenaIntervencijaDialogComponent, {
 data: { id: id, datum: datum, dijagnoza: dijagnoza, iznos: iznos, materijal: materijal, napomena: napomena, pacijent: pacijent, placeno: placeno,
-        popust: popust, povrsine: povrsine, racun: racun, radnoMesto: radnoMesto, vrstaIntervencije: vrstaIntervencije,
+        popust: popust, povrsine: povrsine, racun: racun, radnoMjesto: radnoMjesto, vrstaIntervencije: vrstaIntervencije,
         zaposleni: zaposleni, zub: zub}
 });
 dialogRef.componentInstance.flag = flag;

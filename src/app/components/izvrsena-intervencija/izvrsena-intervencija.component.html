@@ -56,13 +56,13 @@
       <mat-header-cell *matHeaderCellDef >Racun</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.racun?.id}}</mat-cell>
     </ng-container>
-    <ng-container matColumnDef="radnoMesto">
+    <ng-container matColumnDef="radnoMjesto">
       <mat-header-cell *matHeaderCellDef >Radno mesto</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.radnoMesto?.naziv}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.radnoMjesto?.naziv}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="vrstaIntervencije">
       <mat-header-cell *matHeaderCellDef >Vrsta intervencije</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.vrstaintervencije?.opis}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.vrstaIntervencije.opis}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="zub">
       <mat-header-cell *matHeaderCellDef >Zub</mat-header-cell>
@@ -83,8 +83,8 @@
         <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" (click)="openDialog(2,row.id, row.datum, row.dijagnoza, row.iznos,
-        row.materijal, row.napomena, row.pacijent, row.placeno, row.popust, row.povrsine, row.racun, row.radnoMesto,
-        row.vrstaintervencije, row.zaposleni, row.zub)">
+        row.materijal, row.napomena, row.pacijent, row.placeno, row.popust, row.povrsine, row.racun, row.radnoMjesto,
+        row.vrstaIntervencije, row.zaposleni, row.zub)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
       </mat-cell>
@@ -94,7 +94,7 @@
         <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" (click)="openDialog(3,row.id, row.datum, row.dijagnoza, row.iznos,
-        row.materijal, row.napomena, row.pacijent, row.placeno, row.popust, row.povrsine, row.racun, row.radnoMesto,
+        row.materijal, row.napomena, row.pacijent, row.placeno, row.popust, row.povrsine, row.racun, row.radnoMjesto,
         row.vrstaintervencije, row.zaposleni, row.zub)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
