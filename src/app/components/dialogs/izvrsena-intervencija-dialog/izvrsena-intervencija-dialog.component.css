@@ -20,3 +20,8 @@
   display: table;
   clear: both;
 }
+
+.example-full-width {
+  width: 100%;
+
+}

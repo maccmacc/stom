@@ -8,6 +8,34 @@
   <form class="mat-dialog-content" #formControl="ngForm" id="form-element">
     <div class="form">
     
+        <mat-form-field class="example-full-width">
+            <input
+              type="text"
+              placeholder="Pacijent"
+              aria-label="Pacijent"
+              matInput
+              [formControl]="myControlPacijent"
+              [matAutocomplete]="autoPacijent"
+              name="pacijent"
+              required
+              [(ngModel)]="inputPacijent"
+             
+              
+            />
+        
+            <mat-autocomplete
+              #autoPacijent="matAutocomplete"
+            
+            >
+          
+            <mat-option *ngFor="let pacijent of filteredPacijenti | async" [value]="setPacijent(pacijent)" (onSelectionChange)="onEnterPacijent(pacijent)">
+                 
+              <span>{{pacijent.lookup}}</span> |
+              <small>{{pacijent.kontakt}}</small>
+            </mat-option>
+     
+            </mat-autocomplete>
+          </mat-form-field>
 
       <mat-form-field class="example-full-width">
         <input
