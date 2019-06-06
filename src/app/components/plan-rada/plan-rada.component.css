@@ -24,3 +24,7 @@ table {
   font-size: 14px;
   width: 99%;
 }
+
+.mat-row.highlighted {
+  background: #0D5C63;
+}

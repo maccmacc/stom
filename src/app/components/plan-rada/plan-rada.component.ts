@@ -61,4 +61,10 @@ applyFilter(filterValue: string) {
 public selectRow(row) {
   this.selektovanPlan = row;
 }
+
+selectedRowIndex: number;
+   
+highlight(row) {
+    this.selectedRowIndex = row.id;
+}
 }

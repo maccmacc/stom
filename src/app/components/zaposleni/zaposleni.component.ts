@@ -57,4 +57,6 @@ export class ZaposleniComponent implements OnInit {
       filterValue = filterValue.toLowerCase();
       this.dataSource.filter = filterValue;
     }
+
+    
   }

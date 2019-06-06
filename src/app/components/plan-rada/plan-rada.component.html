@@ -54,7 +54,7 @@
       </mat-cell>
     </ng-container>
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-    <mat-row style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" [ngClass]="{'selectRow': selektovanPlan != null && selektovanPlan.id == row.id}"></mat-row>
+    <mat-row [ngClass]="{highlighted: selectedRowIndex == row.id}" (click)="highlight(row)" style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;" (click)="selectRow(row)" [ngClass]="{'selectRow': selektovanPlan != null && selektovanPlan.id == row.id}"></mat-row>
   </mat-table>
   <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
