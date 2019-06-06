@@ -6,7 +6,8 @@ import {
   MonthService,
   View,
   EventSettingsModel,
-  ScheduleComponent
+  ScheduleComponent,
+  WorkHoursModel
 } from "@syncfusion/ej2-angular-schedule";
 import { TerminService } from "../../services/termin.service";
 import { Termin } from "../../models/Termin";
@@ -39,11 +40,6 @@ export class KalendarComponent {
     dataSource: this.data
   };
 
- 
-
-      
-  
-
   constructor(private terminService: TerminService, public dialog: MatDialog) {
     loadCldr(
       require("../../../../node_modules/cldr-data/main/sr-Latn/ca-gregorian.json"),
@@ -53,14 +49,9 @@ export class KalendarComponent {
 
     var s = new Date();
     this.currentDate = new Date(s.getFullYear(), s.getMonth(), s.getDate());
-
-   
   }
 
-
   ngOnInit() {
-
-    
     L10n.load({
       "sr-Latn": {
         schedule: {
@@ -249,7 +240,6 @@ export class KalendarComponent {
       args.cancel = true;
     }
 
-
     this.selectionTarget = null;
     this.selectionTarget = args.target;
     var termin = new Termin();
@@ -339,7 +329,7 @@ export class KalendarComponent {
 
     var json = {
       Id: termin.id,
-      Subject: termin.pacijent.lookup,
+      Subject: termin.pacijent.lookup + " | " + termin.radnoMjesto.naziv,
       StartTime: startTime,
       EndTime: endTime,
       pacijent: termin.pacijent,

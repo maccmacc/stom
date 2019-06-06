@@ -32,7 +32,7 @@
         <mat-option *ngFor="let pacijent of filteredPacijenti | async" [value]="setPacijent(pacijent)" (onSelectionChange)="onEnterPacijent(pacijent)">
              
           <span>{{pacijent.lookup}}</span> |
-          <small>Kontakt: {{pacijent.kontakt}}</small>
+          <small>{{pacijent.kontakt}}</small>
         </mat-option>
  
         </mat-autocomplete>
@@ -92,6 +92,8 @@
         id="pocetak"
         name="pocetak"
         placeholder="Vreme početka"
+        [min]='minValue' 
+        [max]='maxValue'
       ></ejs-timepicker>
 
       <ejs-timepicker
@@ -101,6 +103,8 @@
         id="zavrsetak"
         name="zavrsetak"
         placeholder="Vreme završetka"
+        [min]='minValue' 
+        [max]='maxValue'
       ></ejs-timepicker>
     </div>
 

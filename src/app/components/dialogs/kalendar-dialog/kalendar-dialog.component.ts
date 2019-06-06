@@ -32,6 +32,8 @@ export class KalendarDialogComponent implements OnInit {
   filteredRadnaMesta: Observable<RadnoMesto[]>;
   inputPacijent: string;
   inputRadnoMesto: string;
+  minValue: Date = new Date();
+  maxValue: Date = new Date();
 
   constructor(
     private pacijentService: PacijentService,
@@ -39,7 +41,14 @@ export class KalendarDialogComponent implements OnInit {
     private terminService: TerminService,
     public dialogRef: MatDialogRef<KalendarDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
-  ) {}
+  ) {
+
+       var s = new Date();
+        this.minValue = new Date(s.getFullYear(), s.getMonth(), s.getDate(), 8,0,0);
+        this.maxValue = new Date(s.getFullYear(), s.getMonth(), s.getDate(), 20,0,0);
+
+        
+  }
 
   ngOnInit(): void {
     
