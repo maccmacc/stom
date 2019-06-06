@@ -73,7 +73,7 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
 
   public add(): void {
     this.izvrsenaIntervencijaService.getNextID(this.izvrsenaIntervencijaService.addIzvrsenaIntervencija, this.data);
-    this.snackBar.open('Uspešno dodat izvrsena intervencija', 'U redu',
+    this.snackBar.open('Uspešno dodata izvrsena intervencija', 'U redu',
       {
         duration: 2500
       });
@@ -81,7 +81,7 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
 
   public update(): void {
     this.izvrsenaIntervencijaService.updateIzvrsenaIntervencija(this.data);
-    this.snackBar.open('Uspešno modifikovan izvrsena intervencija', 'U redu',
+    this.snackBar.open('Uspešno modifikovana izvrsena intervencija', 'U redu',
     {
       duration: 2500
     });
@@ -89,7 +89,7 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
 
   public delete(): void {
     this.izvrsenaIntervencijaService.deleteIzvrsenaIntervencija(this.data.id);
-    this.snackBar.open('Uspešno obrisan izvrsena intervencija', 'U redu',
+    this.snackBar.open('Uspešno obrisana izvrsena intervencija', 'U redu',
       {
         duration: 2500
       });

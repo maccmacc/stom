@@ -35,8 +35,6 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
     this._izvrsenaIntervencija.getAllIzvrsenaIntervencija().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<IzvrsenaIntervencija>(data);
-        this.dataSource.paginator = this.paginator;
-        this.dataSource.sort = this.sort;
       },
       error => {
         console.log(error);

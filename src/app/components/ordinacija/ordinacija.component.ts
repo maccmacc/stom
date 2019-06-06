@@ -11,7 +11,7 @@ import { OrdinacijaDialogComponent } from '../dialogs/ordinacija-dialog/ordinaci
   styleUrls: ['./ordinacija.component.css']
 })
 export class OrdinacijaComponent implements OnInit {
-  displayedColumns = ['id', 'adresa', 'naziv','add', 'edit', 'delete'];
+  displayedColumns = ['id', 'adresa', 'naziv', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<Ordinacija>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;

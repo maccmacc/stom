@@ -17,11 +17,11 @@
     </ng-container>
     <ng-container matColumnDef="dijagnoza">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Dijagnoza</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.dijagnoza}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.dijagnoza?.opis}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="zaposleni">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Zaposleni</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.zaposleni}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.zaposleni?.ime}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="iznos">
@@ -30,7 +30,7 @@
     </ng-container>
     <ng-container matColumnDef="materijal">
       <mat-header-cell *matHeaderCellDef >Materijal</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.materijal}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.materijal?.naziv}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="napomena">
       <mat-header-cell *matHeaderCellDef >napomena</mat-header-cell>
@@ -38,7 +38,7 @@
     </ng-container>
     <ng-container matColumnDef="pacijent">
       <mat-header-cell *matHeaderCellDef >Pacijent</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.pacijent}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.pacijent?.ime}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="placeno">
       <mat-header-cell *matHeaderCellDef >Placeno</mat-header-cell>
@@ -54,15 +54,15 @@
     </ng-container>
     <ng-container matColumnDef="racun">
       <mat-header-cell *matHeaderCellDef >Racun</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.racun}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.racun?.id}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="radnoMesto">
       <mat-header-cell *matHeaderCellDef >Radno mesto</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.radnoMesto}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.radnoMesto?.naziv}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="vrstaIntervencije">
       <mat-header-cell *matHeaderCellDef >Vrsta intervencije</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.vrstaintervencije}}</mat-cell>
+      <mat-cell *matCellDef="let row"> {{row.vrstaintervencije?.opis}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="zub">
       <mat-header-cell *matHeaderCellDef >Zub</mat-header-cell>
