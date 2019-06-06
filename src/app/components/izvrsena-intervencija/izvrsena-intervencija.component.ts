@@ -10,6 +10,7 @@ import { Materijal } from '../../models/materijal';
 import { Racun } from '../../models/racun';
 import { RadnoMesto } from '../../models/radno-mesto';
 import { VrstaIntervencije } from '../../models/vrsta-intervencije';
+import { Dijagnoza } from '../../models/dijagnoza';
 
 @Component({
   selector: 'app-izvrsena-intervencija',
@@ -45,13 +46,13 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
       }
     );
   }
-  public openDialog(flag: number, id: number, datum: Date, iznos: number, materijal: Materijal, napomena: string, pacijent: Pacijent,
-                    placeno: number, popust: number, povrsine: string, racun: Racun, radnoMesto: RadnoMesto,
-                    vrstaIntervencije: VrstaIntervencije, zaposleni: Zaposleni, zub: number) {
+  public openDialog(flag: number, id: number, datum: Date, dijagnoza: Dijagnoza, iznos: number, materijal: Materijal,
+                    napomena: string, pacijent: Pacijent, placeno: number, popust: number, povrsine: string, racun: Racun,
+                    radnoMesto: RadnoMesto, vrstaIntervencije: VrstaIntervencije, zaposleni: Zaposleni, zub: number) {
 
 
 const dialogRef = this.dialog.open(IzvrsenaIntervencijaDialogComponent, {
-data: { id: id, datum: datum, iznos: iznos, materijal: materijal, napomena: napomena, pacijent: pacijent, placeno: placeno,
+data: { id: id, datum: datum, dijagnoza: dijagnoza, iznos: iznos, materijal: materijal, napomena: napomena, pacijent: pacijent, placeno: placeno,
         popust: popust, povrsine: povrsine, racun: racun, radnoMesto: radnoMesto, vrstaIntervencije: vrstaIntervencije,
         zaposleni: zaposleni, zub: zub}
 });
