@@ -45,7 +45,7 @@ export class StrukaComponent implements OnInit {
     data: { id: id, naziv: naziv, stepen: stepen}
     });
     dialogRef.componentInstance.flag = flag;
-    dialogRef.afterClosed().subscribe(result => {
+    dialogRef.afterOpened().subscribe(result => {
     this.loadData();
     });
     }
