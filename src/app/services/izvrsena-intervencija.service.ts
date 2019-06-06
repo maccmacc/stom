@@ -8,7 +8,7 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class IzvrsenaIntervencijaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/planRada';
+    private readonly API_URL = 'http://147.91.175.211:8080/stom/izvrsenaIntervencija';
     dataChange: BehaviorSubject<IzvrsenaIntervencija[]> = new BehaviorSubject<IzvrsenaIntervencija[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -23,15 +23,15 @@ export class IzvrsenaIntervencijaService {
         });
     return this.dataChange.asObservable();
 }
-public addIzvrsenaIntervencija(planRada: IzvrsenaIntervencija): void {
-  this._http.post(this.API_URL, planRada).subscribe(data => {
-      this.dialogData = planRada;
+public addIzvrsenaIntervencija(izvrsenaIntervencija: IzvrsenaIntervencija): void {
+  this._http.post(this.API_URL, izvrsenaIntervencija).subscribe(data => {
+      this.dialogData = izvrsenaIntervencija;
   });
 }
 
-public updateIzvrsenaIntervencija(planRada: IzvrsenaIntervencija): void {
-  this._http.put(this.API_URL + '/' + planRada.id, planRada).subscribe(data => {
-      this.dialogData = planRada;
+public updateIzvrsenaIntervencija(izvrsenaIntervencija: IzvrsenaIntervencija): void {
+  this._http.put(this.API_URL + '/' + izvrsenaIntervencija.id, izvrsenaIntervencija).subscribe(data => {
+      this.dialogData = izvrsenaIntervencija;
   });
 }
 
@@ -40,11 +40,11 @@ public deleteIzvrsenaIntervencija(id: number): void {
   });
 }
 
-public getNextID(addIzvrsenaIntervencija, planRada: IzvrsenaIntervencija) {
-  this._http.get('http://147.91.175.211:8080/stom/planRadaNextId').subscribe(
+public getNextID(addIzvrsenaIntervencija, izvrsenaIntervencija: IzvrsenaIntervencija) {
+  this._http.get('http://147.91.175.211:8080/stom/izvrsenaIntervencijaNextId').subscribe(
     data => {
-    planRada.id = data as number;
-    this.addIzvrsenaIntervencija(planRada);
+    izvrsenaIntervencija.id = data as number;
+    this.addIzvrsenaIntervencija(izvrsenaIntervencija);
   },
   (error: HttpErrorResponse) => {
     console.log(error.name + ' ' + error.message);
