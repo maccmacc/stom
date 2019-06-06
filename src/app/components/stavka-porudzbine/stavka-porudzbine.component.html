@@ -13,7 +13,7 @@
 
     <ng-container matColumnDef="artikl">
       <mat-header-cell *matHeaderCellDef mat-sort-header>Artikl</mat-header-cell>
-      <mat-cell *matCellDef="let row"> {{row.artikl.naziv}}</mat-cell>
+      <mat-cell *matCellDef="let row" align = "right"> {{row.artikl.naziv}}</mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="cena">

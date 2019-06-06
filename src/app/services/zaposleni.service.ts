@@ -8,6 +8,9 @@ import { HttpErrorResponse } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ZaposleniService {
+  getAllDijagnoza(): any {
+    throw new Error("Method not implemented.");
+  }
     private readonly API_URL = 'http://147.91.175.211:8080/stom/zaposleni';
     dataChange: BehaviorSubject<Zaposleni[]> = new BehaviorSubject<Zaposleni[]>([]);
     private dialogData: any;

@@ -25,26 +25,26 @@ export class StrukaDialogComponent implements OnInit {
 
   public add(): void {
     this.strukaService.getNextID(this.strukaService.addStruka, this.data);
-    /*this.snackBar.open('Uspešno dodat struka: ' + this.data.ime + ' ' + this.data.prezime, 'U redu',
+    this.snackBar.open('Uspešno dodata struka: ' + this.data.naziv, 'U redu',
       {
         duration: 2500
-      });*/
+      });
   }
 
   public update(): void {
     this.strukaService.updateStruka(this.data);
-   /* this.snackBar.open('Uspešno modifikovan struka: ' + this.data.ime + ' ' + this.data.prezime, 'U redu',
+    this.snackBar.open('Uspešno modifikovana struka: ' + this.data.naziv, 'U redu',
       {
         duration: 2500
-      });*/
+      });
   }
 
   public delete(): void {
     this.strukaService.deleteStruka(this.data.id);
-   /* this.snackBar.open('Uspešno obrisan struka: ' + this.data.id, 'U redu',
+    this.snackBar.open('Uspešno obrisana struka: ' + this.data.naziv, 'U redu',
       {
         duration: 2500
-      });*/
+      });
   }
 
   public cancel(): void {
