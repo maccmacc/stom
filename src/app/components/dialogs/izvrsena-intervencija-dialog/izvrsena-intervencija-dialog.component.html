@@ -48,11 +48,29 @@
       </mat-form-field>
     </div>
     <div class="form">
+        <mat-form-field style="margin-right:10px;" class="example-full-width">
+          <mat-select [(ngModel)]="data.vrstaIntervencije" placeholder="Vrsta intervencije" name="vrstaIntervencije"
+            [compareWith]="compareTo" [disabled]="flag == 3" required>
+            <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="vrstaIntervencije">
+              {{vrstaIntervencije.opis}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field class="example-full-width">
+            <input matInput placeholder="Zub" [(ngModel)]="data.zub" name="zub" [disabled]="flag==3" required>
+          </mat-form-field>
+      </div>
+    <div class="form">
       <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <input matInput placeholder="Iznos" [(ngModel)]="data.iznos" name="iznos" [disabled]="flag==3" required>
+          <mat-select [(ngModel)]="data.vrstaIntervencije" placeholder="Iznos" name="iznos"
+          [compareWith]="compareTo" [disabled]="flag == 3">
+          <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="vrstaIntervencije">
+            {{vrstaIntervencije.iznos}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
       <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <input matInput placeholder="Plaćeno" [(ngModel)]="data.placeno" name="placeno" [disabled]="flag==3" required>
+        <input matInput placeholder="Plaćeno" [(ngModel)]="data.placeno" name="placeno" [disabled]="flag==3" readonly>
       </mat-form-field>
       <mat-form-field style="margin-right:10px;" class="example-full-width">
         <input matInput placeholder="Popust" [(ngModel)]="data.popust" name="popust" [disabled]="flag==3" required>
@@ -83,20 +101,6 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-    </div>
-
-    <div class="form">
-      <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <mat-select [(ngModel)]="data.vrstaIntervencije" placeholder="Vrsta intervencije" name="vrstaIntervencije"
-          [compareWith]="compareTo" [disabled]="flag == 3" required>
-          <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="vrstaIntervencije">
-            {{vrstaIntervencije.opis}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="example-full-width">
-          <input matInput placeholder="Zub" [(ngModel)]="data.zub" name="zub" [disabled]="flag==3" required>
-        </mat-form-field>
     </div>
     <div class="form">
         <mat-form-field class="example-full-width">
