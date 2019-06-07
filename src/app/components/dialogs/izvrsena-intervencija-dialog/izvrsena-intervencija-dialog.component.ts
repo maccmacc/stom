@@ -16,6 +16,7 @@ import { Materijal } from '../../../models/materijal';
 import { Racun } from '../../../models/racun';
 import { RadnoMesto } from '../../../models/radno-mesto';
 import { RacunService } from '../../../services/racun.service';
+import { FormControl } from '@angular/forms';
 
 
 
@@ -33,6 +34,7 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
   sviZaposleni: Zaposleni[];
   flag: number;
   sviPacijenti: Pacijent[];
+  myControl = new FormControl();
 
   constructor(public snackBar: MatSnackBar,
               public dialogRef: MatDialogRef<IzvrsenaIntervencijaDialogComponent>,
