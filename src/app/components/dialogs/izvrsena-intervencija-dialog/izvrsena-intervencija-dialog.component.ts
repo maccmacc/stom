@@ -108,5 +108,11 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
   public compareTo(a, b) {
     return a.id === b.id;
   }
+  count(value: VrstaIntervencije) {
+    this.data.iznos = value.iznos;
+  }
+  onChange(value: number) {
+    this.data.placeno = this.data.iznos - this.data.iznos * this.data.popust / 100;
+  }
 
 }

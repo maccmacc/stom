@@ -65,4 +65,5 @@ applyFilter(filterValue: string) {
   filterValue = filterValue.toLowerCase();
   this.dataSource.filter = filterValue;
 }
+
 }

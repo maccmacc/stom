@@ -7,7 +7,7 @@
     <div class="form">
 
         <mat-form-field class="example-full-width">
-          <mat-select [(ngModel)]="data.pacijent" placeholder="Pacijent" name="pacijent" [compareWith]="compareTo"
+          <mat-select [(ngModel)]="data.pacijent" [compareWith]="compareTo" placeholder="Pacijent" name="pacijent"
             [disabled]="flag == 3" required>
             <mat-option *ngFor="let pacijent of sviPacijenti" [value]="pacijent">
               {{ pacijent.ime + ' ' + pacijent.prezime}}
@@ -25,7 +25,7 @@
     </div>
     <div class="form">
       <mat-form-field class="example-full-width">
-        <mat-select [(ngModel)]="data.dijagnoza" placeholder="Dijagnoza" name="dijagnoza" [compareWith]="compareTo"
+        <mat-select [(ngModel)]="data.dijagnoza" placeholder="Dijagnoza" [compareWith]="compareTo" name="dijagnoza"
           [disabled]="flag == 3" required>
           <mat-option *ngFor="let dijagnoza of sveDijagnoze" [value]="dijagnoza">
             {{ dijagnoza.opis}}
@@ -35,7 +35,7 @@
     </div>
     <div class="form">
       <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <mat-select [(ngModel)]="data.materijal" placeholder="Materijal" name="materijal" [compareWith]="compareTo"
+        <mat-select [(ngModel)]="data.materijal" placeholder="Materijal" [compareWith]="compareTo"  name="materijal"
           [disabled]="flag == 3" required>
           <mat-option *ngFor="let materijal of sviMaterijali" [value]="materijal">
             {{ materijal.naziv}}
@@ -49,8 +49,8 @@
     </div>
     <div class="form">
         <mat-form-field style="margin-right:10px;" class="example-full-width">
-          <mat-select [(ngModel)]="data.vrstaIntervencije" placeholder="Vrsta intervencije" name="vrstaIntervencije"
-            [compareWith]="compareTo" [disabled]="flag == 3" required>
+          <mat-select [(ngModel)]="data.vrstaIntervencije" [compareWith]="compareTo" placeholder="Vrsta intervencije" name="vrstaIntervencije"
+             [disabled]="flag == 3" (selectionChange)="count($event.value)" required>
             <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="vrstaIntervencije">
               {{vrstaIntervencije.opis}}
             </mat-option>
@@ -61,20 +61,24 @@
           </mat-form-field>
       </div>
     <div class="form">
-      <mat-form-field style="margin-right:10px;" class="example-full-width">
+     <!-- <mat-form-field style="margin-right:10px;" class="example-full-width" >
           <mat-select [(ngModel)]="data.vrstaIntervencije" placeholder="Iznos" name="iznos"
-          [compareWith]="compareTo" [disabled]="flag == 3">
-          <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="vrstaIntervencije">
+           [disabled]="flag == 1 || flag == 2 || flag == 3">
+          <mat-option *ngFor="let vrstaIntervencije of sveVrsteIntervencije" [value]="data.vrstaIntervencije" readonly>
             {{vrstaIntervencije.iznos}}
           </mat-option>
         </mat-select>
+      </mat-form-field>-->
+      <mat-form-field style="margin-right:10px;" class="example-full-width">
+          <input matInput placeholder="Iznos(%)" [(ngModel)]="data.iznos" name="iznos" [disabled]="flag==3 || flag==1 || flag==2" required>
+        </mat-form-field>
+      <mat-form-field style="margin-right:10px;" class="example-full-width">
+        <input matInput placeholder="Popust(%)" [(ngModel)]="data.popust" name="popust" [disabled]="flag==3" (input)="onChange($event.target.value)" required>
       </mat-form-field>
       <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <input matInput placeholder="Plaćeno" [(ngModel)]="data.placeno" name="placeno" [disabled]="flag==3" readonly>
-      </mat-form-field>
-      <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <input matInput placeholder="Popust" [(ngModel)]="data.popust" name="popust" [disabled]="flag==3" required>
-      </mat-form-field>
+          <input matInput placeholder="Naplata" [(ngModel)]="data.placeno" name="placeno" [disabled]="flag==3 || flag==2 || flag==1" required>
+        </mat-form-field>
+
       <mat-form-field class="example-full-width">
         <mat-select [(ngModel)]="data.racun" placeholder="Račun" name="racun" [compareWith]="compareTo"
           [disabled]="flag == 3" required>
@@ -86,7 +90,7 @@
     </div>
     <div class="form">
       <mat-form-field style="margin-right:10px;" class="example-full-width">
-        <mat-select [(ngModel)]="data.radnoMjesto" placeholder="Radno Mesto" name="radnoMjesto" [compareWith]="compareTo"
+        <mat-select [(ngModel)]="data.radnoMjesto" placeholder="Radno Mesto" [compareWith]="compareTo" name="radnoMjesto"
           [disabled]="flag == 3" required>
           <mat-option *ngFor="let radnoMjesto of svaRadnaMesta" [value]="radnoMjesto">
             {{radnoMjesto.naziv}}
@@ -94,7 +98,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field class="example-full-width">
-        <mat-select [(ngModel)]="data.zaposleni" placeholder="Zaposleni" name="zaposleni" [compareWith]="compareTo"
+        <mat-select [(ngModel)]="data.zaposleni" placeholder="Zaposleni" [compareWith]="compareTo" name="zaposleni"
           [disabled]="flag == 3" required>
           <mat-option *ngFor="let zaposleni of sviZaposleni" [value]="zaposleni">
             {{zaposleni.ime + ' '+ zaposleni.prezime}}

@@ -12,6 +12,9 @@ import { Dobavljac } from '../../models/dobavljac';
   styleUrls: ['./porudzbina.component.css']
 })
 export class PorudzbinaComponent implements OnInit {
+
+
+  constructor(private _porudzbina: PorudzbinaService, public dialog: MatDialog) {}
   displayedColumns = ['id', 'datum' , 'dobavljac' , 'isporuceno' , 'iznos', 'placeno', 'ukupno', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<Porudzbina>;
   selektovanaPorudzbina: Porudzbina;
@@ -19,8 +22,7 @@ export class PorudzbinaComponent implements OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-
-  constructor(private _porudzbina: PorudzbinaService, public dialog: MatDialog) {}
+selectedRowIndex: number;
 
   ngOnInit() {
     this.loadData();
@@ -61,9 +63,6 @@ applyFilter(filterValue: string) {
 public selectRow(row) {
   this.selektovanaPorudzbina = row;
 }
-
-selectedRowIndex: number;
-   
 highlight(row) {
     this.selectedRowIndex = row.id;
 }
