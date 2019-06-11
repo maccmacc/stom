@@ -20,7 +20,11 @@ import { FormValidatorModel, FormValidator } from "@syncfusion/ej2-inputs";
 @Component({
   selector: "app-kalendar-dialog",
   templateUrl: "./kalendar-dialog.component.html",
-  styleUrls: ["./kalendar-dialog.component.css","kalendar-dialog.component.sass","kalendar-dialog.component2.sass"]
+  styleUrls: [
+    "./kalendar-dialog.component.css",
+    "kalendar-dialog.component.sass",
+    "kalendar-dialog.component2.sass"
+  ]
 })
 export class KalendarDialogComponent implements OnInit {
   myControlPacijent = new FormControl();
@@ -42,28 +46,52 @@ export class KalendarDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<KalendarDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-
-       var s = new Date();
-        this.minValue = new Date(s.getFullYear(), s.getMonth(), s.getDate(), 8,0,0);
-        this.maxValue = new Date(s.getFullYear(), s.getMonth(), s.getDate(), 20,0,0);
-
-        
+    var s = new Date();
+    this.minValue = new Date(
+      s.getFullYear(),
+      s.getMonth(),
+      s.getDate(),
+      8,
+      0,
+      0
+    );
+    this.maxValue = new Date(
+      s.getFullYear(),
+      s.getMonth(),
+      s.getDate(),
+      20,
+      0,
+      0
+    );
   }
 
   ngOnInit(): void {
-    
     if (
       this.data.pacijent !== undefined &&
       this.data.radnoMesto !== undefined
     ) {
       this.inputPacijent =
-        this.data.pacijent.lookup + " | " + this.data.pacijent.kontakt;
+        this.data.pacijent.prezime +
+        " " +
+        this.data.pacijent.ime +
+        " | " +
+        this.data.pacijent.kontakt;
       this.inputRadnoMesto = this.data.radnoMesto.naziv;
     }
 
     //preuzimanje pacijenata
     this.pacijentService.getAllPacijent().subscribe(pacijenti => {
       this.pacijenti = pacijenti;
+      this.pacijenti.sort((a, b) =>
+        a.prezime > b.prezime
+          ? 1
+          : a.prezime === b.prezime
+          ? a.ime > b.ime
+            ? 1
+            : -1
+          : -1
+      );
+
       this.filteredPacijenti = this.myControlPacijent.valueChanges.pipe(
         startWith(""),
         map(pacijent =>
@@ -87,9 +115,15 @@ export class KalendarDialogComponent implements OnInit {
 
   private _filterPacijenti(value: string): Pacijent[] {
     const filterValue = value.toLowerCase();
-    return this.pacijenti.filter(
-      pacijent => pacijent.lookup.toLowerCase().indexOf(filterValue) === 0
+    return this.pacijenti.filter(pacijent =>
+      this.search(pacijent, filterValue)
     );
+  }
+
+  search(pacijent, filterValue) {
+    var value =
+      pacijent.prezime + " " + pacijent.ime + " | " + pacijent.kontakt;
+    return value.toLowerCase().indexOf(filterValue) === 0;
   }
 
   private _filteredRadnoMesto(value: string): RadnoMesto[] {
@@ -151,7 +185,11 @@ export class KalendarDialogComponent implements OnInit {
       return;
     } else if (
       this.inputPacijent !=
-      this.data.pacijent.lookup + " | " + this.data.pacijent.kontakt
+      this.data.pacijent.prezime +
+        " " +
+        this.data.pacijent.ime +
+        " | " +
+        this.data.pacijent.kontakt
     ) {
       alert("Ne postojeći pacijent!");
       return;
@@ -272,6 +310,6 @@ export class KalendarDialogComponent implements OnInit {
     }
   }
   setPacijent(pacijent: Pacijent): string {
-    return pacijent.lookup + " | " + pacijent.kontakt;
+    return pacijent.prezime + " " + pacijent.ime + " | " + pacijent.kontakt;
   }
 }
