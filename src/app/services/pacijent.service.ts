@@ -6,12 +6,13 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { HttpParams } from "@angular/common/http";
 import { jsonpCallbackContext } from "@angular/common/http/src/module";
 import { map } from 'rxjs/operators';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class PacijentService {
-  private readonly API_URL = "http://147.91.175.211:8080/stom/pacijent";
+  private readonly API_URL = environment.baseUrl + '/pacijent';
   dataChange: BehaviorSubject<Pacijent[]> = new BehaviorSubject<Pacijent[]>([]);
   private dialogData: any;
 
@@ -66,7 +67,7 @@ export class PacijentService {
     this._http.delete(this.API_URL + "/" + id).subscribe(data => {});
   }
   public getNextID(addPacijent, pacijent: Pacijent) {
-    this._http.get("http://147.91.175.211:8080/stom/pacijentNextId").subscribe(
+    this._http.get(this.API_URL + 'NextId').subscribe(
       data => {
         pacijent.id = data as number;
         this.addPacijent(pacijent);

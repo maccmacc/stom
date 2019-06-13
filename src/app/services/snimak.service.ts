@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Snimak } from '../models/snimak';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnimakService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/snimak';
+    private readonly API_URL = environment.baseUrl + '/snimak';
     dataChange: BehaviorSubject<Snimak[]> = new BehaviorSubject<Snimak[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -46,7 +47,7 @@ public getNextSnimakID(): number {
   return 0;
 }
 public getNextID(addSnimak, snimak: Snimak) {
-  this._http.get('http://147.91.175.211:8080/stom/snimakNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     snimak.id = data as number;
     this.addSnimak(snimak);

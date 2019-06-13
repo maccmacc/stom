@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { IzvrsenaIntervencija } from '../models/izvrsena-intervencija';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IzvrsenaIntervencijaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/izvrsenaIntervencija';
+  private readonly API_URL = environment.baseUrl + '/izvrsenaIntervencija';
     dataChange: BehaviorSubject<IzvrsenaIntervencija[]> = new BehaviorSubject<IzvrsenaIntervencija[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -41,7 +42,7 @@ public deleteIzvrsenaIntervencija(id: number): void {
 }
 
 public getNextID(addIzvrsenaIntervencija, izvrsenaIntervencija: IzvrsenaIntervencija) {
-  this._http.get('http://147.91.175.211:8080/stom/izvrsenaIntervencijaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     izvrsenaIntervencija.id = data as number;
     this.addIzvrsenaIntervencija(izvrsenaIntervencija);
