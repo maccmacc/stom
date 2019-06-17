@@ -6,6 +6,7 @@ import { HttpErrorResponse } from "@angular/common/http";
 import { HttpParams } from "@angular/common/http";
 import { jsonpCallbackContext } from "@angular/common/http/src/module";
 import { map } from 'rxjs/operators';
+import { MatSnackBar } from '@angular/material';
 
 @Injectable({
   providedIn: "root"
@@ -15,7 +16,7 @@ export class PacijentService {
   dataChange: BehaviorSubject<Pacijent[]> = new BehaviorSubject<Pacijent[]>([]);
   private dialogData: any;
 
-  constructor(private _http: HttpClient) {}
+  constructor(private _http: HttpClient, public snackBar: MatSnackBar,) {}
 
   public getAllPacijent(): Observable<Pacijent[]> {
     this._http.get<Pacijent[]>(this.API_URL).subscribe(
@@ -29,12 +30,12 @@ export class PacijentService {
     );
     return this.dataChange.asObservable();
   }
-  public getPacijentPage(pacijentId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 3) {
+  public getPacijentPage(pacijentId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 5) {
    this._http
       .get<Pacijent[]>(this.API_URL + 'Page').subscribe(
         data => {
           console.log(data);
-          this.dataChange.next(data);
+          this.dataChange.next(data["content"]);
         },
         (error: HttpErrorResponse) => {
           console.log(error.name + " " + error.message);
@@ -47,6 +48,12 @@ export class PacijentService {
     this._http.post(this.API_URL, pacijent).subscribe(
       data => {
         this.dialogData = pacijent;
+        this.getPacijentPage(1, "", "asc", 0, 5);
+
+        this.snackBar.open('Uspešno dodat pacijent ' + pacijent.ime + " " + pacijent.prezime + "!", 'U redu',
+      {
+        duration: 2500
+      });
       },
       (error: HttpErrorResponse) => {
         console.log(error.name + " " + error.message);
@@ -63,7 +70,14 @@ export class PacijentService {
   }
 
   public deletePacijent(id: number): void {
-    this._http.delete(this.API_URL + "/" + id).subscribe(data => {});
+    this._http.delete(this.API_URL + "/" + id).subscribe(data => {
+      this.getPacijentPage(1, "", "asc", 0, 5);
+
+      this.snackBar.open('Uspešno obrisan pacijent!', 'U redu',
+      {
+        duration: 2500
+      });
+    });
   }
   public getNextID(addPacijent, pacijent: Pacijent) {
     this._http.get("http://147.91.175.211:8080/stom/pacijentNextId").subscribe(

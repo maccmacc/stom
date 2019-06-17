@@ -32,7 +32,7 @@ export class PacijenComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource = new PacijentDataSource(this.pacijentService);
-    this.dataSource.loadPacijent(1, '', 'asc', 0, 3);
+    this.dataSource.loadPacijent(1, '', 'asc', 0, 5);
   }
   // tslint:disable-next-line:use-life-cycle-interface
   ngAfterViewInit() {

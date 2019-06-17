@@ -14,8 +14,8 @@ export class IzvrsenaIntervencijaService {
   constructor(private _http: HttpClient) {}
 
   public getAllIzvrsenaIntervencija(): Observable<IzvrsenaIntervencija[]> {
-    this._http.get<IzvrsenaIntervencija[]>('http://147.91.175.211:8080/stom/izvrsenaIntervencijaZaPacijentId/4').subscribe(data => {
-        this.dataChange.next(data);
+    this._http.get<IzvrsenaIntervencija[]>(this.API_URL).subscribe(data => {
+        this.dataChange.next(data["content"]);
     },
 
         (error: HttpErrorResponse) => {
@@ -26,6 +26,7 @@ export class IzvrsenaIntervencijaService {
 public addIzvrsenaIntervencija(izvrsenaIntervencija: IzvrsenaIntervencija): void {
   this._http.post(this.API_URL, izvrsenaIntervencija).subscribe(data => {
       this.dialogData = izvrsenaIntervencija;
+      this.getAllIzvrsenaIntervencija();
   });
 }
 
