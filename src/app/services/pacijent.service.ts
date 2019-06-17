@@ -66,6 +66,7 @@ export class PacijentService {
       .put(this.API_URL + "/" + pacijent.id, pacijent)
       .subscribe(data => {
         this.dialogData = pacijent;
+        this.getPacijentPage(1, "", "asc", 0, 5);
       });
   }
 

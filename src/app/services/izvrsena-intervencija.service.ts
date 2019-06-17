@@ -33,11 +33,13 @@ public addIzvrsenaIntervencija(izvrsenaIntervencija: IzvrsenaIntervencija): void
 public updateIzvrsenaIntervencija(izvrsenaIntervencija: IzvrsenaIntervencija): void {
   this._http.put(this.API_URL + '/' + izvrsenaIntervencija.id, izvrsenaIntervencija).subscribe(data => {
       this.dialogData = izvrsenaIntervencija;
+      this.getAllIzvrsenaIntervencija();
   });
 }
 
 public deleteIzvrsenaIntervencija(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
+    this.getAllIzvrsenaIntervencija();
   });
 }
 
