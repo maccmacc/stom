@@ -37,16 +37,16 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
   myControl = new FormControl();
 
   constructor(public snackBar: MatSnackBar,
-              public dialogRef: MatDialogRef<IzvrsenaIntervencijaDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IzvrsenaIntervencija,
-              public izvrsenaIntervencijaService: IzvrsenaIntervencijaService,
-              public zaposleniService: ZaposleniService,
-              public pacijentService: PacijentService,
-              public dijagnozaService: DijagnozaService,
-              public materijalService: MaterijalService,
-              public vrstaIntervencijeService: VrstaIntervencijeService,
-              public radnoMestoService: RadnoMestoService,
-              public racunService: RacunService
+    public dialogRef: MatDialogRef<IzvrsenaIntervencijaDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: IzvrsenaIntervencija,
+    public izvrsenaIntervencijaService: IzvrsenaIntervencijaService,
+    public zaposleniService: ZaposleniService,
+    public pacijentService: PacijentService,
+    public dijagnozaService: DijagnozaService,
+    public materijalService: MaterijalService,
+    public vrstaIntervencijeService: VrstaIntervencijeService,
+    public radnoMestoService: RadnoMestoService,
+    public racunService: RacunService
   ) { }
 
   ngOnInit() {
@@ -75,26 +75,14 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
 
   public add(): void {
     this.izvrsenaIntervencijaService.getNextID(this.izvrsenaIntervencijaService.addIzvrsenaIntervencija, this.data);
-    this.snackBar.open('Uspešno dodata izvrsena intervencija', 'U redu',
-      {
-        duration: 2500
-      });
   }
 
   public update(): void {
     this.izvrsenaIntervencijaService.updateIzvrsenaIntervencija(this.data);
-    this.snackBar.open('Uspešno modifikovana izvrsena intervencija', 'U redu',
-    {
-      duration: 2500
-    });
   }
 
   public delete(): void {
     this.izvrsenaIntervencijaService.deleteIzvrsenaIntervencija(this.data.id);
-    this.snackBar.open('Uspešno obrisana izvrsena intervencija', 'U redu',
-      {
-        duration: 2500
-      });
   }
 
   public cancel(): void {

@@ -19,14 +19,14 @@ import { Dijagnoza } from '../../models/dijagnoza';
 })
 export class IzvrsenaIntervencijaComponent implements OnInit {
   displayedColumns = ['id', 'datum', 'dijagnoza', 'iznos', 'materijal', 'napomena', 'pacijent'
-  , 'placeno', 'popust', 'povrsine', 'racun', 'radnoMjesto', 'vrstaIntervencije', 'zaposleni', 'zub', 'add', 'edit', 'delete'];
+    , 'placeno', 'popust', 'povrsine', 'racun', 'radnoMjesto', 'vrstaIntervencije', 'zaposleni', 'zub', 'add', 'edit', 'delete'];
   dataSource: MatTableDataSource<IzvrsenaIntervencija>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
 
-  constructor(private _izvrsenaIntervencija: IzvrsenaIntervencijaService, public dialog: MatDialog) {}
+  constructor(private _izvrsenaIntervencija: IzvrsenaIntervencijaService, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.loadData();
@@ -35,7 +35,8 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
     this._izvrsenaIntervencija.getAllIzvrsenaIntervencija().subscribe(
       data => {
         this.dataSource = new MatTableDataSource<IzvrsenaIntervencija>(data);
-
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
       },
       error => {
         console.log(error);
@@ -46,24 +47,26 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
     );
   }
   public openDialog(flag: number, id: number, datum: Date, dijagnoza: Dijagnoza, iznos: number, materijal: Materijal,
-                    napomena: string, pacijent: Pacijent, placeno: number, popust: number, povrsine: string, racun: Racun,
-                    radnoMjesto: RadnoMesto, vrstaIntervencije: VrstaIntervencije, zaposleni: Zaposleni, zub: number) {
+    napomena: string, pacijent: Pacijent, placeno: number, popust: number, povrsine: string, racun: Racun,
+    radnoMjesto: RadnoMesto, vrstaIntervencije: VrstaIntervencije, zaposleni: Zaposleni, zub: number) {
 
 
-const dialogRef = this.dialog.open(IzvrsenaIntervencijaDialogComponent, {
-data: { id: id, datum: datum, dijagnoza: dijagnoza, iznos: iznos, materijal: materijal, napomena: napomena, pacijent: pacijent, placeno: placeno,
+    const dialogRef = this.dialog.open(IzvrsenaIntervencijaDialogComponent, {
+      data: {
+        id: id, datum: datum, dijagnoza: dijagnoza, iznos: iznos, materijal: materijal, napomena: napomena, pacijent: pacijent, placeno: placeno,
         popust: popust, povrsine: povrsine, racun: racun, radnoMjesto: radnoMjesto, vrstaIntervencije: vrstaIntervencije,
-        zaposleni: zaposleni, zub: zub}
-});
-dialogRef.componentInstance.flag = flag;
-dialogRef.afterClosed().subscribe(result => {
-this.loadData();
-});
-}
-applyFilter(filterValue: string) {
-  filterValue = filterValue.trim();
-  filterValue = filterValue.toLowerCase();
-  this.dataSource.filter = filterValue;
-}
+        zaposleni: zaposleni, zub: zub
+      }
+    });
+    dialogRef.componentInstance.flag = flag;
+    dialogRef.afterClosed().subscribe(result => {
+      this.loadData();
+    });
+  }
+  applyFilter(filterValue: string) {
+    filterValue = filterValue.trim();
+    filterValue = filterValue.toLowerCase();
+    this.dataSource.filter = filterValue;
+  }
 
 }
