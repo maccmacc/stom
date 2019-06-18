@@ -1,11 +1,11 @@
 <mat-toolbar class="toolbarNew" color="primary">
   <span class="title">Pacijent</span>
- </mat-toolbar>
- <div class="container mat-elevation-z8">
-    <mat-form-field>
-        <input matInput placeholder="Pronađi pacijenta" #input>
-      </mat-form-field>
-  <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
+</mat-toolbar>
+<div class="container mat-elevation-z8">
+  <mat-form-field>
+    <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Pronađi pacijenta" #input>
+  </mat-form-field>
+  <mat-table #table [dataSource]="dataSource2" matSort class="mat-cell">
     <ng-container matColumnDef="id">
       <mat-header-cell *matHeaderCellDef mat-sort-header>ID</mat-header-cell>
       <mat-cell *matCellDef="let row">{{row.id}}</mat-cell>
@@ -20,59 +20,61 @@
       <mat-cell *matCellDef="let row"> {{row.prezime}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="adresa">
-      <mat-header-cell *matHeaderCellDef >Adresa</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Adresa</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.adresa}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="datumRodjenja">
-      <mat-header-cell *matHeaderCellDef >Datum rođenja</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Datum rođenja</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.datumRodjenja}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="lookup">
-      <mat-header-cell *matHeaderCellDef >Lookup</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Lookup</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.lookup}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="email">
-      <mat-header-cell *matHeaderCellDef >E-mail</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>E-mail</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.email}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="kontakt">
-      <mat-header-cell *matHeaderCellDef >Kontakt</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Kontakt</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.kontakt}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="napomena">
-      <mat-header-cell *matHeaderCellDef >Napomena</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Napomena</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.napomena}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="datumUpisa">
-      <mat-header-cell *matHeaderCellDef >Datum upisa</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Datum upisa</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.datumUpisa}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="ukupno">
-      <mat-header-cell *matHeaderCellDef >Ukupno</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Ukupno</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.ukupno}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="add">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="openDialog(1)">
-        <mat-icon>add</mat-icon>
-      </button>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row">
-    </mat-cell>
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" (click)="openDialog(2,row.id, row.adresa, row.ime, row.prezime, row.datumRodjenja, row.lookup, row.email, row.kontakt, row.napomena, row.datumUpisa, row.ukupno)">
+        <button mat-icon-button color="primary"
+          (click)="openDialog(2,row.id, row.adresa, row.ime, row.prezime, row.datumRodjenja, row.lookup, row.email, row.kontakt, row.napomena, row.datumUpisa, row.ukupno)">
           <mat-icon aria-label="Edit">edit</mat-icon>
         </button>
       </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
       <mat-cell *matCellDef="let row">
-        <button mat-icon-button color="primary" (click)="openDialog(3,row.id, row.adresa, row.ime, row.prezime, row.datumRodjenja, row.lookup, row.email, row.kontakt, row.napomena, row.datumUpisa, row.ukupno)">
+        <button mat-icon-button color="primary"
+          (click)="openDialog(3,row.id, row.adresa, row.ime, row.prezime, row.datumRodjenja, row.lookup, row.email, row.kontakt, row.napomena, row.datumUpisa, row.ukupno)">
           <mat-icon aria-label="Delete">delete</mat-icon>
         </button>
       </mat-cell>
@@ -80,22 +82,5 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator  [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons [pageSize]="5"></mat-paginator>
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

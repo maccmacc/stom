@@ -15,13 +15,9 @@ export class PacijentDataSource implements DataSource<Pacijent> {
 
   constructor(private pacijentService: PacijentService) {}
 
-  loadPacijent(
-    pacijentId: number,
-    filter: string,
-    sortDirection: string,
-    pageIndex: number,
-    pageSize: number
-  ) {
+  loadPacijent(pacijentId: number,filter: string,sortDirection: string,
+               pageIndex: number, pageSize: number) {
+                 
     this.loadingSubject.next(true);
 
     this.pacijentService

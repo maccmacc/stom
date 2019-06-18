@@ -20,6 +20,7 @@ export class PacijenComponent implements OnInit {
   displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'napomena',
    'datumRodjenja', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
   dataSource: PacijentDataSource;
+  dataSource2: MatTableDataSource<Pacijent>;
   size: number;
   page: number;
 
@@ -31,31 +32,43 @@ export class PacijenComponent implements OnInit {
   constructor(private pacijentService: PacijentService, public dialog: MatDialog) {}
 
   ngOnInit() {
-    this.dataSource = new PacijentDataSource(this.pacijentService);
-    this.dataSource.loadPacijent(1, '', 'asc', 0, 5);
+    this.pacijentService.getAllPacijent().subscribe(
+      data => {
+        this.dataSource2 = new MatTableDataSource<Pacijent>(data);
+        this.dataSource2.paginator = this.paginator;
+        this.dataSource2.sort = this.sort;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+
+    // this.dataSource = new PacijentDataSource(this.pacijentService);
+    // this.dataSource.loadPacijent(1, '', 'asc', 0, 5);
   }
   // tslint:disable-next-line:use-life-cycle-interface
-  ngAfterViewInit() {
-    this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
+  // ngAfterViewInit() {
+  //   this.sort.sortChange.subscribe(() => this.paginator.pageIndex = 0);
 
-    fromEvent(this.input.nativeElement, 'keyup')
-            .pipe(
-                debounceTime(150),
-                distinctUntilChanged(),
-                tap(() => {
-                    this.paginator.pageIndex = 0;
+  //   fromEvent(this.input.nativeElement, 'keyup')
+  //           .pipe(
+  //               debounceTime(150),
+  //               distinctUntilChanged(),
+  //               tap(() => {
+  //                   this.paginator.pageIndex = 0;
 
-                    this.loadPacijentPage();
-                })
-            )
-            .subscribe();
+  //                   this.pacijentService.getAllPacijent();
+  //               })
+  //           )
+  //           .subscribe();
 
-    merge(this.sort.sortChange, this.paginator.page)
-        .pipe(
-            tap(() => this.loadPacijentPage())
-        )
-        .subscribe();
-  }
+  //   merge(this.sort.sortChange, this.paginator.page)
+  //       .pipe(
+  //           tap(() => this.pacijentService.getAllPacijent())
+  //       )
+  //       .subscribe();
+  // }
+
   loadPacijentPage() {
     this.dataSource.loadPacijent(
       this.pacijent.id,
@@ -104,9 +117,10 @@ export class PacijenComponent implements OnInit {
        // this.loadData();
     });
   }
- /* applyFilter(filterValue: string) {
+
+  applyFilter(filterValue: string) {
     filterValue = filterValue.trim();
     filterValue = filterValue.toLowerCase();
-    this.dataSource.filter = filterValue;
-  }*/
+    this.dataSource2.filter = filterValue;
+  }
 }

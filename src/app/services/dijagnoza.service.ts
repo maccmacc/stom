@@ -23,6 +23,7 @@ export class DijagnozaService {
         });
     return this.dataChange.asObservable();
 }
+
 public addDijagnoza(dijagnoza: Dijagnoza): void {
   this._http.post(this.API_URL, dijagnoza).subscribe(data => {
       this.dialogData = dijagnoza;

@@ -16,7 +16,7 @@ export class PacijentService {
   dataChange: BehaviorSubject<Pacijent[]> = new BehaviorSubject<Pacijent[]>([]);
   private dialogData: any;
 
-  constructor(private _http: HttpClient, public snackBar: MatSnackBar,) {}
+  constructor(private _http: HttpClient, public snackBar: MatSnackBar, ) { }
 
   public getAllPacijent(): Observable<Pacijent[]> {
     this._http.get<Pacijent[]>(this.API_URL).subscribe(
@@ -30,8 +30,9 @@ export class PacijentService {
     );
     return this.dataChange.asObservable();
   }
+
   public getPacijentPage(pacijentId: number, filter = '', sortOrder = 'asc', pageNumber = 0, pageSize = 5) {
-   this._http
+    this._http
       .get<Pacijent[]>(this.API_URL + 'Page').subscribe(
         data => {
           console.log(data);
@@ -41,19 +42,19 @@ export class PacijentService {
           console.log(error.name + " " + error.message);
         }
       );
-   return this.dataChange.asObservable();
+    return this.dataChange.asObservable();
   }
 
   public addPacijent(pacijent: Pacijent): void {
     this._http.post(this.API_URL, pacijent).subscribe(
       data => {
         this.dialogData = pacijent;
-        this.getPacijentPage(1, "", "asc", 0, 5);
+        this.getAllPacijent();
 
         this.snackBar.open('Uspešno dodat pacijent ' + pacijent.ime + " " + pacijent.prezime + "!", 'U redu',
-      {
-        duration: 2500
-      });
+          {
+            duration: 2500
+          });
       },
       (error: HttpErrorResponse) => {
         console.log(error.name + " " + error.message);
@@ -66,18 +67,23 @@ export class PacijentService {
       .put(this.API_URL + "/" + pacijent.id, pacijent)
       .subscribe(data => {
         this.dialogData = pacijent;
-        this.getPacijentPage(1, "", "asc", 0, 5);
+        this.getAllPacijent();
+
+        this.snackBar.open('Uspešno užuriran pacijent!', 'U redu',
+        {
+          duration: 2500
+        });
       });
   }
 
   public deletePacijent(id: number): void {
     this._http.delete(this.API_URL + "/" + id).subscribe(data => {
-      this.getPacijentPage(1, "", "asc", 0, 5);
+      this.getAllPacijent();
 
       this.snackBar.open('Uspešno obrisan pacijent!', 'U redu',
-      {
-        duration: 2500
-      });
+        {
+          duration: 2500
+        });
     });
   }
   public getNextID(addPacijent, pacijent: Pacijent) {
