@@ -14,8 +14,9 @@ import { RadnoMesto } from "../../../models/radno-mesto";
 import { PacijentService } from "../../../services/pacijent.service";
 import { RadnoMestoService } from "../../../services/radno-mesto.service";
 import { TerminService } from "../../../services/termin.service";
-import { FormValidatorModel, FormValidator } from "@syncfusion/ej2-inputs";
 import { Termin } from "../../../models/termin";
+import { FormValidatorModel, FormValidator } from "@syncfusion/ej2-inputs";
+
 
 @Component({
   selector: "app-kalendar-dialog",
