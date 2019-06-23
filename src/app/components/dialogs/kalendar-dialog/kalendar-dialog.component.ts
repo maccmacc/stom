@@ -10,21 +10,23 @@ import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { Pacijent } from "../../../models/pacijent";
+import { Termin } from "../../../models/termin";
 import { RadnoMesto } from "../../../models/radno-mesto";
 import { PacijentService } from "../../../services/pacijent.service";
 import { RadnoMestoService } from "../../../services/radno-mesto.service";
 import { TerminService } from "../../../services/termin.service";
-import { Termin } from "../../../models/termin";
 import { FormValidatorModel, FormValidator } from "@syncfusion/ej2-inputs";
-
 
 @Component({
   selector: "app-kalendar-dialog",
   templateUrl: "./kalendar-dialog.component.html",
   styleUrls: [
-    "./kalendar-dialog.component.css",
+    /*"./kalendar-dialog.component.css",
     "kalendar-dialog.component.sass",
-    "kalendar-dialog.component2.sass"
+    "kalendar-dialog.component2.sass",*/
+    "./mat/material-dark.css",
+    "./mat/material-dark1.scss",
+    "./kalendar-dialog.component.css"
   ]
 })
 export class KalendarDialogComponent implements OnInit {
@@ -305,7 +307,6 @@ export class KalendarDialogComponent implements OnInit {
         }
       }
     } catch (err) {
-      console.log(err);
       alert("Pogrešno uneto vreme trajanja termina!");
       return;
     }
