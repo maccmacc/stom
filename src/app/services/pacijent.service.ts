@@ -10,12 +10,13 @@ import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { PageSortModel } from '../models/PageSortModel';
 import { PacijentComponent } from '../components/pacijent/pacijent.component';
 import { SortModel } from '../models/SortModel';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class PacijentService {
-  private readonly API_URL = "http://147.91.175.211:8080/stom/pacijent";
+  private readonly API_URL = environment.baseUrl + '/pacijent';
   dataChange: BehaviorSubject<Pacijent[]> = new BehaviorSubject<Pacijent[]>([]);
   private dialogData: any;
 

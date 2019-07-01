@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Slika } from '../models/slika';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SlikaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/slika';
+  private readonly API_URL = environment.baseUrl + '/slika';
     dataChange: BehaviorSubject<Slika[]> = new BehaviorSubject<Slika[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,7 +41,7 @@ public deleteSlika(id: number): void {
   });
 }
 public getNextID(addSlika, slika: Slika) {
-  this._http.get('http://147.91.175.211:8080/stom/slikaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     slika.id = data as number;
     this.addSlika(slika);

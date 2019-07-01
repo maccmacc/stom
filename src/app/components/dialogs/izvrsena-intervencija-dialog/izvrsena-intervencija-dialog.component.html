@@ -92,7 +92,7 @@
       <mat-form-field style="margin-right:10px;" class="example-full-width">
         <mat-select [(ngModel)]="data.radnoMjesto" placeholder="Radno Mesto" [compareWith]="compareTo" name="radnoMjesto"
           [disabled]="flag == 3" required>
-          <mat-option *ngFor="let radnoMjesto of svaRadnaMesta" [value]="radnoMjesto">
+          <mat-option *ngFor="let radnoMejsto of svaRadnaMesta" [value]="radnoMjesto">
             {{radnoMjesto.naziv}}
           </mat-option>
         </mat-select>
