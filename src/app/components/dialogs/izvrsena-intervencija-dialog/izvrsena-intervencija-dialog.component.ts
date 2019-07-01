@@ -17,6 +17,7 @@ import { Racun } from '../../../models/racun';
 import { RadnoMesto } from '../../../models/radno-mesto';
 import { RacunService } from '../../../services/racun.service';
 import { FormControl } from '@angular/forms';
+import { IzvrsenaIntervencijaComponent } from '../../izvrsena-intervencija/izvrsena-intervencija.component';
 
 
 
@@ -36,17 +37,19 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
   sviPacijenti: Pacijent[];
   myControl = new FormControl();
 
+  component: IzvrsenaIntervencijaComponent;
+
   constructor(public snackBar: MatSnackBar,
-              public dialogRef: MatDialogRef<IzvrsenaIntervencijaDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: IzvrsenaIntervencija,
-              public izvrsenaIntervencijaService: IzvrsenaIntervencijaService,
-              public zaposleniService: ZaposleniService,
-              public pacijentService: PacijentService,
-              public dijagnozaService: DijagnozaService,
-              public materijalService: MaterijalService,
-              public vrstaIntervencijeService: VrstaIntervencijeService,
-              public radnoMestoService: RadnoMestoService,
-              public racunService: RacunService
+    public dialogRef: MatDialogRef<IzvrsenaIntervencijaDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public izvrsenaIntervencijaService: IzvrsenaIntervencijaService,
+    public zaposleniService: ZaposleniService,
+    public pacijentService: PacijentService,
+    public dijagnozaService: DijagnozaService,
+    public materijalService: MaterijalService,
+    public vrstaIntervencijeService: VrstaIntervencijeService,
+    public radnoMestoService: RadnoMestoService,
+    public racunService: RacunService
   ) { }
 
   ngOnInit() {
@@ -71,30 +74,22 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
     this.pacijentService.getAllPacijent().subscribe(pacijent =>
       this.sviPacijenti = pacijent
     );
+
+    this.component = this.data.component;
+
+    this.data = (({component, ...others}) => ({ ...others}))(this.data);
   }
 
   public add(): void {
-    this.izvrsenaIntervencijaService.getNextID(this.izvrsenaIntervencijaService.addIzvrsenaIntervencija, this.data);
-    this.snackBar.open('Uspešno dodata izvrsena intervencija', 'U redu',
-      {
-        duration: 2500
-      });
+    this.izvrsenaIntervencijaService.getNextID(this.data, this.component);
   }
 
   public update(): void {
-    this.izvrsenaIntervencijaService.updateIzvrsenaIntervencija(this.data);
-    this.snackBar.open('Uspešno modifikovana izvrsena intervencija', 'U redu',
-    {
-      duration: 2500
-    });
+    this.izvrsenaIntervencijaService.updateIzvrsenaIntervencija(this.data, this.component);
   }
 
   public delete(): void {
-    this.izvrsenaIntervencijaService.deleteIzvrsenaIntervencija(this.data.id);
-    this.snackBar.open('Uspešno obrisana izvrsena intervencija', 'U redu',
-      {
-        duration: 2500
-      });
+    this.izvrsenaIntervencijaService.deleteIzvrsenaIntervencija(this.data.id, this.component);
   }
 
   public cancel(): void {

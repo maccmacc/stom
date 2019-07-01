@@ -29,7 +29,7 @@ import {
   MatProgressSpinnerModule
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
-import { PacijenComponent } from "./components/pacijent/pacijent.component";
+import { PacijentComponent } from "./components/pacijent/pacijent.component";
 import { HttpClientModule } from "@angular/common/http";
 import { MaterijalComponent } from "./components/materijal/materijal.component";
 import { OrdinacijaComponent } from "./components/ordinacija/ordinacija.component";
@@ -130,7 +130,7 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
   declarations: [
     AppComponent,
     NavBarComponent,
-    PacijenComponent,
+    PacijentComponent,
     MaterijalComponent,
     OrdinacijaComponent,
     DobavljacComponent,

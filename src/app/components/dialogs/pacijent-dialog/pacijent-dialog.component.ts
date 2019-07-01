@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Pacijent } from '../../../models/pacijent';
 import { PacijentService } from '../../../services/pacijent.service';
+import { PacijentComponent } from '../../pacijent/pacijent.component';
 
 
 
@@ -12,38 +13,30 @@ import { PacijentService } from '../../../services/pacijent.service';
 })
 export class PacijentDialogComponent implements OnInit {
   flag: number;
+  component: PacijentComponent;
 
   constructor(public snackBar: MatSnackBar,
-              public dialogRef: MatDialogRef<PacijentDialogComponent>,
-              @Inject(MAT_DIALOG_DATA) public data: Pacijent,
-              public pacijentService: PacijentService
+    public dialogRef: MatDialogRef<PacijentDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
+    public pacijentService: PacijentService
   ) { }
 
   ngOnInit() {
+    this.component = this.data.component;
+
+    this.data = (({component, ...others}) => ({ ...others}))(this.data);
   }
 
   public add(): void {
-    this.pacijentService.getNextID(this.pacijentService.addPacijent, this.data);
-    /*this.snackBar.open('Uspešno dodat pacijent: ' + this.data.ime + ' ' + this.data.prezime, 'U redu',
-      {
-        duration: 2500
-      });*/
+    this.pacijentService.getNextID(this.data, this.component);
   }
 
   public update(): void {
-    this.pacijentService.updatePacijent(this.data);
-   /* this.snackBar.open('Uspešno modifikovan pacijent: ' + this.data.ime + ' ' + this.data.prezime, 'U redu',
-      {
-        duration: 2500
-      });*/
+    this.pacijentService.updatePacijent(this.data, this.component);
   }
 
   public delete(): void {
-    this.pacijentService.deletePacijent(this.data.id);
-   /* this.snackBar.open('Uspešno obrisan pacijent: ' + this.data.id, 'U redu',
-      {
-        duration: 2500
-      });*/
+    this.pacijentService.deletePacijent(this.data.id, this.component);
   }
 
   public cancel(): void {
