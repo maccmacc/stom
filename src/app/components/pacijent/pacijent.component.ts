@@ -22,8 +22,7 @@ export class PacijentComponent implements OnInit {
     'datumRodjenja', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
 
   dataSource: MatTableDataSource<Pacijent>;
-  size: number;
-  page: number;
+
   // MatPaginator Output
   pageEvent: PageEvent;
 
@@ -51,10 +50,7 @@ export class PacijentComponent implements OnInit {
     //Sort
     this.sort.sortChange.subscribe(
       data => {
-        // this.paginator.pageIndex = 0;
-        console.log(data);
         this.sortChanged(data);
-
       });
 
     //Search by Name
@@ -92,7 +88,7 @@ export class PacijentComponent implements OnInit {
 
           //Reset filter by name
           (<HTMLInputElement>document.getElementById("inputName")).value = "";
-          
+
           var inputSurnameField = (<HTMLInputElement>document.getElementById("inputSurname"));
 
           this.pageSortModel = PageSortModel.defaultPatient();

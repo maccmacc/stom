@@ -43,4 +43,9 @@ export class PageSortModel {
     public static defaultPatient(): PageSortModel{
         return PageSortModel.setParams(0, 5, "", "desc");
     }
+
+    // Default request for izvrseneIntervencije
+    public static defaultInterventions(): PageSortModel{
+        return PageSortModel.setParams(0, 5, "", "desc");
+    }
 }

@@ -17,6 +17,7 @@ import { Racun } from '../../../models/racun';
 import { RadnoMesto } from '../../../models/radno-mesto';
 import { RacunService } from '../../../services/racun.service';
 import { FormControl } from '@angular/forms';
+import { IzvrsenaIntervencijaComponent } from '../../izvrsena-intervencija/izvrsena-intervencija.component';
 
 
 
@@ -36,9 +37,11 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
   sviPacijenti: Pacijent[];
   myControl = new FormControl();
 
+  component: IzvrsenaIntervencijaComponent;
+
   constructor(public snackBar: MatSnackBar,
     public dialogRef: MatDialogRef<IzvrsenaIntervencijaDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: IzvrsenaIntervencija,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     public izvrsenaIntervencijaService: IzvrsenaIntervencijaService,
     public zaposleniService: ZaposleniService,
     public pacijentService: PacijentService,
@@ -71,18 +74,22 @@ export class IzvrsenaIntervencijaDialogComponent implements OnInit {
     this.pacijentService.getAllPacijent().subscribe(pacijent =>
       this.sviPacijenti = pacijent
     );
+
+    this.component = this.data.component;
+
+    this.data = (({component, ...others}) => ({ ...others}))(this.data);
   }
 
   public add(): void {
-    this.izvrsenaIntervencijaService.getNextID(this.izvrsenaIntervencijaService.addIzvrsenaIntervencija, this.data);
+    this.izvrsenaIntervencijaService.getNextID(this.data, this.component);
   }
 
   public update(): void {
-    this.izvrsenaIntervencijaService.updateIzvrsenaIntervencija(this.data);
+    this.izvrsenaIntervencijaService.updateIzvrsenaIntervencija(this.data, this.component);
   }
 
   public delete(): void {
-    this.izvrsenaIntervencijaService.deleteIzvrsenaIntervencija(this.data.id);
+    this.izvrsenaIntervencijaService.deleteIzvrsenaIntervencija(this.data.id, this.component);
   }
 
   public cancel(): void {

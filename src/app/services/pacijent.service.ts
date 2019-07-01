@@ -37,10 +37,10 @@ export class PacijentService {
   //Get paged patients
   public getPacijentPage(pacijentComponent: PacijentComponent, onInit: boolean) {
 
-    this._http.get<Pacijent[]>(this.API_URL + 'Page?' + "size=" + pacijentComponent.pageSortModel.size
-                              + "&page=" + pacijentComponent.pageSortModel.number
-                              + "&sort=" + pacijentComponent.pageSortModel.sort.property
-                              + "," + pacijentComponent.pageSortModel.sort.direction).subscribe(
+    this._http.get<Pacijent[]>(this.API_URL + 'Page?' + 'size=' + pacijentComponent.pageSortModel.size
+                              + '&page=' + pacijentComponent.pageSortModel.number
+                              + '&sort=' + pacijentComponent.pageSortModel.sort.property
+                              + ',' + pacijentComponent.pageSortModel.sort.direction).subscribe(
         data => {
 
           pacijentComponent.pageSortModel = JSON.parse(JSON.stringify(data));
@@ -69,10 +69,10 @@ export class PacijentService {
   //Get paged patients filtered by Name
   public getPacijentByNamePage(pacijentComponent: PacijentComponent, filter: string) {
 
-    this._http.get<Pacijent[]>(this.API_URL + 'ImeLike/' + filter + 'Page?' + "size=" + pacijentComponent.pageSortModel.size
-                              + "&page=" + pacijentComponent.pageSortModel.number
-                              + "&sort=" + pacijentComponent.pageSortModel.sort.property
-                              + "," + pacijentComponent.pageSortModel.sort.direction).subscribe(
+    this._http.get<Pacijent[]>(this.API_URL + 'ImeLike/' + filter + 'Page?' + 'size=' + pacijentComponent.pageSortModel.size
+                              + '&page=' + pacijentComponent.pageSortModel.number
+                              + '&sort=' + pacijentComponent.pageSortModel.sort.property
+                              + ',' + pacijentComponent.pageSortModel.sort.direction).subscribe(
         data => {
 
           pacijentComponent.pageSortModel = JSON.parse(JSON.stringify(data));
@@ -96,10 +96,10 @@ export class PacijentService {
   //Get paged patients filtered by Surname
   public getPacijentBySurnamePage(pacijentComponent: PacijentComponent, filter: string) {
 
-    this._http.get<Pacijent[]>(this.API_URL + 'PrezimeLike/' + filter + 'Page?' + "size=" + pacijentComponent.pageSortModel.size
-                              + "&page=" + pacijentComponent.pageSortModel.number
-                              + "&sort=" + pacijentComponent.pageSortModel.sort.property
-                              + "," + pacijentComponent.pageSortModel.sort.direction).subscribe(
+    this._http.get<Pacijent[]>(this.API_URL + 'PrezimeLike/' + filter + 'Page?' + 'size=' + pacijentComponent.pageSortModel.size
+                              + '&page=' + pacijentComponent.pageSortModel.number
+                              + '&sort=' + pacijentComponent.pageSortModel.sort.property
+                              + ',' + pacijentComponent.pageSortModel.sort.direction).subscribe(
         data => {
 
           pacijentComponent.pageSortModel = JSON.parse(JSON.stringify(data));
@@ -139,7 +139,7 @@ export class PacijentService {
 
   public updatePacijent(pacijent: Pacijent, pacijentComponent: PacijentComponent): void {
     this._http
-      .put(this.API_URL + "/" + pacijent.id, pacijent)
+      .put(this.API_URL + '/' + pacijent.id, pacijent)
       .subscribe(data => {
 
         pacijentComponent.loadData();
@@ -152,7 +152,7 @@ export class PacijentService {
   }
 
   public deletePacijent(id: number, pacijentComponent: PacijentComponent): void {
-    this._http.delete(this.API_URL + "/" + id).subscribe(data => {
+    this._http.delete(this.API_URL + '/' + id).subscribe(data => {
 
       pacijentComponent.loadData();
 
@@ -163,13 +163,13 @@ export class PacijentService {
     });
   }
   public getNextID(pacijent: Pacijent, pacijentComponent: PacijentComponent) {
-    this._http.get(this.API_URL + "NextId").subscribe(
+    this._http.get(this.API_URL + 'NextId').subscribe(
       data => {
         pacijent.id = data as number;
         this.addPacijent(pacijent, pacijentComponent);
       },
       (error: HttpErrorResponse) => {
-        console.log(error.name + " " + error.message);
+        console.log(error.name + ' ' + error.message);
       }
     );
   }

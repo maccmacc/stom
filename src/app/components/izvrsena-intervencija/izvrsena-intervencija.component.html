@@ -1,10 +1,7 @@
 <mat-toolbar class="toolbarNew" color="primary">
   <span class="title">Izvrsena intervencija</span>
- </mat-toolbar>
- <div class="container mat-elevation-z8">
-    <mat-form-field>
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
-      </mat-form-field>
+</mat-toolbar>
+<div class="container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource" matSort class="mat-cell">
 
     <ng-container matColumnDef="id">
@@ -16,7 +13,7 @@
       <mat-cell *matCellDef="let row"> {{row.datum}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="dijagnoza">
-      <mat-header-cell *matHeaderCellDef mat-sort-header>Dijagnoza</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef >Dijagnoza</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.dijagnoza?.opis}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="zaposleni">
@@ -25,47 +22,47 @@
     </ng-container>
 
     <ng-container matColumnDef="iznos">
-      <mat-header-cell *matHeaderCellDef >Iznos</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Iznos</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.iznos}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="materijal">
-      <mat-header-cell *matHeaderCellDef >Materijal</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Materijal</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.materijal?.naziv}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="napomena">
-      <mat-header-cell *matHeaderCellDef >napomena</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>napomena</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.napomena}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="pacijent">
-      <mat-header-cell *matHeaderCellDef >Pacijent</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Pacijent</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.pacijent?.ime}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="placeno">
-      <mat-header-cell *matHeaderCellDef >Placeno</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Placeno</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.placeno}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="popust">
-      <mat-header-cell *matHeaderCellDef >Popust</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Popust</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.popust}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="povrsine">
-      <mat-header-cell *matHeaderCellDef >Povrsine</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Povrsine</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.povrsine}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="racun">
-      <mat-header-cell *matHeaderCellDef >Racun</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Racun</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.racun?.id}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="radnoMjesto">
-      <mat-header-cell *matHeaderCellDef >Radno mesto</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Radno mesto</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.radnoMjesto?.naziv}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="vrstaIntervencije">
-      <mat-header-cell *matHeaderCellDef >Vrsta intervencije</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Vrsta intervencije</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.vrstaIntervencije.opis}}</mat-cell>
     </ng-container>
     <ng-container matColumnDef="zub">
-      <mat-header-cell *matHeaderCellDef >Zub</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Zub</mat-header-cell>
       <mat-cell *matCellDef="let row"> {{row.zub}}</mat-cell>
     </ng-container>
 
@@ -73,14 +70,14 @@
     <ng-container matColumnDef="add">
       <mat-header-cell *matHeaderCellDef>
         <button mat-icon-button color="primary" (click)="openDialog(1)">
-        <mat-icon>add</mat-icon>
-      </button>
-    </mat-header-cell>
-    <mat-cell *matCellDef="let row">
-    </mat-cell>
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+      </mat-cell>
     </ng-container>
     <ng-container matColumnDef="edit">
-        <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Edit</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" (click)="openDialog(2,row.id, row.datum, row.dijagnoza, row.iznos,
         row.materijal, row.napomena, row.pacijent, row.placeno, row.popust, row.povrsine, row.racun, row.radnoMjesto,
@@ -91,7 +88,7 @@
     </ng-container>
 
     <ng-container matColumnDef="delete">
-        <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
+      <mat-header-cell *matHeaderCellDef>Delete</mat-header-cell>
       <mat-cell *matCellDef="let row">
         <button mat-icon-button color="primary" (click)="openDialog(3,row.id, row.datum, row.dijagnoza, row.iznos,
         row.materijal, row.napomena, row.pacijent, row.placeno, row.popust, row.povrsine, row.racun, row.radnoMjesto,
@@ -103,21 +100,6 @@
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
-  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  <mat-paginator #paginator [length]="pageSortModel.totalElements" [pageSizeOptions]="[5, 10, 20]" [pageSize]="5"
+  (page)="pageEvent = pageChange($event)" showFirstLastButtons></mat-paginator>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
