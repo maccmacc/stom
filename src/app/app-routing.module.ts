@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-import { PacijenComponent } from "./components/pacijent/pacijent.component";
+import { PacijentComponent } from "./components/pacijent/pacijent.component";
 import { MaterijalComponent } from "./components/materijal/materijal.component";
 import { DobavljacComponent } from "./components/dobavljac/dobavljac.component";
 import { StrukaComponent } from "./components/struka/struka.component";
@@ -25,7 +25,7 @@ import { ZubComponent } from './components/zub/zub.component';
 import { IzvrsenaIntervencijaComponent } from './components/izvrsena-intervencija/izvrsena-intervencija.component';
 
 const routes: Routes = [
-  { path: "pacijent", component: PacijenComponent },
+  { path: "pacijent", component: PacijentComponent },
   { path: "artikl", component: ArtiklComponent },
   { path: "struka", component: StrukaComponent },
   { path: "slika", component: SlikaComponent },
