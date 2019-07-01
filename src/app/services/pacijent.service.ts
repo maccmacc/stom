@@ -68,7 +68,7 @@ export class PacijentService {
   }
 
   //Get paged patients filtered by Name
-  public getPacijentByNamePage(pacijentComponent: PacijentComponent, filter: string) {
+  public getPacijentByNamePage(pacijentComponent: PacijentComponent, filter: string, paginator: boolean) {
 
     this._http.get<Pacijent[]>(this.API_URL + 'ImeLike/' + filter + 'Page?' + 'size=' + pacijentComponent.pageSortModel.size
                               + '&page=' + pacijentComponent.pageSortModel.number
@@ -87,6 +87,11 @@ export class PacijentService {
           else{
             pacijentComponent.pageSortModel.sort = new SortModel();
           }
+
+          //Check if paginator should be initialized again
+          if (paginator) {
+            pacijentComponent.dataSource.paginator = pacijentComponent.paginator;
+          }
         },
         (error: HttpErrorResponse) => {
           console.log(error.name + " " + error.message);
@@ -95,7 +100,7 @@ export class PacijentService {
   }
 
   //Get paged patients filtered by Surname
-  public getPacijentBySurnamePage(pacijentComponent: PacijentComponent, filter: string) {
+  public getPacijentBySurnamePage(pacijentComponent: PacijentComponent, filter: string, paginator: boolean) {
 
     this._http.get<Pacijent[]>(this.API_URL + 'PrezimeLike/' + filter + 'Page?' + 'size=' + pacijentComponent.pageSortModel.size
                               + '&page=' + pacijentComponent.pageSortModel.number
@@ -114,6 +119,11 @@ export class PacijentService {
           else{
             pacijentComponent.pageSortModel.sort = new SortModel();
           }
+
+          //Check if paginator should be initialized again
+          if (paginator) {
+            pacijentComponent.dataSource.paginator = pacijentComponent.paginator;
+          }
         },
         (error: HttpErrorResponse) => {
           console.log(error.name + " " + error.message);
@@ -125,7 +135,7 @@ export class PacijentService {
     this._http.post(this.API_URL, pacijent).subscribe(
       data => {
 
-        pacijentComponent.loadData();
+        pacijentComponent.loadData(false);
 
         this.snackBar.open('Uspešno dodat pacijent ' + pacijent.ime + " " + pacijent.prezime + "!", 'U redu',
           {
@@ -143,7 +153,7 @@ export class PacijentService {
       .put(this.API_URL + '/' + pacijent.id, pacijent)
       .subscribe(data => {
 
-        pacijentComponent.loadData();
+        pacijentComponent.loadData(false);
 
         this.snackBar.open('Uspešno užuriran pacijent!', 'U redu',
           {
@@ -155,7 +165,7 @@ export class PacijentService {
   public deletePacijent(id: number, pacijentComponent: PacijentComponent): void {
     this._http.delete(this.API_URL + '/' + id).subscribe(data => {
 
-      pacijentComponent.loadData();
+      pacijentComponent.loadData(false);
 
       this.snackBar.open('Uspešno obrisan pacijent!', 'U redu',
         {

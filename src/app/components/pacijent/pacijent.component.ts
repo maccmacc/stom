@@ -74,7 +74,7 @@ export class PacijentComponent implements OnInit {
             this.filteringOn = 0;
           }
 
-          this.loadData();
+          this.loadData(true);
         })
       )
       .subscribe();
@@ -100,7 +100,7 @@ export class PacijentComponent implements OnInit {
             this.filteringOn = 0;
           }
 
-          this.loadData();
+          this.loadData(true);
         })
       )
       .subscribe();
@@ -115,38 +115,37 @@ export class PacijentComponent implements OnInit {
       else {
         this.pageSortModel.sort.property = "";
       }
+
+      this.loadData(false);
     }
     else {
       this.pageSortModel = PageSortModel.setParams(0, this.paginator.pageSize, data.active, data.direction);
+      this.loadData(true);
     }
-
-    this.loadData();
   }
 
   public pageChange(event) {
-    this.loadData();
+    this.loadData(false);
   }
 
-  public loadData() {
+  public loadData(isSort: boolean) {
+    if(!isSort){
+      this.pageSortModel.number = this.paginator.pageIndex;
+      this.pageSortModel.size = this.paginator.pageSize;
+    }
 
     switch (this.filteringOn) {
 
       case 0:
-        this.pageSortModel.number = this.paginator.pageIndex;
-        this.pageSortModel.size = this.paginator.pageSize;
         this.pacijentService.getPacijentPage(this, false);
         break;
 
       case 1:
-        this.pageSortModel.number = this.paginator.pageIndex;
-        this.pageSortModel.size = this.paginator.pageSize;
-        this.pacijentService.getPacijentByNamePage(this, (<HTMLInputElement>document.getElementById("inputName")).value);
+        this.pacijentService.getPacijentByNamePage(this, (<HTMLInputElement>document.getElementById("inputName")).value, isSort);
         break;
 
       case 2:
-        this.pageSortModel.number = this.paginator.pageIndex;
-        this.pageSortModel.size = this.paginator.pageSize;
-        this.pacijentService.getPacijentBySurnamePage(this, (<HTMLInputElement>document.getElementById("inputSurname")).value);
+        this.pacijentService.getPacijentBySurnamePage(this, (<HTMLInputElement>document.getElementById("inputSurname")).value, isSort);
         break;
     }
   }
