@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { PlanRada } from '../models/plan-rada';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PlanRadaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/planRada';
+  private readonly API_URL = environment.baseUrl + '/planRada';
     dataChange: BehaviorSubject<PlanRada[]> = new BehaviorSubject<PlanRada[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -41,7 +42,7 @@ public deletePlanRada(id: number): void {
 }
 
 public getNextID(addPlanRada, planRada: PlanRada) {
-  this._http.get('http://147.91.175.211:8080/stom/planRadaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     planRada.id = data as number;
     this.addPlanRada(planRada);

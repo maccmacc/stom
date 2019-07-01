@@ -18,7 +18,7 @@ export class IzvrsenaIntervencija {
   popust: number;
   povrsine: string;
   racun: Racun;
-  radnoMesto: RadnoMesto;
+  radnoMjesto: RadnoMesto;
   vrstaIntervencije: VrstaIntervencije;
   zaposleni: Zaposleni;
   zub: number;

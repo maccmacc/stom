@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { RadnoMesto } from '../models/radno-mesto';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RadnoMestoService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/radnoMjesto';
+    private readonly API_URL = environment.baseUrl + '/radnoMjesto';
     dataChange: BehaviorSubject<RadnoMesto[]> = new BehaviorSubject<RadnoMesto[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,7 +41,7 @@ public deleteRadnoMesto(id: number): void {
   });
 }
 public getNextID(addRadnoMesto, radnoMesto: RadnoMesto) {
-  this._http.get('http://147.91.175.211:8080/stom/radnoMjestoNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     radnoMesto.id = data as number;
     this.addRadnoMesto(radnoMesto);

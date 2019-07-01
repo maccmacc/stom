@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Status } from '../models/status';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StatusService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/status';
+  private readonly API_URL = environment.baseUrl + '/status';
     dataChange: BehaviorSubject<Status[]> = new BehaviorSubject<Status[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,7 +41,7 @@ public deleteStatus(id: number): void {
   });
 }
 public getNextID(addStatus, status: Status) {
-  this._http.get('http://147.91.175.211:8080/stom/statusNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     status.id = data as number;
     this.addStatus(status);

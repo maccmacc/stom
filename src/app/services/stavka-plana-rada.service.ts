@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { StavkaPlanaRada } from '../models/stavka-plana-rada';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StavkaPlanaRadaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/stavkaPlanaRada';
+    private readonly API_URL = environment.baseUrl + '/stavkaPlanaRada';
     dataChange: BehaviorSubject<StavkaPlanaRada[]> = new BehaviorSubject<StavkaPlanaRada[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -52,7 +53,7 @@ public deleteStavkaPlanaRada(id: number): void {
 }
 
 public getNextID(addStavkaPlanaRada, stavkaPlanaRada: StavkaPlanaRada) {
-  this._http.get('http://147.91.175.211:8080/stom/stavkaPlanaRadaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     stavkaPlanaRada.id = data as number;
     this.addStavkaPlanaRada(stavkaPlanaRada);

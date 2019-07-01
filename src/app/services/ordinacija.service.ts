@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Ordinacija } from '../models/ordinacija';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrdinacijaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/ordinacija';
+    private readonly API_URL = environment.baseUrl + '/ordinacija';
     dataChange: BehaviorSubject<Ordinacija[]> = new BehaviorSubject<Ordinacija[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,7 +41,7 @@ public deleteOrdinacija(id: number): void {
   });
 }
 public getNextID(addOrdinacija, ordinacija: Ordinacija) {
-  this._http.get('http://147.91.175.211:8080/stom/ordinacijaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     ordinacija.id = data as number;
     this.addOrdinacija(ordinacija);

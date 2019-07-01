@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Racun } from '../models/racun';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RacunService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/racun';
+    private readonly API_URL = environment.baseUrl + '/recun';
     dataChange: BehaviorSubject<Racun[]> = new BehaviorSubject<Racun[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -39,14 +40,8 @@ public deleteRacun(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
-public getNextRacunID(): number {
-  this._http.get('http://147.91.175.211:8080/stom/racunNextId').subscribe(x => {
-    return x;
-  });
-  return 0;
-}
 public getNextID(addRacun, racun: Racun) {
-  this._http.get('http://147.91.175.211:8080/stom/racunNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     racun.id = data as number;
     this.addRacun(racun);

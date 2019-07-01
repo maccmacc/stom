@@ -3,13 +3,14 @@ import { HttpClient } from "@angular/common/http";
 import { Dijagnoza } from '../models/dijagnoza';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DijagnozaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/dijagnoza';
-    dataChange: BehaviorSubject<Dijagnoza[]> = new BehaviorSubject<Dijagnoza[]>([]);
+  private readonly API_URL = environment.baseUrl + '/dijagnoza';
+     dataChange: BehaviorSubject<Dijagnoza[]> = new BehaviorSubject<Dijagnoza[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
 
@@ -41,7 +42,7 @@ public deleteDijagnoza(id: number): void {
   });
 }
 public getNextID(addDijagnoza, dijagnoza: Dijagnoza) {
-  this._http.get('http://147.91.175.211:8080/stom/dijagnozaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     dijagnoza.id = data as number;
     this.addDijagnoza(dijagnoza);

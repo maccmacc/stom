@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Struka } from '../models/struka';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StrukaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/struka';
+  private readonly API_URL = environment.baseUrl + '/struka';
     dataChange: BehaviorSubject<Struka[]> = new BehaviorSubject<Struka[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,7 +41,7 @@ public deleteStruka(id: number): void {
   });
 }
 public getNextID(addStruka, struka: Struka) {
-  this._http.get('http://147.91.175.211:8080/stom/strukaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     struka.id = data as number;
     this.addStruka(struka);

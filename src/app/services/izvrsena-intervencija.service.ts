@@ -6,21 +6,24 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar, MatTableDataSource } from '@angular/material';
 import { IzvrsenaIntervencijaComponent } from '../components/izvrsena-intervencija/izvrsena-intervencija.component';
 import { SortModel } from '../models/SortModel';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IzvrsenaIntervencijaService {
-  private readonly API_URL = 'http://147.91.175.211:8080/stom/izvrsenaIntervencija';
+
+  private readonly API_URL = environment.baseUrl + '/izvrsenaIntervencija';
   dataChange: BehaviorSubject<IzvrsenaIntervencija[]> = new BehaviorSubject<IzvrsenaIntervencija[]>([]);
+
   constructor(public snackBar: MatSnackBar, private _http: HttpClient) { }
 
   public getAllIzvrsenaIntervencija(izvrsenaIntervencijaComponent: IzvrsenaIntervencijaComponent, onInit: boolean) {
 
     this._http.get<IzvrsenaIntervencija[]>(this.API_URL + '?size=' + izvrsenaIntervencijaComponent.pageSortModel.size
-                                          + '&page=' + izvrsenaIntervencijaComponent.pageSortModel.number
-                                          + '&sort=' + izvrsenaIntervencijaComponent.pageSortModel.sort.property
-                                          + ',' + izvrsenaIntervencijaComponent.pageSortModel.sort.direction)
+      + '&page=' + izvrsenaIntervencijaComponent.pageSortModel.number
+      + '&sort=' + izvrsenaIntervencijaComponent.pageSortModel.sort.property
+      + ',' + izvrsenaIntervencijaComponent.pageSortModel.sort.direction)
       .subscribe(data => {
 
         izvrsenaIntervencijaComponent.pageSortModel = JSON.parse(JSON.stringify(data));

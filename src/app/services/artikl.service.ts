@@ -4,11 +4,14 @@ import { Artikl } from '../models/artikl';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 
+import { environment } from '../../environments/environment';
+
+
 @Injectable({
   providedIn: 'root'
 })
 export class ArtiklService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/artikl';
+    private readonly API_URL = environment.baseUrl + '/artikl';
     dataChange: BehaviorSubject<Artikl[]> = new BehaviorSubject<Artikl[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -39,14 +42,9 @@ public deleteArtikl(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
-public getNextArtiklID(): number {
-  this._http.get('http://147.91.175.211:8080/stom/ArtiklNextId').subscribe(x => {
-    return x;
-  });
-  return 0;
-}
+
 public getNextID(addArtikl, artikl: Artikl) {
-  this._http.get('http://147.91.175.211:8080/stom/artiklNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     artikl.id = data as number;
     this.addArtikl(artikl);

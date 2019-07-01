@@ -3,15 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Zaposleni } from '../models/zaposleni';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ZaposleniService {
-  getAllDijagnoza(): any {
-    throw new Error("Method not implemented.");
-  }
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/zaposleni';
+   private readonly API_URL = environment.baseUrl + '/zaposleni';
     dataChange: BehaviorSubject<Zaposleni[]> = new BehaviorSubject<Zaposleni[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -42,14 +40,9 @@ public deleteZaposleni(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
-public getNextzaposleniID(): number {
-  this._http.get('http://147.91.175.211:8080/stom/zaposleniNextId').subscribe(x => {
-    return x;
-  });
-  return 0;
-}
+
 public getNextID(addZaposleni, zaposleni: Zaposleni) {
-  this._http.get('http://147.91.175.211:8080/stom/zaposleniNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     zaposleni.id = data as number;
     this.addZaposleni(zaposleni);
