@@ -10,7 +10,7 @@ import { FormControl } from "@angular/forms";
 import { Observable } from "rxjs";
 import { map, startWith } from "rxjs/operators";
 import { Pacijent } from "../../../models/pacijent";
-import { Termin } from "../../../models/termin";
+import { Termin } from "../../../models/Termin";
 import { RadnoMesto } from "../../../models/radno-mesto";
 import { PacijentService } from "../../../services/pacijent.service";
 import { RadnoMestoService } from "../../../services/radno-mesto.service";
