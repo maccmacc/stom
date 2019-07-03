@@ -29,7 +29,7 @@ import {
   MatProgressSpinnerModule
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
-import { PacijenComponent } from "./components/pacijent/pacijent.component";
+import { PacijentComponent } from "./components/pacijent/pacijent.component";
 import { HttpClientModule } from "@angular/common/http";
 import { MaterijalComponent } from "./components/materijal/materijal.component";
 import { OrdinacijaComponent } from "./components/ordinacija/ordinacija.component";
@@ -84,7 +84,7 @@ import { TerminService } from "./services/termin.service";
 import { ScheduleModule } from "@syncfusion/ej2-angular-schedule";
 import { TimePickerModule } from "@syncfusion/ej2-angular-calendars";
 import { DatePickerModule } from "@syncfusion/ej2-angular-calendars";
-import { DropDownListComponent } from "@syncfusion/ej2-angular-dropdowns";
+import { DropDownListComponent, DropDownListModule } from "@syncfusion/ej2-angular-dropdowns";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { ButtonModule } from "@syncfusion/ej2-angular-buttons";
@@ -130,7 +130,7 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
   declarations: [
     AppComponent,
     NavBarComponent,
-    PacijenComponent,
+    PacijentComponent,
     MaterijalComponent,
     OrdinacijaComponent,
     DobavljacComponent,
@@ -163,7 +163,6 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
     StavkaPorudzbineDialogComponent,
     KalendarComponent,
     KalendarDialogComponent,
-    DropDownListComponent,
     RacunComponent,
     RacunDialogComponent,
     SnimakComponent,
@@ -235,7 +234,8 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
     ButtonModule,
     MatMenuModule,
     MatCheckboxModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    DropDownListModule
   ],
   providers: [
     PacijentService,

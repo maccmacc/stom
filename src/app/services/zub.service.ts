@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Zub } from '../models/zub';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ZubService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/zub';
+   private readonly API_URL = environment.baseUrl + '/zub';
     dataChange: BehaviorSubject<Zub[]> = new BehaviorSubject<Zub[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -61,14 +62,8 @@ public deleteZub(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
-public getNextZubID(): number {
-  this._http.get('http://147.91.175.211:8080/stom/zubNextId').subscribe(x => {
-    return x;
-  });
-  return 0;
-}
 public getNextID(addZub, zub: Zub) {
-  this._http.get('http://147.91.175.211:8080/stom/zubNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     zub.id = data as number;
     this.addZub(zub);

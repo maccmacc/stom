@@ -60,5 +60,8 @@ export class SnimakDialogComponent implements OnInit {
         duration: 1000
       });
   }
+  public compareTo(a, b) {
+    return a.id === b.id;
+  }
 
 }

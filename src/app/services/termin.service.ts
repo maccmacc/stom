@@ -6,18 +6,19 @@ import {
 } from "@angular/common/http";
 import { Termin } from "../models/Termin";
 import { BehaviorSubject, Observable } from "rxjs";
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: "root"
 })
 export class TerminService {
-  private readonly uri = "http://147.91.175.211:8080/stom";
+  private readonly API_URL = environment.baseUrl + '/termin';
   dataChange: BehaviorSubject<Termin[]> = new BehaviorSubject<Termin[]>([]);
 
   constructor(private httpClient: HttpClient) {}
 
   public getAllTermin(): Observable<Termin[]> {
-    this.httpClient.get<Termin[]>(`${this.uri}/termin`).subscribe(
+    this.httpClient.get<Termin[]>(this.API_URL).subscribe(
       data => {
         this.dataChange.next(data);
       },
@@ -29,7 +30,7 @@ export class TerminService {
   }
 
   public getNextID(addTermin, termin: Termin, dialogRef): any {
-    this.httpClient.get(`${this.uri}/terminNextId`).subscribe(
+    this.httpClient.get(this.API_URL + 'NextId').subscribe(
       data => {
         termin.id = data as number;
         this.addTermin(termin);
@@ -43,7 +44,7 @@ export class TerminService {
   }
 
   public addTermin(termin: Termin) {
-    this.httpClient.post(`${this.uri}/termin`, termin).subscribe(
+    this.httpClient.post(this.API_URL, termin).subscribe(
       data => {
         console.log("Dodat novi termin!");
       },
@@ -54,7 +55,7 @@ export class TerminService {
   }
 
   public deleteTermin(id: number): void {
-    this.httpClient.delete(`${this.uri}/termin/` + id).subscribe(data => {
+    this.httpClient.delete(this.API_URL + '/' + id).subscribe(data => {
       console.log("Obrisano!");
     });
   }
@@ -62,7 +63,7 @@ export class TerminService {
   public updateTermin(termin: Termin): void {
     console.log("Update");
 
-    this.httpClient.put(`${this.uri}/termin/${termin.id}`, termin).subscribe(
+    this.httpClient.put(this.API_URL + '/' + `${termin.id}`, termin).subscribe(
       data => {
         console.log("Gotov update!");
       },

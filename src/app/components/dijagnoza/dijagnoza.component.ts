@@ -23,6 +23,7 @@ export class DijagnozaComponent implements OnInit {
   ngOnInit() {
     this.loadData();
   }
+
   public loadData() {
     this._dijagnoza.getAllDijagnoza().subscribe(
       data => {
@@ -38,6 +39,7 @@ export class DijagnozaComponent implements OnInit {
       }
     );
   }
+  
   public openDialog(flag: number, id: number, opis: string) {
     const dialogRef = this.dialog.open(DijagnozaDialogComponent, {
     data: { id: id, opis: opis}
@@ -47,6 +49,7 @@ export class DijagnozaComponent implements OnInit {
     this.loadData();
     });
     }
+
     applyFilter(filterValue: string) {
       filterValue = filterValue.trim();
       filterValue = filterValue.toLowerCase();

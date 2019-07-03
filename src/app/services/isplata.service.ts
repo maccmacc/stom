@@ -3,12 +3,13 @@ import { HttpClient } from "@angular/common/http";
 import { Isplata } from '../models/isplata';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IsplataService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/isplata';
+    private readonly API_URL = environment.baseUrl + '/isplata';
     dataChange: BehaviorSubject<Isplata[]> = new BehaviorSubject<Isplata[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,7 +41,7 @@ public deleteIsplata(id: number): void {
   });
 }
 public getNextID(addIsplata, isplata: Isplata) {
-  this._http.get('http://147.91.175.211:8080/stom/isplataNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     isplata.id = data as number;
     this.addIsplata(isplata);

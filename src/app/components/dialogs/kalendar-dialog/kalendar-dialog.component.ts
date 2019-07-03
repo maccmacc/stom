@@ -21,9 +21,12 @@ import { FormValidatorModel, FormValidator } from "@syncfusion/ej2-inputs";
   selector: "app-kalendar-dialog",
   templateUrl: "./kalendar-dialog.component.html",
   styleUrls: [
-    "./kalendar-dialog.component.css",
+    /*"./kalendar-dialog.component.css",
     "kalendar-dialog.component.sass",
-    "kalendar-dialog.component2.sass"
+    "kalendar-dialog.component2.sass",*/
+    "./mat/material-dark.css",
+    "./mat/material-dark1.scss",
+    "./kalendar-dialog.component.css"
   ]
 })
 export class KalendarDialogComponent implements OnInit {
@@ -304,7 +307,6 @@ export class KalendarDialogComponent implements OnInit {
         }
       }
     } catch (err) {
-      console.log(err);
       alert("Pogrešno uneto vreme trajanja termina!");
       return;
     }

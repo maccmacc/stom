@@ -4,12 +4,13 @@ import { Porudzbina } from '../models/porudzbina';
 import { Observable, BehaviorSubject } from 'rxjs';
 import { HttpErrorResponse } from '@angular/common/http';
 import { StavkaPorudzbine } from '../models/stavka-porudzbine';
+import { environment } from '../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PorudzbinaService {
-    private readonly API_URL = 'http://147.91.175.211:8080/stom/porudzbina';
+  private readonly API_URL = environment.baseUrl + '/porudzbina';
     dataChange: BehaviorSubject<Porudzbina[]> = new BehaviorSubject<Porudzbina[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
@@ -40,14 +41,9 @@ public deletePorudzbina(id: number): void {
   this._http.delete(this.API_URL + '/' + id).subscribe(data => {
   });
 }
-public getNextPorudzbinaID(): number {
-  this._http.get('http://147.91.175.211:8080/stom/porudzbinaNextId').subscribe(x => {
-    return x;
-  });
-  return 0;
-}
+s
 public getNextID(addPorudzbina, porudzbina: Porudzbina) {
-  this._http.get('http://147.91.175.211:8080/stom/porudzbinaNextId').subscribe(
+  this._http.get(this.API_URL + 'NextId').subscribe(
     data => {
     porudzbina.id = data as number;
     this.addPorudzbina(porudzbina);

@@ -20,7 +20,7 @@ export class NavBarComponent {
   ) {}
   config = {
     interfaceWithRoute: true,
-    selectedListFontColor: '#7b1fa2',
+    selectedListFontColor: '#F6D55C',
     fontColor: 'rgb(255,255,255)'
   };
   appitems = [
