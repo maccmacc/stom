@@ -77,7 +77,7 @@ export class IzvrsenaIntervencijaComponent implements OnInit {
       this.izvrsenaIntervencijaService.getAllIzvrsenaIntervencija(this, false);
     }
     else{
-      this.izvrsenaIntervencijaService.getAllIzvrsenaIntervencija(this, true);
+      this.izvrsenaIntervencijaService.getAllIzvrsenaIntervencija(this, false);
     }
   }
 
