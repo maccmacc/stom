@@ -124,6 +124,11 @@ export class NavBarComponent {
         }
       ],
       icon: "work"
+    },
+    {
+      label: 'Odjava',
+      link: '/logout',
+      icon: 'close'
     }
   ];
 }

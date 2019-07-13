@@ -26,11 +26,12 @@ import {
   MatMenuModule,
   MatCheckboxModule,
   MatPaginatorIntl,
-  MatProgressSpinnerModule
+  MatProgressSpinnerModule,
+  MatCardModule,
 } from "@angular/material";
 import { PacijentService } from "./services/pacijent.service";
 import { PacijentComponent } from "./components/pacijent/pacijent.component";
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { MaterijalComponent } from "./components/materijal/materijal.component";
 import { OrdinacijaComponent } from "./components/ordinacija/ordinacija.component";
 import { DobavljacComponent } from "./components/dobavljac/dobavljac.component";
@@ -125,6 +126,12 @@ import { ZubService } from './services/zub.service';
 import { IzvrsenaIntervencijaComponent } from './components/izvrsena-intervencija/izvrsena-intervencija.component';
 import { IzvrsenaIntervencijaDialogComponent } from './components/dialogs/izvrsena-intervencija-dialog/izvrsena-intervencija-dialog.component';
 import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.service';
+import { AuthComponent } from './components/auth/auth.component';
+import { AuthService } from './services/auth.service'
+import { AuthInterceptor } from './interceptors/auth.interceptor'
+import { AuthGuardService } from './guards/auth-guard.service';
+import { RegisterComponent } from './components/register/register.component';
+import { LogoutComponent } from './components/logout/logout.component'
 
 @NgModule({
   declarations: [
@@ -174,7 +181,10 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
     ZubComponent,
     ZubDialogComponent,
     IzvrsenaIntervencijaComponent,
-    IzvrsenaIntervencijaDialogComponent
+    IzvrsenaIntervencijaDialogComponent,
+    AuthComponent,
+    RegisterComponent,
+    LogoutComponent
   ],
   entryComponents: [
     PacijentDialogComponent,
@@ -235,7 +245,8 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
     MatMenuModule,
     MatCheckboxModule,
     MatProgressSpinnerModule,
-    DropDownListModule
+    DropDownListModule,
+    MatCardModule
   ],
   providers: [
     PacijentService,
@@ -268,7 +279,14 @@ import { IzvrsenaIntervencijaService } from './services/izvrsena-intervencija.se
     PlanRadaService,
     StavkaPlanaRadaService,
     ZubService,
-    IzvrsenaIntervencijaService
+    IzvrsenaIntervencijaService,
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
+    AuthGuardService
   ],
   bootstrap: [AppComponent]
 })

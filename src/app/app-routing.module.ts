@@ -23,31 +23,41 @@ import { StavkaPlanaRadaComponent } from './components/stavka-plana-rada/stavka-
 import { PlanRadaComponent } from './components/plan-rada/plan-rada.component';
 import { ZubComponent } from './components/zub/zub.component';
 import { IzvrsenaIntervencijaComponent } from './components/izvrsena-intervencija/izvrsena-intervencija.component';
+import { AuthComponent } from './components/auth/auth.component'
+
+import { AuthGuardService } from './guards/auth-guard.service'
+import { RegisterComponent } from './components/register/register.component'
+import { LogoutComponent } from './components/logout/logout.component'
 
 const routes: Routes = [
-  { path: "pacijent", component: PacijentComponent },
-  { path: "artikl", component: ArtiklComponent },
-  { path: "struka", component: StrukaComponent },
-  { path: "slika", component: SlikaComponent },
-  { path: "ordinacija", component: OrdinacijaComponent },
-  { path: "dobavljac", component: DobavljacComponent },
-  { path: "dijagnoza", component: DijagnozaComponent },
-  { path: "materijal", component: MaterijalComponent },
-  { path: "zaposleni", component: ZaposleniComponent },
-  { path: "isplata", component: IsplataComponent },
-  { path: "porudzbina", component: PorudzbinaComponent },
-  { path: "radnoMesto", component: RadnoMestoComponent },
-  { path: "status", component: StatusComponent },
-  { path: "vrstaIntervencije", component: VrstaIntervencijeComponent },
-  { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
-  { path: "kalendar", component: KalendarComponent },
-  { path: "racun", component: RacunComponent },
-  { path: "snimak", component: SnimakComponent },
-  { path: "stavkaPlanaRada", component: StavkaPlanaRadaComponent },
-  { path: "planRada", component: PlanRadaComponent },
-  { path: "zub", component: ZubComponent },
-  { path: "", component: KalendarComponent },
-  { path: "izvrsenaIntervencija", component: IzvrsenaIntervencijaComponent}
+  {path: '', canActivate: [AuthGuardService], children: [
+    { path: "pacijent", component: PacijentComponent },
+    { path: "artikl", component: ArtiklComponent },
+    { path: "struka", component: StrukaComponent },
+    { path: "slika", component: SlikaComponent },
+    { path: "ordinacija", component: OrdinacijaComponent },
+    { path: "dobavljac", component: DobavljacComponent },
+    { path: "dijagnoza", component: DijagnozaComponent },
+    { path: "materijal", component: MaterijalComponent },
+    { path: "zaposleni", component: ZaposleniComponent },
+    { path: "isplata", component: IsplataComponent },
+    { path: "porudzbina", component: PorudzbinaComponent },
+    { path: "radnoMesto", component: RadnoMestoComponent },
+    { path: "status", component: StatusComponent },
+    { path: "vrstaIntervencije", component: VrstaIntervencijeComponent },
+    { path: "stavkaPorudzbine", component: StavkaPorudzbineComponent },
+    { path: "kalendar", component: KalendarComponent },
+    { path: "racun", component: RacunComponent },
+    { path: "snimak", component: SnimakComponent },
+    { path: "stavkaPlanaRada", component: StavkaPlanaRadaComponent },
+    { path: "planRada", component: PlanRadaComponent },
+    { path: "zub", component: ZubComponent },
+    { path: "", component: KalendarComponent },
+    { path: "izvrsenaIntervencija", component: IzvrsenaIntervencijaComponent}
+  ]},
+  { path: "auth", component: AuthComponent },
+  { path: "register", component: RegisterComponent },
+  { path: "logout", component: LogoutComponent }
 ];
 
 @NgModule({
