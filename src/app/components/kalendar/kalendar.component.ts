@@ -10,7 +10,7 @@ import {
   WorkHoursModel
 } from "@syncfusion/ej2-angular-schedule";
 import { TerminService } from "../../services/termin.service";
-import { Termin } from "../../models/Termin";
+import { Termin } from "../../models/termin";
 import { L10n, loadCldr, setCulture } from "@syncfusion/ej2-base";
 import { KalendarDialogComponent } from "../dialogs/kalendar-dialog/kalendar-dialog.component";
 import { MatDialog } from "@angular/material/dialog";

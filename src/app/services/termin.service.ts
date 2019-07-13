@@ -4,7 +4,7 @@ import {
   HttpErrorResponse,
   HttpClientModule
 } from "@angular/common/http";
-import { Termin } from "../models/Termin";
+import { Termin } from "../models/termin";
 import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from '../../environments/environment';
 
