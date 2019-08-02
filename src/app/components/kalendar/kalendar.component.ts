@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, ViewChild, OnInit } from '@angular/core';
 import {
   DayService,
   WeekService,
@@ -8,31 +8,32 @@ import {
   EventSettingsModel,
   ScheduleComponent,
   WorkHoursModel
-} from "@syncfusion/ej2-angular-schedule";
-import { TerminService } from "../../services/termin.service";
-import { Termin } from "../../models/termin";
-import { L10n, loadCldr, setCulture } from "@syncfusion/ej2-base";
-import { KalendarDialogComponent } from "../dialogs/kalendar-dialog/kalendar-dialog.component";
-import { MatDialog } from "@angular/material/dialog";
+} from '@syncfusion/ej2-angular-schedule';
+import { TerminService } from '../../services/termin.service';
+import { Termin } from '../../models/termin';
+import { L10n, loadCldr, setCulture } from '@syncfusion/ej2-base';
+import { KalendarDialogComponent } from '../dialogs/kalendar-dialog/kalendar-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
+import { StaticReflector } from '@angular/compiler';
 
 declare var require: any;
-setCulture("sr-Latn");
+setCulture('sr-Latn');
 
 @Component({
-  selector: "app-kalendar",
-  templateUrl: "./kalendar.component.html",
-  styleUrls: ["./kalendar.component.css"],
+  selector: 'app-kalendar',
+  templateUrl: './kalendar.component.html',
+  styleUrls: ['./kalendar.component.css'],
   providers: [DayService, WeekService, WorkWeekService, MonthService]
 })
-export class KalendarComponent {
-  @ViewChild("scheduleObj") scheduleObj: ScheduleComponent;
+export class KalendarComponent implements OnInit {
+  @ViewChild('scheduleObj') scheduleObj: ScheduleComponent;
   public selectedDate: Date = new Date();
-  public currentView: View = "Month";
-  dateFormat: string = "dd/MM/yyyy";
+  public currentView: View = 'Month';
+  dateFormat = 'dd/MM/yyyy';
   currentDate: Date = new Date(2018, 10, 30);
-  public views: Array<string> = ["Day", "Week", "WorkWeek", "Month"];
+  public views: Array<string> = ['Day', 'Week', 'WorkWeek', 'Month'];
   private selectionTarget: Element;
-  load: boolean = false;
+  load = false;
 
   public data: object[] = [];
 
@@ -42,124 +43,124 @@ export class KalendarComponent {
 
   constructor(private terminService: TerminService, public dialog: MatDialog) {
     loadCldr(
-      require("../../../../node_modules/cldr-data/main/sr-Latn/ca-gregorian.json"),
-      require("../../../../node_modules/cldr-data/main/sr-Latn/numbers.json"),
-      require("../../../../node_modules/cldr-data/main/sr-Latn/timeZoneNames.json")
+      require('../../../../node_modules/cldr-data/main/sr-Latn/ca-gregorian.json'),
+      require('../../../../node_modules/cldr-data/main/sr-Latn/numbers.json'),
+      require('../../../../node_modules/cldr-data/main/sr-Latn/timeZoneNames.json')
     );
 
-    var s = new Date();
+    const s = new Date();
     this.currentDate = new Date(s.getFullYear(), s.getMonth(), s.getDate());
   }
 
   ngOnInit() {
     L10n.load({
-      "sr-Latn": {
+      'sr-Latn': {
         schedule: {
-          day: "Dan",
-          week: "Nedelja",
-          workWeek: "Radna nedelja",
-          month: "Mesec",
-          agenda: "Agenda",
-          weekAgenda: "Agenda nedelje",
-          workWeekAgenda: "Agenda radne nedelje",
-          monthAgenda: "Mesečna agenda",
-          today: "Danas",
-          noEvents: "Nema termina",
-          emptyContainer: "Nema zapisanih termina na ovaj dan",
-          allDay: "Ceo dan",
-          start: "Početak",
-          end: "Kraj",
-          more: "više",
-          close: "Zatvori",
-          cancel: "Otkaži",
-          noTitle: "(Nema naslova)",
-          delete: "Obriši",
-          deleteEvent: "Obriši termin",
-          deleteMultipleEvent: "Obriši više termina",
-          selectedItems: "Selektovani termini",
-          deleteSeries: "Obriši grupu",
-          edit: "Izmeni",
-          editSeries: "Modifikuj grupu",
-          editEvent: "Izmeni termin",
-          createEvent: "Kreiraj termin",
-          subject: "Subject",
-          addTitle: "Odaberi pacijenta",
-          moreDetails: "Više detalja",
-          save: "Sačuvaj",
+          day: 'Dan',
+          week: 'Nedelja',
+          workWeek: 'Radna nedelja',
+          month: 'Mesec',
+          agenda: 'Agenda',
+          weekAgenda: 'Agenda nedelje',
+          workWeekAgenda: 'Agenda radne nedelje',
+          monthAgenda: 'Mesečna agenda',
+          today: 'Danas',
+          noEvents: 'Nema termina',
+          emptyContainer: 'Nema zapisanih termina na ovaj dan',
+          allDay: 'Ceo dan',
+          start: 'Početak',
+          end: 'Kraj',
+          more: 'više',
+          close: 'Zatvori',
+          cancel: 'Otkaži',
+          noTitle: '(Nema naslova)',
+          delete: 'Obriši',
+          deleteEvent: 'Obriši termin',
+          deleteMultipleEvent: 'Obriši više termina',
+          selectedItems: 'Selektovani termini',
+          deleteSeries: 'Obriši grupu',
+          edit: 'Izmeni',
+          editSeries: 'Modifikuj grupu',
+          editEvent: 'Izmeni termin',
+          createEvent: 'Kreiraj termin',
+          subject: 'Subject',
+          addTitle: 'Odaberi pacijenta',
+          moreDetails: 'Više detalja',
+          save: 'Sačuvaj',
           editContent:
-            "Da li želite da izmenite ovaj termin ili celu grupu termina?",
+            'Da li želite da izmenite ovaj termin ili celu grupu termina?',
           deleteRecurrenceContent:
-            "Da li želite da obrišete ovaj termin ili celu grupu termina?",
-          deleteContent: "Da li ste sigurni da želite da obrišete ovaj termin?",
+            'Da li želite da obrišete ovaj termin ili celu grupu termina?',
+          deleteContent: 'Da li ste sigurni da želite da obrišete ovaj termin?',
           deleteMultipleContent:
-            "Da li ste sigurni da želite da obrišete selektovane termine?",
-          newEvent: "Novi termin",
-          title: "Naslov",
-          location: "Lokacija",
-          description: "Opis",
-          timezone: "Vremenska zona",
-          startTimezone: "Početna vremenska zona",
-          endTimezone: "Krajanja vremenska zona",
-          repeat: "Ponovi",
-          saveButton: "Sačuvaj",
-          cancelButton: "Otkaži",
-          deleteButton: "Obriši",
-          recurrence: "Ponavljanje",
-          wrongPattern: "Obrazac za ponavaljanje nije validan",
-          seriesChangeAlert: "Izmene grupe nisu sačuvane",
-          createError: "Pogrešno vreme trajanja ermina",
-          recurrenceDateValidation: "Pogrešno unet datum",
+            'Da li ste sigurni da želite da obrišete selektovane termine?',
+          newEvent: 'Novi termin',
+          title: 'Naslov',
+          location: 'Lokacija',
+          description: 'Opis',
+          timezone: 'Vremenska zona',
+          startTimezone: 'Početna vremenska zona',
+          endTimezone: 'Krajanja vremenska zona',
+          repeat: 'Ponovi',
+          saveButton: 'Sačuvaj',
+          cancelButton: 'Otkaži',
+          deleteButton: 'Obriši',
+          recurrence: 'Ponavljanje',
+          wrongPattern: 'Obrazac za ponavaljanje nije validan',
+          seriesChangeAlert: 'Izmene grupe nisu sačuvane',
+          createError: 'Pogrešno vreme trajanja ermina',
+          recurrenceDateValidation: 'Pogrešno unet datum',
           sameDayAlert:
-            "Two occurrences of the same event cannot occur on the same day.",
-          editRecurrence: "Edit Recurrence",
-          repeats: "Ponavaljanja",
-          alert: "Obaveštenje",
+            'Two occurrences of the same event cannot occur on the same day.',
+          editRecurrence: 'Edit Recurrence',
+          repeats: 'Ponavaljanja',
+          alert: 'Obaveštenje',
           startEndError:
-            "Izabrani datum završetka je postavljen pre datuma početka.",
-          invalidDateError: "Unesen datum nije validan",
-          ok: "Ok",
-          occurrence: "Occurrence",
-          series: "Series",
-          previous: "Prethodni",
-          next: "Sledeći",
-          timelineDay: "Timeline Day",
-          timelineWeek: "Timeline Week",
-          timelineWorkWeek: "Timeline Work Week",
-          timelineMonth: "Timeline Month"
+            'Izabrani datum završetka je postavljen pre datuma početka.',
+          invalidDateError: 'Unesen datum nije validan',
+          ok: 'Ok',
+          occurrence: 'Occurrence',
+          series: 'Series',
+          previous: 'Prethodni',
+          next: 'Sledeći',
+          timelineDay: 'Timeline Day',
+          timelineWeek: 'Timeline Week',
+          timelineWorkWeek: 'Timeline Work Week',
+          timelineMonth: 'Timeline Month'
         },
         recurrenceeditor: {
-          none: "None",
-          daily: "Dnevno",
-          weekly: "Nedeljno",
-          monthly: "Mesečno",
-          month: "Mesec",
-          yearly: "Godišnje",
-          never: "Nikada",
-          until: "do",
-          count: "Count",
-          first: "Prvi",
-          second: "Drugi",
-          third: "Treći",
-          fourth: "Četvrti",
-          last: "Poslednji",
-          repeat: "Ponovi",
-          repeatEvery: "Ponovi svaki",
-          on: "Ponovi na",
-          end: "Kraj",
-          onDay: "Dan",
-          days: "Dani",
-          weeks: "Nedelje",
-          months: "Meseci",
-          years: "Godine",
-          every: "svaki",
-          summaryTimes: "puta",
-          summaryOn: "na",
-          summaryUntil: "dok",
-          summaryRepeat: "Ponavljanja",
-          summaryDay: "dana",
-          summaryWeek: "nedelja",
-          summaryMonth: "meseci",
-          summaryYear: "godina"
+          none: 'None',
+          daily: 'Dnevno',
+          weekly: 'Nedeljno',
+          monthly: 'Mesečno',
+          month: 'Mesec',
+          yearly: 'Godišnje',
+          never: 'Nikada',
+          until: 'do',
+          count: 'Count',
+          first: 'Prvi',
+          second: 'Drugi',
+          third: 'Treći',
+          fourth: 'Četvrti',
+          last: 'Poslednji',
+          repeat: 'Ponovi',
+          repeatEvery: 'Ponovi svaki',
+          on: 'Ponovi na',
+          end: 'Kraj',
+          onDay: 'Dan',
+          days: 'Dani',
+          weeks: 'Nedelje',
+          months: 'Meseci',
+          years: 'Godine',
+          every: 'svaki',
+          summaryTimes: 'puta',
+          summaryOn: 'na',
+          summaryUntil: 'dok',
+          summaryRepeat: 'Ponavljanja',
+          summaryDay: 'dana',
+          summaryWeek: 'nedelja',
+          summaryMonth: 'meseci',
+          summaryYear: 'godina'
         }
       }
     });
@@ -168,7 +169,15 @@ export class KalendarComponent {
   }
 
   public loadData() {
-    this.terminService.getAllTermin().subscribe((data: Termin[]) => {
+    /*
+    this.terminService.getAllTermin().subscribe(data => {
+      this.data.length = 0;
+      data.forEach(element => {
+        this.data.push(this.modifyDataForDisplay(element));
+      });
+    });
+    */
+    this.terminService.getAllTermin().subscribe(data => {
       this.data.length = 0;
       data.forEach(element => {
         this.data.push(this.modifyDataForDisplay(element));
@@ -176,19 +185,14 @@ export class KalendarComponent {
     });
   }
 
-  openDialog(
-    startTime: Date,
-    endTime: Date,
-    flag: Number,
-    termin: Termin
-  ): void {
+  openDialog(startTime: Date, endTime: Date, flag: number, termin: Termin): void {
     const dialogRef = this.dialog.open(KalendarDialogComponent, {
       data: {
         clickedDate: startTime,
-        startTime: startTime,
-        flag: flag,
+        startTime,
+        flag,
         napomena: termin.napomena,
-        endTime: endTime,
+        endTime,
         radnoMesto: termin.radnoMjesto,
         pacijent: termin.pacijent,
         id: termin.id
@@ -196,25 +200,25 @@ export class KalendarComponent {
     });
 
     dialogRef.afterClosed().subscribe(data => {
-      if (flag == 1 && dialogRef.componentInstance.termin.id === undefined) {
+      if (flag === 1 && dialogRef.componentInstance.termin.id === undefined) {
         return;
       } else if (
-        flag == 1 &&
+        flag === 1 &&
         dialogRef.componentInstance.termin.id !== undefined
       ) {
         this.load = true;
-        var json = this.modifyDataForDisplay(
+        const json = this.modifyDataForDisplay(
           dialogRef.componentInstance.termin
         );
 
         this.scheduleObj.addEvent(json);
       } else if (
-        flag == 2 &&
+        flag === 2 &&
         dialogRef.componentInstance.termin.id !== undefined
       ) {
         this.load = true;
 
-        var json = this.modifyDataForDisplay(
+        const json = this.modifyDataForDisplay(
           dialogRef.componentInstance.termin
         );
         this.scheduleObj.saveEvent(json);
@@ -222,50 +226,35 @@ export class KalendarComponent {
     });
   }
 
-  ngAfterViewInit() {}
-
-  ngOnDestroy() {}
-
   onActionBegin(args: any): void {
-    if (args.requestType == "eventRemove") {
-      for (var i = 0; i < args.data.length; i++) {
-        this.terminService.deleteTermin(args.data[i].Id);
-      }
+    if (args.requestType === 'eventRemove') {
+      args.data.forEach(element => {
+        this.terminService.deleteTermin(element.Id);
+      });
     }
   }
 
   onPopupOpen(args: any): void {
-    //sprecavanje otvaranje defualt editora
-    if (!args.data.hasOwnProperty("Id") && args.type === "QuickInfo") {
+    // sprecavanje otvaranje defualt editora
+    if (!args.data.hasOwnProperty('Id') && args.type === 'QuickInfo') {
       args.cancel = true;
     }
 
     this.selectionTarget = null;
     this.selectionTarget = args.target;
-    var termin = new Termin();
-    if (args.type === "Editor" && !args.data.hasOwnProperty("Id")) {
+    let termin = new Termin();
+    if (args.type === 'Editor' && !args.data.hasOwnProperty('Id')) {
       args.cancel = true;
-
       this.openDialog(args.data.StartTime, args.data.EndTime, 1, termin);
-    } else if (args.type === "Editor" && args.data.hasOwnProperty("Id")) {
+    } else if (args.type === 'Editor' && args.data.hasOwnProperty('Id')) {
       args.cancel = true;
 
       termin = {
         id: args.data.Id,
         datum: args.data.StartTime,
         napomena: args.data.napomena,
-        pocetak:
-          args.data.StartTime.getHours() +
-          ":" +
-          args.data.StartTime.getMinutes() +
-          ":" +
-          "00",
-        zavrsetak:
-          args.data.EndTime.getHours() +
-          ":" +
-          args.data.EndTime.getMinutes() +
-          ":" +
-          "00",
+        pocetak: args.data.StartTime.getHours() + ':' + args.data.StartTime.getMinutes() + ':' + '00',
+        zavrsetak: args.data.EndTime.getHours() + ':' + args.data.EndTime.getMinutes() + ':' + '00',
         pacijent: args.data.pacijent,
         radnoMjesto: args.data.radnoMesto,
         zaposleni: args.data.zaposleni
@@ -276,10 +265,12 @@ export class KalendarComponent {
   }
 
   modifyDataForDisplay(termin: Termin): any {
+    let startTime: Date;
+    let endTime: Date;
     if (!this.load) {
-      let date = new Date(Date.parse(termin.datum));
-      var st = new Date("1970-01-01T" + termin.pocetak);
-      var startTime = new Date(
+      const date = new Date(Date.parse(termin.datum));
+      const st = new Date('1970-01-01T' + termin.pocetak);
+      startTime = new Date(
         Date.UTC(
           date.getFullYear(),
           date.getMonth(),
@@ -289,8 +280,8 @@ export class KalendarComponent {
         )
       );
 
-      var et = new Date("1970-01-01T" + termin.zavrsetak);
-      var endTime = new Date(
+      const et = new Date('1970-01-01T' + termin.zavrsetak);
+      endTime = new Date(
         Date.UTC(
           date.getFullYear(),
           date.getMonth(),
@@ -300,36 +291,36 @@ export class KalendarComponent {
         )
       );
     } else {
-      let date = new Date(Date.parse(termin.datum));
-      var formatStartTime = termin.pocetak.split(":");
-      var startTimeHours = formatStartTime[0];
-      var startTimeMinutes = formatStartTime[1];
+      const date = new Date(Date.parse(termin.datum));
+      const formatStartTime = termin.pocetak.split(':');
+      const startTimeHours = formatStartTime[0];
+      const startTimeMinutes = formatStartTime[1];
 
-      var startTime = new Date(
+      startTime = new Date(
         date.getFullYear(),
         date.getMonth(),
         date.getDate(),
-        Number.parseInt(startTimeHours),
-        Number.parseInt(startTimeMinutes)
+        Number.parseInt(startTimeHours, 2),
+        Number.parseInt(startTimeMinutes, 2)
       );
 
-      var formatEndTime = termin.zavrsetak.split(":");
-      var endTimeHours = formatEndTime[0];
-      var endTimeMinutes = formatEndTime[1];
-      var endTime = new Date(
+      const formatEndTime = termin.zavrsetak.split(':');
+      const endTimeHours = formatEndTime[0];
+      const endTimeMinutes = formatEndTime[1];
+      endTime = new Date(
         date.getFullYear(),
         date.getMonth(),
         date.getDate(),
-        Number.parseInt(endTimeHours),
-        Number.parseInt(endTimeMinutes)
+        Number.parseInt(endTimeHours, 2),
+        Number.parseInt(endTimeMinutes, 2)
       );
 
       this.load = false;
     }
 
-    var json = {
+    const json = {
       Id: termin.id,
-      Subject: termin.pacijent.lookup + " | " + termin.radnoMjesto.naziv,
+      Subject: termin.pacijent.lookup + ' | ' + termin.radnoMjesto.naziv,
       StartTime: startTime,
       EndTime: endTime,
       pacijent: termin.pacijent,

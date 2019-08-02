@@ -90,9 +90,7 @@ export class KalendarDialogComponent implements OnInit {
       this.filteredRadnaMesta = this.myControlRadnoMesto.valueChanges.pipe(
         startWith(''),
         map(radnoMesto =>
-          radnoMesto
-            ? this._filteredRadnoMesto(radnoMesto)
-            : this.radnaMesta.slice()
+          radnoMesto ? this._filteredRadnoMesto(radnoMesto) : this.radnaMesta.slice()
         )
       );
     });

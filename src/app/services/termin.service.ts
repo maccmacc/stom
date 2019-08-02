@@ -16,7 +16,7 @@ export class TerminService {
   dataChange: BehaviorSubject<Termin[]> = new BehaviorSubject<Termin[]>([]);
 
   constructor(private httpClient: HttpClient) {}
-
+/*
   public getAllTermin(): Observable<Termin[]> {
     this.httpClient.get<Termin[]>(this.API_URL).subscribe(
       data => {
@@ -27,6 +27,10 @@ export class TerminService {
       }
     );
     return this.dataChange.asObservable();
+  }
+*/
+  public getAllTermin(): Observable<Termin[]> {
+    return this.httpClient.get<Termin[]>(this.API_URL);
   }
 
   public addTermin(termin: Termin) {
