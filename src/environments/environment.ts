@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://147.91.175.211:8080/stom'
+  baseUrl: 'http://localhost:8080/stom-api'
 };
 
 /*
