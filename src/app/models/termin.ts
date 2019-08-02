@@ -1,5 +1,5 @@
-import { DecimalPipe, Time } from "@angular/common";
-import { StringMap } from "@angular/core/src/render3/jit/compiler_facade_interface";
+import { DecimalPipe, Time } from '@angular/common';
+import { StringMap } from '@angular/core/src/render3/jit/compiler_facade_interface';
 
 export class Termin {
   id: number;
@@ -18,7 +18,6 @@ export class Termin {
     kontakt: string;
     lookup: string;
     napomena: string;
-    ukupno: number;
     datumRodjenja: Date;
   };
 

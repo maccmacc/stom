@@ -170,9 +170,9 @@ export class KalendarComponent {
   public loadData() {
     this.terminService.getAllTermin().subscribe((data: Termin[]) => {
       this.data.length = 0;
-      for (var i = 0; i < data.length; i++) {
-        this.data.push(this.modifyDataForDisplay(data[i]));
-      }
+      data.forEach(element => {
+        this.data.push(this.modifyDataForDisplay(element));
+      });
     });
   }
 
