@@ -9,7 +9,7 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class RacunService {
-    private readonly API_URL = environment.baseUrl + '/recun';
+    private readonly API_URL = environment.baseUrl + '/racun';
     dataChange: BehaviorSubject<Racun[]> = new BehaviorSubject<Racun[]>([]);
     private dialogData: any;
   constructor(private _http: HttpClient) {}
