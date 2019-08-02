@@ -1,5 +1,5 @@
-import { OnInit, Component } from "@angular/core";
-import { StavkaPorudzbineService } from "../../services/stavka-porudzbine.service";
+import { OnInit, Component } from '@angular/core';
+import { StavkaPorudzbineService } from '../../services/stavka-porudzbine.service';
 import { StavkaPorudzbine } from '../../models/stavka-porudzbine';
 import { MatTableDataSource, MatPaginator, MatSort, MatDialog } from '@angular/material';
 import { ViewChild } from '@angular/core';
@@ -22,7 +22,7 @@ export class StavkaPorudzbineComponent implements OnInit {
   @Input() selektovanaPorudzbina: Porudzbina;
 
 
-  constructor(private _stavkaPorudzbine: StavkaPorudzbineService, public dialog: MatDialog) {}
+  constructor(private stavkaPorudzbine: StavkaPorudzbineService, public dialog: MatDialog) {}
 
   ngOnInit() {
     if (this.selektovanaPorudzbina.id) {
@@ -37,7 +37,7 @@ export class StavkaPorudzbineComponent implements OnInit {
   }
 
   public loadData() {
-    this._stavkaPorudzbine.getStavkaByPorudzbina(this.selektovanaPorudzbina.id).subscribe(data => {
+    this.stavkaPorudzbine.getStavkaByPorudzbina(this.selektovanaPorudzbina.id).subscribe(data => {
       this.dataSource = new MatTableDataSource<StavkaPorudzbine>(data);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
@@ -48,8 +48,7 @@ export class StavkaPorudzbineComponent implements OnInit {
 
 
 const dialogRef = this.dialog.open(StavkaPorudzbineDialogComponent, {
-data: { id: id, artikl: artikl, cena: cena, jedinicaMere: jedinicaMere,
-        kolicina: kolicina, porudzbina: porudzbina, redniBroj: redniBroj }
+data: {id, artikl, cena, jedinicaMere, kolicina, porudzbina, redniBroj}
 });
 dialogRef.componentInstance.flag = flag;
 if (flag === 1) {
