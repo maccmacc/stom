@@ -1,0 +1,40 @@
+<div *ngIf="!showError">
+    <mat-form-field>
+      <input [disabled]="true" [value]="pacijent.name" matInput placeholder="Ime">
+    </mat-form-field>
+    
+    <mat-form-field>
+      <textarea [disabled]="true" [value]="pacijent.lastName"  matInput placeholder="Prezime"> </textarea>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <textarea [disabled]="true" [value]="pacijent.address" matInput placeholder="Adresa"> </textarea>
+    </mat-form-field>
+
+    <mat-form-field>
+        <textarea [disabled]="true" [value]="pacijent.contact"  matInput placeholder="Kontakt"> </textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea [disabled]="true" [value]="pacijent.dateOfBirth"  matInput placeholder="Datum rodjenja"> </textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea [disabled]="true" [value]="pacijent.note" matInput placeholder="Napomena"> </textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea [disabled]="true" [value]="pacijent.email" matInput placeholder="Email"> </textarea>
+      </mat-form-field>
+
+      <mat-form-field>
+        <textarea [disabled]="true" [value]="pacijent.date" matInput placeholder="Datum upisa"> </textarea>
+      </mat-form-field>
+
+      
+  </div>
+  <div *ngIf="showError" class="error__wrapper">
+      <div class="error__wrapper--title">
+        <h1> Server error, something went wrong :( </h1>
+    </div>
+  </div>

@@ -84,6 +84,17 @@
         </button>
       </mat-cell>
     </ng-container>
+
+    <ng-container matColumnDef="details">
+      <mat-header-cell *matHeaderCellDef>Details</mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" (click)="redirectToDetails(row.id)" >
+            <mat-icon>visibility</mat-icon>
+        </button>
+        
+      </mat-cell>
+    </ng-container>
+
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row style="cursor: pointer" *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>

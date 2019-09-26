@@ -1,0 +1,25 @@
+.example-container {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .example-container > * {
+    width: 100%;
+  }
+
+  .error__wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+      height: 100vh;
+  }
+
+  .error__wrapper > error__wrapper--title {
+      text-align: center;
+      color: red;
+      font: 22px;
+  }
+.error__wrapper > error__wrapper--title > h1 {
+  transform: translateY(-80%);
+}

@@ -132,6 +132,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor'
 import { AuthGuardService } from './guards/auth-guard.service';
 import { RegisterComponent } from './components/register/register.component';
 import { LogoutComponent } from './components/logout/logout.component'
+import { PacijenDetaljitComponent } from "src/app/components/pacijent-detalji/pacijent-detalji.component";
 
 @NgModule({
   declarations: [
@@ -151,6 +152,7 @@ import { LogoutComponent } from './components/logout/logout.component'
     DobavljacDialogComponent,
     DijagnozaDialogComponent,
     OrdinacijaDialogComponent,
+    PacijenDetaljitComponent,
     SlikaDialogComponent,
     StrukaDialogComponent,
     ArtiklDialogComponent,

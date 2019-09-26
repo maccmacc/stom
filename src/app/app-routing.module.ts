@@ -28,10 +28,13 @@ import { AuthComponent } from './components/auth/auth.component'
 import { AuthGuardService } from './guards/auth-guard.service'
 import { RegisterComponent } from './components/register/register.component'
 import { LogoutComponent } from './components/logout/logout.component'
+import { PacijenDetaljitComponent } from "src/app/components/pacijent-detalji/pacijent-detalji.component";
 
 const routes: Routes = [
   {path: '', canActivate: [AuthGuardService], children: [
+    { path: 'pacijent/:id', component: PacijenDetaljitComponent },
     { path: "pacijent", component: PacijentComponent },
+    
     { path: "artikl", component: ArtiklComponent },
     { path: "struka", component: StrukaComponent },
     { path: "slika", component: SlikaComponent },

@@ -10,6 +10,7 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 import { tap } from 'rxjs/internal/operators/tap';
 import { PageSortModel } from 'src/app/models/PageSortModel';
 import { SortModel } from 'src/app/models/SortModel';
+import { Router } from "@angular/router";
 
 @Component({
   selector: 'app-pacijent',
@@ -19,7 +20,7 @@ import { SortModel } from 'src/app/models/SortModel';
 export class PacijentComponent implements OnInit {
   pacijent: Pacijent;
   displayedColumns = ['id', 'adresa', 'ime', 'prezime', 'kontakt', 'napomena',
-    'datumRodjenja', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit'];
+    'datumRodjenja', 'email', 'datumUpisa', 'ukupno', 'add', 'delete', 'edit', 'details'];
 
   dataSource: MatTableDataSource<Pacijent>;
 
@@ -37,7 +38,7 @@ export class PacijentComponent implements OnInit {
   @ViewChild('inputSurname') inputSurname: ElementRef;
 
 
-  constructor(private pacijentService: PacijentService, public dialog: MatDialog) { }
+  constructor(private pacijentService: PacijentService, public dialog: MatDialog, private route: Router) { }
 
   ngOnInit() {
     this.pageSortModel = PageSortModel.defaultPatient();
@@ -163,5 +164,9 @@ export class PacijentComponent implements OnInit {
       },
     });
     dialogRef.componentInstance.flag = flag;
+  }
+
+  public redirectToDetails(id: string): void {
+    this.route.navigateByUrl(`/pacijent/${id}`)
   }
 }

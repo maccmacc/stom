@@ -50,7 +50,7 @@ export class PacijentService {
 
           //Check is data sorted
           if (data.sort != null) {
-            pacijentComponent.pageSortModel.sort = JSON.parse(JSON.stringify(data.sort[0]));
+            pacijentComponent.pageSortModel.sort = JSON.parse(JSON.stringify(data.sort));
           }
           else{
             pacijentComponent.pageSortModel.sort = new SortModel();
@@ -183,5 +183,9 @@ export class PacijentService {
         console.log(error.name + ' ' + error.message);
       }
     );
+  }
+
+  public getPacijentDetails(id) {
+    return this._http.get(`http://localhost:3005/users/${id}`);
   }
 }
