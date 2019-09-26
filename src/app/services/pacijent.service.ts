@@ -186,6 +186,6 @@ export class PacijentService {
   }
 
   public getPacijentDetails(id) {
-    return this._http.get(`http://localhost:3005/users/${id}`);
+    return this._http.get(`${environment.baseUrl}/pacijenti/${id}`);
   }
 }

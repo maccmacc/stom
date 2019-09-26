@@ -1,26 +1,26 @@
 <div *ngIf="!showError">
     <mat-form-field>
-      <input [disabled]="true" [value]="pacijent.name" matInput placeholder="Ime">
+      <input [disabled]="true" [value]="pacijent.ime" matInput placeholder="Ime">
     </mat-form-field>
     
     <mat-form-field>
-      <textarea [disabled]="true" [value]="pacijent.lastName"  matInput placeholder="Prezime"> </textarea>
+      <textarea [disabled]="true" [value]="pacijent.prezime"  matInput placeholder="Prezime"> </textarea>
     </mat-form-field>
   
     <mat-form-field>
-      <textarea [disabled]="true" [value]="pacijent.address" matInput placeholder="Adresa"> </textarea>
+      <textarea [disabled]="true" [value]="pacijent.adresa" matInput placeholder="Adresa"> </textarea>
     </mat-form-field>
 
     <mat-form-field>
-        <textarea [disabled]="true" [value]="pacijent.contact"  matInput placeholder="Kontakt"> </textarea>
+        <textarea [disabled]="true" [value]="pacijent.kontakt"  matInput placeholder="Kontakt"> </textarea>
       </mat-form-field>
 
       <mat-form-field>
-        <textarea [disabled]="true" [value]="pacijent.dateOfBirth"  matInput placeholder="Datum rodjenja"> </textarea>
+        <textarea [disabled]="true" [value]="pacijent.datumRodjenja"  matInput placeholder="Datum rodjenja"> </textarea>
       </mat-form-field>
 
       <mat-form-field>
-        <textarea [disabled]="true" [value]="pacijent.note" matInput placeholder="Napomena"> </textarea>
+        <textarea [disabled]="true" [value]="pacijent.napomena" matInput placeholder="Napomena"> </textarea>
       </mat-form-field>
 
       <mat-form-field>
@@ -28,10 +28,104 @@
       </mat-form-field>
 
       <mat-form-field>
-        <textarea [disabled]="true" [value]="pacijent.date" matInput placeholder="Datum upisa"> </textarea>
+        <textarea [disabled]="true" [value]="pacijent.datumUpisa" matInput placeholder="Datum upisa"> </textarea>
       </mat-form-field>
 
-      
+      <mat-form-field>
+        <textarea [disabled]="true" [value]="pacijent.lookup" matInput placeholder="Lookup"> </textarea>
+      </mat-form-field>
+
+      <div class="tableWrapper">
+        <!-- RACUNI TABELA -->
+        <div class="table">
+          <h1> Racuni </h1>
+            <mat-table #table [dataSource]="racuni" matSort class="mat-cell">
+                <ng-container matColumnDef="datum">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{row.datum}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="ukupno">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Ukupno</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.ukupno}}</mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="racuniCols"></mat-header-row>
+                <mat-row style="cursor: pointer" *matRowDef="let row; columns: racuniCols;"></mat-row>
+              </mat-table>
+        </div>
+        <!-- TABELA SNIMAK -->
+        <div class="table">
+          <h1>Snimci </h1>
+            <mat-table #table [dataSource]="snimci" matSort class="mat-cell">
+                <ng-container matColumnDef="datum">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{row.datum}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="putanja">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Putanja</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.putanja}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="opis">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Opis</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.opis}}</mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="snimakCols"></mat-header-row>
+                <mat-row style="cursor: pointer" *matRowDef="let row; columns: snimakCols;"></mat-row>
+              </mat-table>
+        </div>
+
+        <div class="table">
+            <h1> Termini </h1>
+            <mat-table #table [dataSource]="termini" matSort class="mat-cell">
+                <ng-container matColumnDef="datum">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{row.datum}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="pocetak">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Pocetak</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.pocetak}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="zavrsteak">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>zavrsetak</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.zavrsteak}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="zaposleni.lookup">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Zaposleni Lookup</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.zaposleni.lookup}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="radnoMjesto.name">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Radno Mesto</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.radnoMjesto.name}}</mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="terminCols"></mat-header-row>
+                <mat-row style="cursor: pointer" *matRowDef="let row; columns: terminCols;"></mat-row>
+              </mat-table>
+        </div>
+        <!-- TABLE INTERVENCIJE -->
+        <div class="table">
+          <h1> Intervencije </h1>
+            <mat-table #table [dataSource]="intervencije" matSort class="mat-cell">
+                <ng-container matColumnDef="datum">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Datum</mat-header-cell>
+                  <mat-cell *matCellDef="let row">{{row.datum}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="iznos">
+                  <mat-header-cell *matHeaderCellDef mat-sort-header>Iznos</mat-header-cell>
+                  <mat-cell *matCellDef="let row"> {{row.iznos}}</mat-cell>
+                </ng-container>
+                <ng-container matColumnDef="napomena">
+                    <mat-header-cell *matHeaderCellDef mat-sort-header>Napomena</mat-header-cell>
+                    <mat-cell *matCellDef="let row"> {{row.napomena}}</mat-cell>
+                </ng-container>
+            
+                <mat-header-row *matHeaderRowDef="izvrsenaIntervencijaCol"></mat-header-row>
+                <mat-row style="cursor: pointer" *matRowDef="let row; columns: izvrsenaIntervencijaCol;"></mat-row>
+              </mat-table>
+        </div>
+      </div>
+
   </div>
   <div *ngIf="showError" class="error__wrapper">
       <div class="error__wrapper--title">

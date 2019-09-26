@@ -34,7 +34,6 @@ const routes: Routes = [
   {path: '', canActivate: [AuthGuardService], children: [
     { path: 'pacijent/:id', component: PacijenDetaljitComponent },
     { path: "pacijent", component: PacijentComponent },
-    
     { path: "artikl", component: ArtiklComponent },
     { path: "struka", component: StrukaComponent },
     { path: "slika", component: SlikaComponent },

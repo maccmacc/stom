@@ -11,15 +11,32 @@ import { PacijentService } from "src/app/services/pacijent.service";
 export class PacijenDetaljitComponent implements OnInit {
 
     public pacijent = {
-        name: 'test',
-        lastName: 'test',
-        contact: 'test',
-        address: 'test',
-        email: 'test',
-        dateOfBirth: 'test',
-        note: 'test',
-        date:'test'
+        ime: '',
+        prezime: '',
+        kontakt: '',
+        adresa: '',
+        email: '',
+        datumRodjenja: '',
+        napomena: '',
+        datumUpisa:'',
+        lookup:'',
+        planRadas:'',
+        racuns: [],
+        snimaks: [],
+        termins: [],
+        zubs:[],
+        izvrsenaIntervencijas: []
     } as any;
+
+    public racuni = [];
+    public snimci = [];
+    public intervencije = [];
+    public termini = [];
+
+    public racuniCols = ['datum', 'ukupno'];
+    public snimakCols = ['datum', 'putanja', 'opis'];
+    public terminCols = ['datum', 'pocetak', 'zavrsteak', 'zaposleni.lookup', 'radnoMjesto.name']
+    public izvrsenaIntervencijaCol = ['datum', 'iznos', 'napomena'];
 
     private id: number = -1;
     public showError: boolean = false;
@@ -42,10 +59,18 @@ export class PacijenDetaljitComponent implements OnInit {
         this.pacijentService.getPacijentDetails(this.id).subscribe(
             data => {
                 this.pacijent=data;
+                this.processTableData();
             },
             err => {
                 this.showError = true;        
             });
+    }
+
+    private processTableData(): void {
+        this.termini = this.pacijent.termins;
+        this.intervencije = this.pacijent.izvrsenaIntervencijas;
+        this.snimci = this.pacijent.snimaks;
+      this.racuni = this.pacijent.racuns;
     }
 
 }

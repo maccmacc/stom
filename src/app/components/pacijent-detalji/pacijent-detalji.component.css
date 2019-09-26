@@ -23,3 +23,21 @@
 .error__wrapper > error__wrapper--title > h1 {
   transform: translateY(-80%);
 }
+
+.tableWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.tableWrapper .table {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 0 15px 0 15px;
+  height: 30vh;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table h1 {
+  text-align: center;
+}
